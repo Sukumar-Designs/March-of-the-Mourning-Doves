@@ -1,14 +1,171 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=4 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
+[ext_resource type="Theme" uid="uid://c07c6tpo0s50v" path="res://Themes/theme_first.tres" id="3_oknhe"]
 
 [node name="Node3D" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
-script = ExtResource("1_2ihiu")
 
 [node name="Terrain" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.3638e-07, 1, 0, -3.12, -4.37114e-08, 0, 0, -32.5)
 texture = ExtResource("1_0q8t2")
+
+[node name="UI_Controller" type="Node3D" parent="."]
+script = ExtResource("1_2ihiu")
+
+[node name="Camera3D" type="Camera3D" parent="UI_Controller"]
+transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
+
+[node name="Control" type="Control" parent="UI_Controller"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="UI_Controller/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.181912, 0.957192)
+theme = ExtResource("3_oknhe")
+theme_override_constants/side_margin = 70
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="Birds" type="TabBar" parent="UI_Controller/Control/TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x24
+"
+
+[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x15
+"
+
+[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Birds2" type="TabBar" parent="UI_Controller/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds2"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x24
+"
+
+[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x15
+"
+
+[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Birds3" type="TabBar" parent="UI_Controller/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds3"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x24
+"
+
+[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x15
+"
+
+[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"

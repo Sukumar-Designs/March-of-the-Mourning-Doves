@@ -6,7 +6,6 @@ const MOVE_SPEED = 10
 
 
 func _process(delta):
-	print_debug(self.position.z)
 	if Input.is_action_pressed("camera_forward"):
 		#if(self.position.x >= left_limit):
 		self.position.z -=  delta * MOVE_SPEED
