@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=9 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
 [ext_resource type="Theme" uid="uid://c07c6tpo0s50v" path="res://Themes/theme_first.tres" id="3_oknhe"]
+[ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
+[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="5_bi4tg"]
+[ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
+[ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
+[ext_resource type="Script" path="res://Scripts/change_tab.gd" id="8_vyxvd"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -16,77 +21,88 @@ script = ExtResource("1_2ihiu")
 [node name="Camera3D" type="Camera3D" parent="UI_Controller"]
 transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
 
-[node name="Control" type="Control" parent="UI_Controller"]
+[node name="Map" type="Sprite2D" parent="UI_Controller"]
+position = Vector2(144, 74)
+scale = Vector2(0.025, 0.063)
+texture = ExtResource("4_ykqu8")
+
+[node name="You_Are_Here" type="Node2D" parent="UI_Controller/Map"]
+position = Vector2(-1080, -380.952)
+scale = Vector2(40, 15.873)
+
+[node name="Polygon2D" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
+position = Vector2(8, 69.9)
+scale = Vector2(0.0420111, 0.00955444)
+color = Color(0, 0, 0, 1)
+texture = ExtResource("4_ykqu8")
+polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+
+[node name="Polygon2D3" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
+position = Vector2(17, 73)
+rotation = 1.57079
+scale = Vector2(0.015, 0.01)
+color = Color(0, 0, 0, 1)
+offset = Vector2(-321.15, -208)
+texture = ExtResource("4_ykqu8")
+polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+
+[node name="Polygon2D4" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
+position = Vector2(40, 73)
+rotation = 1.57079
+scale = Vector2(0.015, 0.01)
+color = Color(0, 0, 0, 1)
+offset = Vector2(-321.15, -208)
+texture = ExtResource("4_ykqu8")
+polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+
+[node name="Polygon2D2" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
+position = Vector2(8, 77.1)
+scale = Vector2(0.0420111, 0.00955444)
+color = Color(0, 0, 0, 1)
+texture = ExtResource("4_ykqu8")
+polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
+
+[node name="Interface_Controller" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 143.0
+offset_right = 14.0
+offset_bottom = 143.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.143907, 0.399354)
 
-[node name="TabContainer" type="TabContainer" parent="UI_Controller/Control"]
+[node name="TabContainer" type="TabContainer" parent="Interface_Controller"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_right = 6.0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 13.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.181912, 0.957192)
+scale = Vector2(1.52385, 1.4849)
 theme = ExtResource("3_oknhe")
-theme_override_constants/side_margin = 70
+theme_override_constants/side_margin = 10
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+current_tab = 2
+tab_focus_mode = 1
 
-[node name="Birds" type="TabBar" parent="UI_Controller/Control/TabContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_right = 38.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(6.58334, 0.993103)
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 75
-
-[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "x24
-"
-
-[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "x15
-"
-
-[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "x2
-"
-
-[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "x2
-"
-
-[node name="Birds2" type="TabBar" parent="UI_Controller/Control/TabContainer"]
+[node name="Critters" type="TabBar" parent="Interface_Controller/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds2"]
+[node name="Numbers" type="MarginContainer" parent="Interface_Controller/TabContainer/Critters"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -102,35 +118,152 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Critters/Numbers"]
 layout_mode = 2
 theme_override_constants/separation = 75
 
-[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Critters/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x24
 "
 
-[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Critters/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x15
 "
 
-[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Critters/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x2
 "
 
-[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds2/MarginContainer/VBoxContainer"]
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Critters/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x2
 "
 
-[node name="Birds3" type="TabBar" parent="UI_Controller/Control/TabContainer"]
+[node name="Buttons" type="MarginContainer" parent="Interface_Controller/TabContainer/Critters"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -538.93
+offset_top = 7.00774
+offset_right = -462.93
+offset_bottom = 7.00775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Critters/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird1"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird2"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird3"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird4"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
+offset_left = -99.7335
+offset_top = -181.862
+offset_right = 1540.27
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("7_grxjc")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+script = ExtResource("8_vyxvd")
+tab_number = 0
+
+[node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
+offset_left = 265.076
+offset_top = -181.862
+offset_right = 1905.08
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+
+[node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
+offset_left = 634.446
+offset_top = -183.548
+offset_right = 2274.45
+offset_bottom = 2176.45
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+tab_number = 2
+
+[node name="Resources" type="TabBar" parent="Interface_Controller/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI_Controller/Control/TabContainer/Birds3"]
+[node name="Numbers" type="MarginContainer" parent="Interface_Controller/TabContainer/Resources"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -146,26 +279,313 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Resources/Numbers"]
 layout_mode = 2
 theme_override_constants/separation = 75
 
-[node name="Bird1" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Resources/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x24
 "
 
-[node name="Bird2" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Resources/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x15
 "
 
-[node name="Bird3" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Resources/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x2
 "
 
-[node name="Bird4" type="Label" parent="UI_Controller/Control/TabContainer/Birds3/MarginContainer/VBoxContainer"]
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Resources/Numbers/VBoxContainer"]
 layout_mode = 2
 text = "x2
 "
+
+[node name="Buttons" type="MarginContainer" parent="Interface_Controller/TabContainer/Resources"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -538.93
+offset_top = 7.00774
+offset_right = -462.93
+offset_bottom = 7.00775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Resources/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird1"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird2"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird3"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird4"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
+offset_left = -99.7335
+offset_top = -181.862
+offset_right = 1540.27
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+tab_number = 0
+
+[node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
+offset_left = 265.076
+offset_top = -181.862
+offset_right = 1905.08
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("7_grxjc")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+script = ExtResource("8_vyxvd")
+
+[node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
+offset_left = 634.446
+offset_top = -183.548
+offset_right = 2274.45
+offset_bottom = 2176.45
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+tab_number = 2
+
+[node name="Control" type="TabBar" parent="Interface_Controller/TabContainer"]
+layout_mode = 2
+
+[node name="Numbers" type="MarginContainer" parent="Interface_Controller/TabContainer/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Control/Numbers"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Control/Numbers/VBoxContainer"]
+layout_mode = 2
+text = "x24
+"
+
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Control/Numbers/VBoxContainer"]
+layout_mode = 2
+text = "x15
+"
+
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Control/Numbers/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Control/Numbers/VBoxContainer"]
+layout_mode = 2
+text = "x2
+"
+
+[node name="Buttons" type="MarginContainer" parent="Interface_Controller/TabContainer/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -538.93
+offset_top = 7.00774
+offset_right = -462.93
+offset_bottom = 7.00775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.58334, 0.993103)
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface_Controller/TabContainer/Control/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Bird1" type="Label" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird1"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird2" type="Label" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird2"]
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird3" type="Label" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird3"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="Bird4" type="Label" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer"]
+layout_mode = 2
+text = "
+"
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird4"]
+layout_mode = 0
+offset_left = -10.8392
+offset_top = -41.7054
+offset_right = 1629.16
+offset_bottom = 2318.29
+scale = Vector2(0.0260334, 0.0401936)
+texture_normal = ExtResource("5_bi4tg")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+
+[node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
+offset_left = -99.7335
+offset_top = -181.862
+offset_right = 1540.27
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+tab_number = 0
+
+[node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
+offset_left = 265.076
+offset_top = -181.862
+offset_right = 1905.08
+offset_bottom = 2178.14
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("6_bsm2v")
+texture_pressed = ExtResource("7_grxjc")
+texture_hover = ExtResource("5_bi4tg")
+script = ExtResource("8_vyxvd")
+
+[node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
+offset_left = 634.446
+offset_top = -183.548
+offset_right = 2274.45
+offset_bottom = 2176.45
+scale = Vector2(0.344428, 0.0818649)
+texture_normal = ExtResource("7_grxjc")
+texture_pressed = ExtResource("6_bsm2v")
+texture_hover = ExtResource("7_grxjc")
+script = ExtResource("8_vyxvd")
+tab_number = 2
+
+[connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton3" to="Interface_Controller/TabContainer/Critters/SquirrelButton3" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Resources/SquirrelButton" to="Interface_Controller/TabContainer/Resources/SquirrelButton" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Resources/SquirrelButton2" to="Interface_Controller/TabContainer/Resources/SquirrelButton2" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Resources/SquirrelButton3" to="Interface_Controller/TabContainer/Resources/SquirrelButton3" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton" to="Interface_Controller/TabContainer/Control/SquirrelButton" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton2" to="Interface_Controller/TabContainer/Control/SquirrelButton2" method="_on_pressed"]
+[connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton3" to="Interface_Controller/TabContainer/Control/SquirrelButton3" method="_on_pressed"]
