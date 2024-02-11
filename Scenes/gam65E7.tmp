@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnepl2iikj3k5"]
+
+[ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
+[ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
+script = ExtResource("1_2ihiu")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -9)
+texture = ExtResource("1_0q8t2")
