@@ -25,12 +25,6 @@ func _ready():
 func _process(delta):
 	if !player:
 		return
-	#print_debug(player.rotation.y + PI / 2, "player")
-	#print_debug(player_marker.rotation, "marker")
-	#print_debug(player_marker.position, "position")
-	#player_marker.rotation = player.rotation.y + PI / 2
-	#player_marker.rotate(player.rotation.y * 1.5)#+ PI / 2
-	#print_debug(player_marker.rotation)
 	for item in markers:
 		if item.is_in_group("player"):
 			# Move Player Icon
