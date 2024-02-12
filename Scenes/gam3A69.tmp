@@ -22,7 +22,7 @@ transform = Transform3D(0.15876, 0, 0, 0, 0.141523, 6.71463e-16, 0, -2.12719e-14
 texture = ExtResource("5_bi4tg")
 script = ExtResource("3_cn58l")
 
-[node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
+[node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects"]]
 script = ExtResource("1_2ihiu")
 
 [node name="Camera3D" type="Camera3D" parent="UI_Controller"]
@@ -174,7 +174,6 @@ theme_override_constants/separation = 75
 layout_mode = 2
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird1"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -190,7 +189,6 @@ text = "
 "
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters/Buttons/VBoxContainer/Bird2"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -233,7 +231,6 @@ texture_pressed = ExtResource("6_bsm2v")
 texture_hover = ExtResource("7_grxjc")
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
-layout_mode = 0
 offset_left = -99.7335
 offset_top = -181.862
 offset_right = 1540.27
@@ -246,7 +243,6 @@ script = ExtResource("8_vyxvd")
 tab_number = 0
 
 [node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
-layout_mode = 0
 offset_left = 265.076
 offset_top = -181.862
 offset_right = 1905.08
@@ -258,7 +254,6 @@ texture_hover = ExtResource("5_bi4tg")
 script = ExtResource("8_vyxvd")
 
 [node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Critters"]
-layout_mode = 0
 offset_left = 634.446
 offset_top = -183.548
 offset_right = 2274.45
@@ -340,7 +335,6 @@ theme_override_constants/separation = 75
 layout_mode = 2
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird1"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -356,7 +350,6 @@ text = "
 "
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources/Buttons/VBoxContainer/Bird2"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -399,7 +392,6 @@ texture_pressed = ExtResource("6_bsm2v")
 texture_hover = ExtResource("7_grxjc")
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
-layout_mode = 0
 offset_left = -99.7335
 offset_top = -181.862
 offset_right = 1540.27
@@ -412,7 +404,6 @@ script = ExtResource("8_vyxvd")
 tab_number = 0
 
 [node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
-layout_mode = 0
 offset_left = 265.076
 offset_top = -181.862
 offset_right = 1905.08
@@ -424,7 +415,6 @@ texture_hover = ExtResource("7_grxjc")
 script = ExtResource("8_vyxvd")
 
 [node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Resources"]
-layout_mode = 0
 offset_left = 634.446
 offset_top = -183.548
 offset_right = 2274.45
@@ -506,7 +496,6 @@ theme_override_constants/separation = 75
 layout_mode = 2
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird1"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -522,7 +511,6 @@ text = "
 "
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control/Buttons/VBoxContainer/Bird2"]
-layout_mode = 0
 offset_left = -10.8392
 offset_top = -41.7054
 offset_right = 1629.16
@@ -565,7 +553,6 @@ texture_pressed = ExtResource("6_bsm2v")
 texture_hover = ExtResource("7_grxjc")
 
 [node name="SquirrelButton" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
-layout_mode = 0
 offset_left = -99.7335
 offset_top = -181.862
 offset_right = 1540.27
@@ -578,7 +565,6 @@ script = ExtResource("8_vyxvd")
 tab_number = 0
 
 [node name="SquirrelButton2" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
-layout_mode = 0
 offset_left = 265.076
 offset_top = -181.862
 offset_right = 1905.08
@@ -590,7 +576,6 @@ texture_hover = ExtResource("5_bi4tg")
 script = ExtResource("8_vyxvd")
 
 [node name="SquirrelButton3" type="TextureButton" parent="Interface_Controller/TabContainer/Control"]
-layout_mode = 0
 offset_left = 634.446
 offset_top = -183.548
 offset_right = 2274.45
@@ -635,7 +620,6 @@ scale = Vector2(1.31547, 0.489002)
 texture = ExtResource("6_bsm2v")
 
 [node name="SquirrelSoldierHighlight" type="Sprite2D" parent="MiniMap/MarginContainer/BackgroundMap"]
-visible = false
 position = Vector2(4989.05, 1492.79)
 scale = Vector2(0.638606, 0.272853)
 texture = ExtResource("7_grxjc")

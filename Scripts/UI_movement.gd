@@ -1,7 +1,8 @@
-extends Node3D
+extends CharacterBody3D
+
+var side = "ally"
 
 # Camera Movement
-const MOVE_SPEED = 10
 var left_limit = -50
 var right_limit = 50
 var upper_limit = -58
@@ -9,44 +10,46 @@ var lower_limit = 0
 
 # Map Movement
 @onready var you_are_here = $Map/You_Are_Here
-var YAH_move_speed_UD = 27
-var YAH_move_speed_LR = 90
+var YAH_move_speed_UD = 2.64
+var YAH_move_speed_LR = 3
 
-var sensitivity = 1  # Adjust the rotation sensitivity as needed
-var is_dragging = false
-var previous_mouse_position = Vector2()
+var speed = 5.0
+var sprint = speed * 1.7
+var mouse_sensativity = .7
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		if event.button_mask == 1:
+			rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
 
+func _physics_process(delta):
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		you_are_here.position.x = you_are_here.position.x + (direction.x * YAH_move_speed_UD)
+		you_are_here.position.y = you_are_here.position.y + (direction.z * YAH_move_speed_LR)
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+	move_and_slide()
 
-func _process(delta):
-	# Translate the Camera
-	if Input.is_action_pressed("camera_forward"):
-		if(self.position.z >= upper_limit):
-			self.position.z -=  delta * MOVE_SPEED
-			you_are_here.position.y -= delta * MOVE_SPEED*YAH_move_speed_UD
-	if Input.is_action_pressed("camera_back"):
-		if(self.position.z <= lower_limit):
-			self.position.z += delta * MOVE_SPEED
-			you_are_here.position.y += delta * MOVE_SPEED*YAH_move_speed_UD
-	if Input.is_action_pressed("camera_left"):
-		if(self.position.x >= left_limit):
-			self.position.x -= delta * MOVE_SPEED
-			you_are_here.position.x -= delta * MOVE_SPEED*YAH_move_speed_LR
-	if Input.is_action_pressed("camera_right"):
-		if(self.position.x <= right_limit):
-			self.position.x += delta * MOVE_SPEED
-			you_are_here.position.x += delta * MOVE_SPEED*YAH_move_speed_LR
-#
-	#if is_dragging:
-		#var mouse_delta = (get_viewport().get_mouse_position()*1.1) - previous_mouse_position 
-		#var delta_x = mouse_delta.x * sensitivity
-		#print(delta_x)
-		#rotate_object_local(Vector3(0, delta_x, 0), deg_to_rad(2.0))
-		#previous_mouse_position = get_viewport().get_mouse_position()
-#
-#func _input(event):
-	##print_debug(event)
-	#if event is InputEventMouseButton:
-		#is_dragging = event.pressed
-		#if is_dragging:
-			#previous_mouse_position = event.position
+#func _process(delta):
+	## Translate the Camera
+	#if Input.is_action_pressed("camera_forward"):
+		#if(self.position.z >= upper_limit):
+			#you_are_here.position.y -= delta * MOVE_SPEED*YAH_move_speed_UD
+	#if Input.is_action_pressed("camera_back"):
+		#if(self.position.z <= lower_limit):
+			#you_are_here.position.y += delta * MOVE_SPEED*YAH_move_speed_UD
+	#if Input.is_action_pressed("camera_left"):
+		#if(self.position.x >= left_limit):
+			#you_are_here.position.x -= delta * MOVE_SPEED*YAH_move_speed_LR
+	#if Input.is_action_pressed("camera_right"):
+		#if(self.position.x <= right_limit):
+			#you_are_here.position.x += delta * MOVE_SPEED*YAH_move_speed_LR
