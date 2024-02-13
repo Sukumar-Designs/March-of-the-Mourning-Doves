@@ -32,9 +32,9 @@ func _process(delta):
 			var obj_pos = speed*(Vector2(item.position.x, item.position.y) + Vector2(player.position.x, player.position.z)) * grid_scale + grid.size / 2
 			markers[item].position = obj_pos
 			
-			# Rotate Player Icon
-			print_debug(player_marker.position, "position")
-			markers[item].rotation = - item.rotation.y
+			## Rotate Player Icon
+			#print_debug(player_marker.position, "position")
+			#markers[item].rotation = - item.rotation.y
 			
 		else:
 			# Move all other icons
