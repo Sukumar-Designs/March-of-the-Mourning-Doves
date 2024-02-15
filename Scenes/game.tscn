@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/change_tab.gd" id="8_vyxvd"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
-[ext_resource type="PackedScene" uid="uid://dse1k4hm7shy7" path="res://Assets/Tree_Stump.blend" id="11_w27e7"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 
 [node name="Node3D" type="Node3D"]
@@ -596,9 +595,6 @@ visible = false
 position = Vector2(4989.05, 1492.79)
 scale = Vector2(0.638606, 0.272853)
 texture = ExtResource("7_grxjc")
-
-[node name="Tree_Stump" parent="." instance=ExtResource("11_w27e7")]
-transform = Transform3D(0.696527, 0.104586, 2.41532, 0.109241, 2.50963, -0.140173, -2.41511, 0.14368, 0.690246, 44.6809, 0, -49.7054)
 
 [node name="HealthBars" type="Control" parent="."]
 layout_mode = 3
