@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=13 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/change_tab.gd" id="8_vyxvd"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
+[ext_resource type="PackedScene" uid="uid://dse1k4hm7shy7" path="res://Assets/Tree_Stump.blend" id="11_w27e7"]
+[ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -28,52 +30,6 @@ script = ExtResource("1_2ihiu")
 
 [node name="Camera3D" type="Camera3D" parent="UI_Controller"]
 transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
-
-[node name="Map" type="Sprite2D" parent="UI_Controller"]
-visible = false
-position = Vector2(144, 74)
-scale = Vector2(0.025, 0.063)
-texture = ExtResource("4_ykqu8")
-
-[node name="You_Are_Here" type="Node2D" parent="UI_Controller/Map"]
-position = Vector2(-1080, -380.952)
-scale = Vector2(40, 15.873)
-
-[node name="Polygon2D" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
-position = Vector2(8, 69.9)
-scale = Vector2(0.0420111, 0.00955444)
-color = Color(0, 0, 0, 1)
-texture = ExtResource("4_ykqu8")
-polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-
-[node name="Polygon2D3" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
-position = Vector2(17, 73)
-rotation = 1.57079
-scale = Vector2(0.015, 0.01)
-color = Color(0, 0, 0, 1)
-offset = Vector2(-321.15, -208)
-texture = ExtResource("4_ykqu8")
-polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-
-[node name="Polygon2D4" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
-position = Vector2(40, 73)
-rotation = 1.57079
-scale = Vector2(0.015, 0.01)
-color = Color(0, 0, 0, 1)
-offset = Vector2(-321.15, -208)
-texture = ExtResource("4_ykqu8")
-polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-
-[node name="Polygon2D2" type="Polygon2D" parent="UI_Controller/Map/You_Are_Here"]
-position = Vector2(8, 77.1)
-scale = Vector2(0.0420111, 0.00955444)
-color = Color(0, 0, 0, 1)
-texture = ExtResource("4_ykqu8")
-polygon = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
-uv = PackedVector2Array(208, 144, 768, 144, 768, 272, 208, 272)
 
 [node name="Interface_Controller" type="Control" parent="."]
 layout_mode = 3
@@ -640,6 +596,28 @@ visible = false
 position = Vector2(4989.05, 1492.79)
 scale = Vector2(0.638606, 0.272853)
 texture = ExtResource("7_grxjc")
+
+[node name="Tree_Stump" parent="." instance=ExtResource("11_w27e7")]
+transform = Transform3D(0.696527, 0.104586, 2.41532, 0.109241, 2.50963, -0.140173, -2.41511, 0.14368, 0.690246, 44.6809, 0, -49.7054)
+
+[node name="HealthBars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BirdHealth" type="ProgressBar" parent="HealthBars"]
+modulate = Color(0.258824, 0.121569, 0.843137, 1)
+self_modulate = Color(0.478431, 0.439216, 0.992157, 1)
+layout_mode = 0
+offset_left = 355.0
+offset_top = 17.0
+offset_right = 507.0
+offset_bottom = 44.0
+max_value = 1.0
+value = 1.0
+show_percentage = false
+script = ExtResource("12_l3ivy")
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
