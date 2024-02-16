@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=15 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="5_bi4tg"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
-[ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
+[ext_resource type="Texture2D" uid="uid://lpy2udj2aime" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/change_tab.gd" id="8_vyxvd"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="12_mwvvi"]
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="13_j65ey"]
+[ext_resource type="PackedScene" path="res://Tree.glb" id="14_vy6ky"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -620,6 +621,9 @@ script = ExtResource("12_l3ivy")
 [node name="squirrel_base" parent="." instance=ExtResource("12_mwvvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3699, 0.39296, -52.8034)
 script = ExtResource("13_j65ey")
+
+[node name="Tree2" parent="." instance=ExtResource("14_vy6ky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9932, 9.53674e-07, -16.1806)
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
