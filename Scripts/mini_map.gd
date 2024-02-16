@@ -12,7 +12,8 @@ var grid_scale
 var markers = {}
 
 func _ready():
-	player_marker.position = grid.size / 2
+	player_marker.position.x = grid.size.x /2
+	player_marker.position.y = grid.size.y 
 	grid_scale = grid.size / (get_viewport_rect().size * zoom)
 	var map_objects = get_tree().get_nodes_in_group("minimap_objects")
 	for item in map_objects:
@@ -20,7 +21,7 @@ func _ready():
 		grid.add_child(new_marker)
 		new_marker.show()
 		markers[item] = new_marker
-		print_debug("Added")
+		print_debug("Player Added To MiniMap")
 
 func _process(delta):
 	if !player:
@@ -28,16 +29,18 @@ func _process(delta):
 	for item in markers:
 		if item.is_in_group("player"):
 			# Move Player Icon
-			var speed = (8.1/5) * player.speed
-			var obj_pos = speed*(Vector2(item.position.x, item.position.y) + Vector2(player.position.x, player.position.z)) * grid_scale + grid.size / 2
+			var speed = (8.5/player.speed) * player.speed
+			var obj_pos = Vector2(0, 0)
+			obj_pos.x = speed*(item.position.x + player.position.x) * grid_scale.x + grid.size.x / 2
+			obj_pos.y = speed*(item.position.z + player.position.z) * grid_scale.y + grid.size.y #/2
 			markers[item].position = obj_pos
 			
-			## Rotate Player Icon
-			#print_debug(player_marker.position, "position")
-			#markers[item].rotation = - item.rotation.y
+			### Rotate Player Icon
+			##print_debug(player_marker.position, "position")
+			##markers[item].rotation = - item.rotation.y
 			
 		else:
 			# Move all other icons
-			var speed = (15.25/5) * item.speed 
+			var speed = (15.25/15) * item.speed 
 			var obj_pos = speed*(Vector2(item.position.x, item.position.y))* grid_scale + grid.size / 2
 			markers[item].position = obj_pos

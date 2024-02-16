@@ -20,12 +20,12 @@ func _ready():
 	if main_base:
 		max_health *= 10 
 	current_health = max_health
-	emit_signal(current_health/max_health)
 	if main_base:
 		add_to_group("main_base")
 	add_to_group("building")
 	add_to_group(side + "_building")
 	add_to_group(side)
+	emit_signal("healthChanged", current_health/max_health)
 	
 func _process(delta):
 	heal_tick -= 1

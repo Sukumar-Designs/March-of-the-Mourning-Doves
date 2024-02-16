@@ -1,12 +1,19 @@
 extends ProgressBar
 @export var side = "squirrel"
-@onready var towerNodeBlue = get_node('../../Blue_Tower_Full')
-@onready var towerNodeRed = get_node('../../Red_Tower_Full')
+@export var enemy = "bird"
+var side_main_base
+var enemy_main_base
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	towerNodeBlue.connect("healthChanged", updateBar)
-	towerNodeRed.connect("healthChanged", updateBar)
+	var bases = get_tree().get_nodes_in_group("main_base")
+	print_debug(bases)
+	for base in bases:
+		if base.is_in_group(side):
+			side_main_base = base
+			side_main_base.connect("healthChanged", updateBar)
+		elif base.is_in_group(enemy):
+			enemy_main_base = base
 
 func updateBar(num, signal_side):
 	if signal_side == side:
