@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="5_bi4tg"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
-[ext_resource type="Texture2D" uid="uid://lpy2udj2aime" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
+[ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/change_tab.gd" id="8_vyxvd"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="12_mwvvi"]
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="13_j65ey"]
-[ext_resource type="PackedScene" path="res://Tree.glb" id="14_vy6ky"]
+[ext_resource type="PackedScene" uid="uid://ddqxqtbscerdw" path="res://Tree.glb" id="14_vy6ky"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -602,12 +602,14 @@ texture = ExtResource("7_grxjc")
 [node name="HealthBars" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 384.0
+offset_top = 1.0
+offset_right = 424.0
+offset_bottom = 41.0
 
-[node name="BirdHealth" type="ProgressBar" parent="HealthBars"]
-modulate = Color(0.258824, 0.121569, 0.843137, 1)
-self_modulate = Color(0.478431, 0.439216, 0.992157, 1)
+[node name="SquirrelHealth" type="ProgressBar" parent="HealthBars"]
+modulate = Color(0.686275, 0, 0.109804, 1)
+self_modulate = Color(0.941176, 0.196078, 0.431373, 1)
 layout_mode = 0
 offset_left = 355.0
 offset_top = 17.0
@@ -618,12 +620,38 @@ value = 1.0
 show_percentage = false
 script = ExtResource("12_l3ivy")
 
-[node name="squirrel_base" parent="." instance=ExtResource("12_mwvvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3699, 0.39296, -52.8034)
-script = ExtResource("13_j65ey")
+[node name="BirdHealth" type="ProgressBar" parent="HealthBars"]
+modulate = Color(0.290196, 0.152941, 0.917647, 1)
+self_modulate = Color(0.4, 0.486275, 0.964706, 1)
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 173.0
+offset_bottom = 45.0
+max_value = 1.0
+value = 1.0
+show_percentage = false
+script = ExtResource("12_l3ivy")
 
 [node name="Tree2" parent="." instance=ExtResource("14_vy6ky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9932, 9.53674e-07, -16.1806)
+transform = Transform3D(0.304731, 0, 0, 0, 0.304731, 0, 0, 0, 0.304731, -23.9428, -0.823837, -36.3755)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, -6.97574e-16, -1.5246e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 2.95411, 32.3378, -26.0107)
+
+[node name="squirrel_side" type="Node" parent="."]
+
+[node name="squirrel_base" parent="squirrel_side" groups=["main_base", "squirrel"] instance=ExtResource("12_mwvvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3699, 0.39296, -52.8034)
+script = ExtResource("13_j65ey")
+main_base = true
+
+[node name="bird_side" type="Node" parent="."]
+
+[node name="bird_base" parent="bird_side" groups=["bird", "main_base"] instance=ExtResource("12_mwvvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0858, 0.78592, -1.97431)
+script = ExtResource("13_j65ey")
+side = "bird"
+main_base = true
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
@@ -634,3 +662,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9932, 9.53674e-07, -16.180
 [connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton" to="Interface_Controller/TabContainer/Control/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton2" to="Interface_Controller/TabContainer/Control/SquirrelButton2" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton3" to="Interface_Controller/TabContainer/Control/SquirrelButton3" method="_on_pressed"]
+[connection signal="healthChanged" from="squirrel_side/squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]
+[connection signal="healthChanged" from="bird_side/bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]

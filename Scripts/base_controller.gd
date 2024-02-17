@@ -21,6 +21,7 @@ func _ready():
 		max_health *= 10 
 	current_health = max_health
 	if main_base:
+		print_debug("added to main base")
 		add_to_group("main_base")
 	add_to_group("building")
 	add_to_group(side + "_building")
@@ -34,7 +35,6 @@ func _process(delta):
 		set_health(heal_amount)
 
 func set_health(amount):
-	
 	current_health += amount
 	emit_signal("healthChanged", current_health/max_health)
 	if current_health <= 0:

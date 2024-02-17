@@ -7,14 +7,17 @@ var enemy_main_base
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var bases = get_tree().get_nodes_in_group("main_base")
-	print_debug(bases)
 	for base in bases:
 		if base.is_in_group(side):
 			side_main_base = base
-			side_main_base.connect("healthChanged", updateBar)
+			#side_main_base.connect("healthChanged", updateBar)
 		elif base.is_in_group(enemy):
 			enemy_main_base = base
 
-func updateBar(num, signal_side):
-	if signal_side == side:
-		self.value = num
+
+func _on_squirrel_base_health_changed(num):
+	self.value = num
+
+
+func _on_bird_base_health_changed(num):
+	self.value = num
