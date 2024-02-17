@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-var side = "ally"
+var side = "bird"
+var enemy = "squirrel"
 
 # Camera Movement
 var left_limit = -50
