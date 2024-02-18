@@ -17,7 +17,6 @@ func _ready():
 	grid_scale = grid.size / (get_viewport_rect().size * zoom)
 	var map_objects = get_tree().get_nodes_in_group("minimap_objects")
 	for item in map_objects:
-		print_debug(item)
 		var new_marker = icons[item.side].duplicate()
 		grid.add_child(new_marker)
 		new_marker.show()

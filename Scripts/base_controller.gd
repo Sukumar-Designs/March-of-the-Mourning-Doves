@@ -8,7 +8,8 @@ var max_health = 1000
 var current_health
 var heal_amount = 5
 
-var heal_tick = 100
+var heal_tick_counter = 300
+var heal_tick 
 
 @export var main_base = false
 signal healthChanged
@@ -26,17 +27,28 @@ func _ready():
 	add_to_group("building")
 	add_to_group(side + "_building")
 	add_to_group(side)
-	emit_signal("healthChanged", current_health/max_health)
+	emit_signal("healthChanged", float(current_health)/float(max_health))
+	
+	# Set starting health
+	heal_tick = heal_tick_counter
+	
 	
 func _process(delta):
-	heal_tick -= 1
-	if heal_tick <= 0:
-		heal_tick = 100
+	heal_tick_counter -= 1
+	if heal_tick_counter <= 0:
+		heal_tick_counter = heal_tick
 		set_health(heal_amount)
 
 func set_health(amount):
-	current_health += amount
-	emit_signal("healthChanged", current_health/max_health)
+	print_debug(amount)
+	if current_health >= max_health:
+		current_health = max_health
+	if current_health >= max_health and amount > 0:
+		pass
+	else:
+		current_health += amount
+		emit_signal("healthChanged", float(current_health)/float(max_health))
+		
 	if current_health <= 0:
 		kill()
 

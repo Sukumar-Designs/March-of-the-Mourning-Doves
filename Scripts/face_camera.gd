@@ -16,6 +16,7 @@ func _physics_process(delta):
 	
 	velocity = velocity.move_toward(new_velocity, .25)
 	move_and_slide()
+	#collision()
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
@@ -41,5 +42,13 @@ func _process(delta):
 						#nearest_target = targets
 		
 			#current_target = nearest_target
+
+# if area box (hit range) triggered
+
+#func collision():
+	#for index in get_slide_collision_count():
+		#var collide = get_slide_collision(index)
+		#print_debug(collide)
+
+
 	
-		

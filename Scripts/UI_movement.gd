@@ -22,7 +22,6 @@ func _input(event):
 			rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
 
 func _process(delta):
-	print_debug(self.position)
 	if Input.is_action_pressed("sprint"):
 		speed=sprint
 	else:
