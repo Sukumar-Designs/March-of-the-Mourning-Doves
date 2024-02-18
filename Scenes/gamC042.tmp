@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
-[ext_resource type="Script" path="res://Scripts/main_node_controller.gd" id="1_uemgi"]
 [ext_resource type="Script" path="res://Scripts/face_camera.gd" id="3_cn58l"]
 [ext_resource type="Theme" uid="uid://c07c6tpo0s50v" path="res://Themes/theme_first.tres" id="3_oknhe"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
@@ -14,18 +13,27 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="12_mwvvi"]
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="13_j65ey"]
+[ext_resource type="PackedScene" uid="uid://ddqxqtbscerdw" path="res://Tree.glb" id="14_vy6ky"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hl5ar"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_c04ss"]
 vertices = PackedVector3Array(37.6707, 0.481946, -11.9384, 37.6707, 0.481946, -11.4384, 50.6707, 0.481946, -11.4384, 36.1707, 0.481946, -13.1884, 37.6707, 0.481946, -11.9384, 50.6707, 0.481946, -11.4384, 16.6707, 0.481946, -27.1884, 36.1707, 0.481946, -13.1884, 50.6707, 0.481946, -11.4384, 50.6707, 0.481946, -55.1884, -38.0793, 0.481946, -55.1884, 16.6707, 0.481946, -27.1884, 50.6707, 0.481946, -11.4384, -38.3293, 0.481946, -42.6884, -50.5793, 0.481946, -51.4384, -50.5793, 0.481946, -0.438385, 33.6707, 0.481946, -0.438385, 33.6707, 0.481946, -6.68839, -38.3293, 0.481946, -42.6884, -50.5793, 0.481946, -0.438385, 37.6707, 0.481946, -10.6884, 36.4207, 0.481946, -9.68839, 35.4207, 0.481946, -7.93839, 33.6707, 0.481946, -0.438385, 50.6707, 0.481946, -0.438385, 50.6707, 0.481946, -11.4384, 35.4207, 0.481946, -7.93839, 33.6707, 0.481946, -6.68839, 33.6707, 0.481946, -0.438385, 50.6707, 0.481946, -11.4384, 37.6707, 0.481946, -11.4384, 37.6707, 0.481946, -10.6884)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(12, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(15, 14, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 25), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29)]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
-
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_uemgi")
+
+[node name="Squirrel" type="Sprite3D" parent="." groups=["minimap_objects"]]
+transform = Transform3D(0.15876, 0, 0, 0, 0.141523, 6.71463e-16, 0, -2.12719e-14, 0.063, -1, 1.88754, -18.5)
+texture = ExtResource("5_bi4tg")
+script = ExtResource("3_cn58l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Squirrel"]
+transform = Transform3D(7.94357, 0, 0, 0, 7.94357, -6.77626e-21, 0, 3.03577e-18, 7.94357, 1.04119, -1.99975, 1.49606)
+shape = SubResource("CapsuleShape3D_hl5ar")
 
 [node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
-transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 0, 24.8924, 0)
+transform = Transform3D(1, 0, 0, 0, 0.602665, 0.797994, 0, -0.797994, 0.602665, 0, 9.60259, 0)
 script = ExtResource("1_2ihiu")
 
 [node name="Camera3D" type="Camera3D" parent="UI_Controller"]
@@ -631,6 +639,9 @@ value = 1.0
 show_percentage = false
 script = ExtResource("12_l3ivy")
 
+[node name="Tree2" parent="." instance=ExtResource("14_vy6ky")]
+transform = Transform3D(0.304731, 0, 0, 0, 0.304731, 0, 0, 0, 0.304731, -23.9428, -0.823837, -36.3755)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, -6.97574e-16, -1.5246e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 2.95411, 32.3378, -26.0107)
 
@@ -665,20 +676,6 @@ texture = ExtResource("1_0q8t2")
 transform = Transform3D(-0.955188, 0.235844, -7.09595e-10, 2.64869e-13, -1.78575e-06, -2.81201, -1.25394, -0.604359, 1.81837e-09, 0.0112154, -1.41649, 1.15305)
 operation = 2
 polygon = PackedVector2Array(0.7979, 1.19593, 0.202487, 1.45422, -0.0150268, 1.45344, -0.0120477, 1.31184, 0.651099, 1.01038, 0.982903, 1.0064)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["minimap_objects"]]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -0.775233, 1.57482, -18.5)
-script = ExtResource("3_cn58l")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 4.23516e-22, 0, 2.71051e-20, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_dew5v")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
-
-[node name="Squirrel" type="Sprite3D" parent="CharacterBody3D"]
-transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-21, 0.129141, -0.182833, 0.285359, 0)
-texture = ExtResource("5_bi4tg")
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
