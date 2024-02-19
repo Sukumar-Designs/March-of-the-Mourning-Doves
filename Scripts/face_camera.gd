@@ -32,23 +32,6 @@ func _process(delta):
 				current_target = targets[0]
 		if current_target:
 			update_target_location(current_target.position)
-			#for target in targets:
-				## Get nearest target
-				#if !nearest_target:
-					#nearest_target = target
-				#else:
-					#var distance = self.position - target.position
-					#if distance < (self.position - nearest_target.position):
-						#nearest_target = targets
+	#elif side == "bird":
 		
-			#current_target = nearest_target
-
-# if area box (hit range) triggered
-
-#func collision():
-	#for index in get_slide_collision_count():
-		#var collide = get_slide_collision(index)
-		#print_debug(collide)
-
-
 	

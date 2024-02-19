@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=17 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
 [ext_resource type="Script" path="res://Scripts/main_node_controller.gd" id="1_uemgi"]
-[ext_resource type="Script" path="res://Scripts/face_camera.gd" id="3_cn58l"]
 [ext_resource type="Theme" uid="uid://c07c6tpo0s50v" path="res://Themes/theme_first.tres" id="3_oknhe"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="5_bi4tg"]
@@ -14,17 +13,12 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="12_mwvvi"]
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="13_j65ey"]
-[ext_resource type="Script" path="res://Scripts/Attack.gd" id="15_osq8d"]
+[ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://bird_base_full.tscn" id="13_rmbku"]
+[ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://squirrel_full.tscn" id="14_adg51"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3aeda"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_8uw3g"]
-vertices = PackedVector3Array(37.6707, 0.481946, -11.9384, 37.6707, 0.481946, -11.4384, 50.6707, 0.481946, -11.4384, 36.1707, 0.481946, -13.1884, 37.6707, 0.481946, -11.9384, 50.6707, 0.481946, -11.4384, 16.6707, 0.481946, -27.1884, 36.1707, 0.481946, -13.1884, 50.6707, 0.481946, -11.4384, 50.6707, 0.481946, -55.1884, -38.0793, 0.481946, -55.1884, 16.6707, 0.481946, -27.1884, 50.6707, 0.481946, -11.4384, -38.3293, 0.481946, -42.6884, -50.5793, 0.481946, -51.4384, -50.5793, 0.481946, -0.438385, 33.6707, 0.481946, -0.438385, 33.6707, 0.481946, -6.68839, -38.3293, 0.481946, -42.6884, -50.5793, 0.481946, -0.438385, 37.6707, 0.481946, -10.6884, 36.4207, 0.481946, -9.68839, 35.4207, 0.481946, -7.93839, 33.6707, 0.481946, -0.438385, 50.6707, 0.481946, -0.438385, 50.6707, 0.481946, -11.4384, 35.4207, 0.481946, -7.93839, 33.6707, 0.481946, -6.68839, 33.6707, 0.481946, -0.438385, 50.6707, 0.481946, -11.4384, 37.6707, 0.481946, -11.4384, 37.6707, 0.481946, -10.6884)
+[sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
+vertices = PackedVector3Array(37.6705, 0.481945, -11.9384, 37.6705, 0.481945, -11.4384, 50.6705, 0.481945, -11.4384, 36.1705, 0.481945, -13.1884, 37.6705, 0.481945, -11.9384, 50.6705, 0.481945, -11.4384, 16.6705, 0.481945, -27.1884, 36.1705, 0.481945, -13.1884, 50.6705, 0.481945, -11.4384, 50.6705, 0.481945, -55.1884, -38.0795, 0.481945, -55.1884, 16.6705, 0.481945, -27.1884, 50.6705, 0.481945, -11.4384, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -51.4384, -50.5795, 0.481945, -0.4384, 33.6705, 0.481945, -0.4384, 33.6705, 0.481945, -6.6884, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -0.4384, 37.6705, 0.481945, -10.6884, 36.4205, 0.481945, -9.6884, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -6.6884, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 37.6705, 0.481945, -11.4384, 37.6705, 0.481945, -10.6884)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(12, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(15, 14, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 25), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29)]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_80mq0"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_uemgi")
@@ -644,21 +638,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3699, 0.39296, -52.8034)
 script = ExtResource("13_j65ey")
 main_base = true
 
-[node name="bird_base" type="CharacterBody3D" parent="." groups=["bird", "main_base"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.931, 0, 0)
-script = ExtResource("13_j65ey")
-side = "bird"
-main_base = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bird_base"]
-transform = Transform3D(4.24263, 0, 0, 0, 5.64141, 6.77626e-21, 0, 0, 4.24263, -1.44455, 1.62644, -1.89751)
-shape = SubResource("BoxShape3D_3aeda")
-
-[node name="bird_base" parent="bird_base" instance=ExtResource("12_mwvvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 1.69407e-21, 0, -1.35525e-20, 1, -1.15485, 0.78592, -1.97431)
+[node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5762, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_8uw3g")
+navigation_mesh = SubResource("NavigationMesh_bx183")
 
 [node name="Terrain" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(102.159, 0, 0, 0, 1.01329, 0, 0, 0, 55.6988, 0, -0.51141, -27.839)
@@ -674,26 +658,16 @@ transform = Transform3D(-0.955188, 0.235844, -7.09595e-10, 2.64869e-13, -1.78575
 operation = 2
 polygon = PackedVector2Array(0.7979, 1.19593, 0.202487, 1.45422, -0.0150268, 1.45344, -0.0120477, 1.31184, 0.651099, 1.01038, 0.982903, 1.0064)
 
-[node name="squirrel" type="CharacterBody3D" parent="." groups=["minimap_objects"]]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -37.3017, 1.57482, -10.8883)
-script = ExtResource("3_cn58l")
+[node name="squirrel" parent="." instance=ExtResource("14_adg51")]
 
-[node name="BodyCollision" type="CollisionShape3D" parent="squirrel"]
-transform = Transform3D(1, 0, 0, 0, 1, 4.23516e-22, 0, 2.71051e-20, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_dew5v")
+[node name="bird" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -34.5114, 1.57482, -20.9323)
+side = "bird"
+enemy = "squirrel"
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="squirrel"]
-
-[node name="Squirrel" type="Sprite3D" parent="squirrel"]
-transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-21, 0.129141, -0.182833, 0.285359, 0)
-texture = ExtResource("5_bi4tg")
-
-[node name="Area3D" type="Area3D" parent="squirrel"]
-script = ExtResource("15_osq8d")
-
-[node name="AttackRangeCollision" type="CollisionShape3D" parent="squirrel/Area3D"]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
-shape = SubResource("SphereShape3D_80mq0")
+[node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.4346, -0.401379, -50.7744)
+side = "squirrel"
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
@@ -706,6 +680,4 @@ shape = SubResource("SphereShape3D_80mq0")
 [connection signal="pressed" from="Interface_Controller/TabContainer/Control/SquirrelButton3" to="Interface_Controller/TabContainer/Control/SquirrelButton3" method="_on_pressed"]
 [connection signal="healthChanged" from="squirrel_side/squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
-[connection signal="area_shape_entered" from="squirrel/Area3D" to="squirrel/Area3D" method="_on_area_shape_entered"]
-[connection signal="body_entered" from="squirrel/Area3D" to="squirrel/Area3D" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="squirrel/Area3D" to="squirrel/Area3D" method="_on_body_shape_entered"]
+[connection signal="healthChanged" from="squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]

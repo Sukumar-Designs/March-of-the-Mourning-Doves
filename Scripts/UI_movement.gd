@@ -16,10 +16,27 @@ var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@onready var current_navigation_agent := $"../bird"
+@onready var camera := $Camera3D
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == 1:
 			rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+	# Click on Objects in Scene
+	elif Input.is_action_just_pressed("left_mouse"):
+		var mouse_pos = get_viewport().get_mouse_position()
+		var ray_length = 1000
+		var from = camera.project_ray_origin(mouse_pos)
+		var to = from + camera.project_ray_normal(mouse_pos) * ray_length
+		var space = get_world_3d().direct_space_state
+		var ray_query = PhysicsRayQueryParameters3D.new()
+		ray_query.from = from
+		ray_query.to = to
+		ray_query.collide_with_areas = true
+		var result = space.intersect_ray(ray_query)
+		print_debug(result)
 
 func _process(delta):
 	if Input.is_action_pressed("sprint"):

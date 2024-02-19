@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c20qaxx3gpxc"]
+
+[ext_resource type="Script" path="res://Scripts/base_controller.gd" id="1_5oh11"]
+[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_d73xk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3aeda"]
+
+[node name="bird_base" type="CharacterBody3D" groups=["bird", "main_base"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58195, 0, 0)
+script = ExtResource("1_5oh11")
+side = "bird"
+main_base = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.24263, 0, 0, 0, 5.64141, 6.77626e-21, 0, 0, 4.24263, -1.44455, 1.62644, -1.89751)
+shape = SubResource("BoxShape3D_3aeda")
+
+[node name="bird_base" parent="." instance=ExtResource("2_d73xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.69407e-21, 0, -1.35525e-20, 1, -1.15485, 0.78592, -1.97431)

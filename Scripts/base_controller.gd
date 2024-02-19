@@ -40,7 +40,6 @@ func _process(delta):
 		set_health(heal_amount)
 
 func set_health(amount):
-	print_debug(amount)
 	if current_health >= max_health:
 		current_health = max_health
 	if current_health >= max_health and amount > 0:
@@ -48,7 +47,7 @@ func set_health(amount):
 	else:
 		current_health += amount
 		emit_signal("healthChanged", float(current_health)/float(max_health))
-		
+	
 	if current_health <= 0:
 		kill()
 
