@@ -10,9 +10,17 @@ var current_target
 # Navigation 
 @onready var nav_agent = $NavigationAgent3D
 
+# Health variables
+var max_health = 50
+var current_health
+var heal_amount = 5
+@onready var health_bar = $HealthBar/SubViewport/Healthbar
+
 func _ready():
 	add_to_group(side)
 	add_to_group(type)
+	current_health = max_health
+	health_bar.value = float(current_health)/float(max_health)
 
 func _physics_process(delta):
 	var current_location = global_transform.origin
@@ -38,3 +46,22 @@ func assign_target(target):
 	# If the target is an enemy, then send soldier to attack
 	if target.is_in_group(enemy):
 		current_target = target
+
+# Health Based Function
+func set_health(amount):
+	if current_health >= max_health:
+		current_health = max_health
+	if current_health >= max_health and amount > 0:
+		pass
+	else:
+		current_health += amount
+	health_bar.value = float(current_health)/float(max_health)
+	print_debug(health_bar.value)
+	if current_health <= 0:
+		kill()
+
+func on_hit(damage):
+	set_health(-damage)
+
+func kill():
+	queue_free()

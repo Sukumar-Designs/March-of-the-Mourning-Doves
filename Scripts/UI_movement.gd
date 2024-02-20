@@ -37,10 +37,8 @@ func _input(event):
 			try_to_select(result)
 	elif Input.is_action_just_pressed("camera_zoom_up") and self.position.y <= scroll_upper_limit:
 		self.position.y += 5
-		print_debug(self.position.y)
 	elif Input.is_action_just_pressed("camera_zoom_down") and self.position.y >= scroll_lower_limit:
 		self.position.y -= 5
-		print_debug(self.position.y)
 		
 func cast_ray_to_select():
 	"""" 

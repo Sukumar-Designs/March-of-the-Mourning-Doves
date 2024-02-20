@@ -1,15 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct5n8h6i1yp26"]
+[gd_scene load_steps=9 format=3 uid="uid://ct5n8h6i1yp26"]
 
 [ext_resource type="Script" path="res://Scripts/face_camera.gd" id="1_wj4yl"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
 [ext_resource type="Script" path="res://Scripts/Attack.gd" id="3_kyps1"]
+[ext_resource type="PackedScene" uid="uid://kxa32rvasbfe" path="res://Full_Assets/soldier_health_bar.tscn" id="5_kulaq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_80mq0"]
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v83hc"]
+transparency = 1
+albedo_color = Color(1, 0, 0.00392157, 0.945098)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a15ig"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
 [node name="squirrel" type="CharacterBody3D" groups=["minimap_objects"]]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 26.692, 1.57482, -30.93)
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 0.884871, 1.57482, 0.724487)
 script = ExtResource("1_wj4yl")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
@@ -26,8 +34,19 @@ texture = ExtResource("2_kckwu")
 script = ExtResource("3_kyps1")
 
 [node name="AttackRangeCollision" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 shape = SubResource("SphereShape3D_80mq0")
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(0.0430291, 0, 0, 0, -0.0369034, 0.00484514, 0, -0.00409438, -0.0436701, 0, 1.71136, -2.43505)
+material_override = SubResource("ORMMaterial3D_v83hc")
+texture = SubResource("ViewportTexture_a15ig")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar"]
+transparent_bg = true
+size = Vector2i(5000, 1000)
+
+[node name="Healthbar" parent="HealthBar/SubViewport" instance=ExtResource("5_kulaq")]
 
 [connection signal="area_shape_entered" from="Area3D" to="Area3D" method="_on_area_shape_entered"]
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
