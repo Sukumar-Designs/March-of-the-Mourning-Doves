@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=18 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="13_j65ey"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://squirrel_full.tscn" id="14_adg51"]
+[ext_resource type="PackedScene" uid="uid://c4clt2ph8pdg8" path="res://Full_Assets/select_box_full.tscn" id="16_rtfe7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
 vertices = PackedVector3Array(37.6705, 0.481945, -11.9384, 37.6705, 0.481945, -11.4384, 50.6705, 0.481945, -11.4384, 36.1705, 0.481945, -13.1884, 37.6705, 0.481945, -11.9384, 50.6705, 0.481945, -11.4384, 16.6705, 0.481945, -27.1884, 36.1705, 0.481945, -13.1884, 50.6705, 0.481945, -11.4384, 50.6705, 0.481945, -55.1884, -38.0795, 0.481945, -55.1884, 16.6705, 0.481945, -27.1884, 50.6705, 0.481945, -11.4384, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -51.4384, -50.5795, 0.481945, -0.4384, 33.6705, 0.481945, -0.4384, 33.6705, 0.481945, -6.6884, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -0.4384, 37.6705, 0.481945, -10.6884, 36.4205, 0.481945, -9.6884, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -6.6884, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 37.6705, 0.481945, -11.4384, 37.6705, 0.481945, -10.6884)
@@ -669,10 +670,7 @@ enemy = "squirrel"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.4346, -0.401379, -50.7744)
 side = "squirrel"
 
-[node name="bird2" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.51133, 0, 0, 0, 1.20095, 8.2345e-15, 0, -2.60869e-13, 0.237988, -15.6306, 3.30063, -14.5005)
-side = "bird"
-enemy = "squirrel"
+[node name="select_box" parent="." instance=ExtResource("16_rtfe7")]
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]

@@ -23,7 +23,7 @@ func attack():
 
 func _on_body_entered(body):
 	# If the object is an enemy
-	if body.is_in_group(enemy):
+	if body.is_in_group(enemy) and body.is_in_group("building"):
 		# If there's no target
 		if !target:
 			target = body

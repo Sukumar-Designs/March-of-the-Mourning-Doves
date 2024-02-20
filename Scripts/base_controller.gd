@@ -2,7 +2,7 @@ extends Node
 
 # General Stats
 @export var side = "squirrel" 
-
+@export var type = "building"
 # Base Stats
 var max_health = 1000
 var current_health
@@ -24,9 +24,9 @@ func _ready():
 	if main_base:
 		print_debug("added to main base")
 		add_to_group("main_base")
-	add_to_group("building")
-	add_to_group(side + "_building")
+	add_to_group(side + "_" + type)
 	add_to_group(side)
+	add_to_group(type)
 	emit_signal("healthChanged", float(current_health)/float(max_health))
 	
 	# Set starting health

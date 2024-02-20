@@ -3,11 +3,16 @@ extends CharacterBody3D
 @onready var camera_location = $"../UI_Controller"
 @export var side = "squirrel"
 @export var enemy = "bird"
+@export var type = "soldier"
 var speed = 5
 var current_target
 
 # Navigation 
 @onready var nav_agent = $NavigationAgent3D
+
+func _ready():
+	add_to_group(side)
+	add_to_group(type)
 
 func _physics_process(delta):
 	var current_location = global_transform.origin
@@ -16,7 +21,7 @@ func _physics_process(delta):
 	
 	velocity = velocity.move_toward(new_velocity, .25)
 	move_and_slide()
-	#collision()
+
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
@@ -25,13 +30,11 @@ func update_target_location(target_location):
 func _process(delta):
 	if camera_location:
 		look_at(camera_location.position)
-	if side == "squirrel":
-		if !current_target:
-			var targets = get_tree().get_nodes_in_group(enemy)
-			if len(targets) > 0:
-				current_target = targets[0]
-		if current_target:
-			update_target_location(current_target.position)
-	#elif side == "bird":
+	if current_target:
+		update_target_location(current_target.position)
+
 		
-	
+func assign_target(target):
+	# If the target is an enemy, then send soldier to attack
+	if target.is_in_group(enemy):
+		current_target = target
