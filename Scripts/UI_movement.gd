@@ -3,6 +3,7 @@ extends CharacterBody3D
 var side = "bird"
 var enemy = "squirrel"
 var soldier_type = "soldier"
+var building_type = "building"
 # Camera Movement
 var left_limit = -50
 var right_limit = 50
@@ -74,10 +75,9 @@ func try_to_select(result):
 		multiple_select(object)
 	# Else, if you're selecting an enemy
 	elif object.is_in_group(enemy):
-		# if you have you're type=soldier selected, attack enemy soldier
-		if object.is_in_group("soldier"):
-			attack_enemy_soldier(object)
-			#if select_box_parent.is_in_group("soldier"):
+		# if you have you're type=soldier or building selected, attack enemy soldier
+		if object.is_in_group(soldier_type) or object.is_in_group(building_type):
+			attack_enemy_object(object)
 
 func clear_selection():
 	""" This function clears all selected soldiers """
@@ -113,12 +113,14 @@ func multiple_select(object):
 		# Regardless of if it exists, remove it from the list
 		select_box_parents.remove_at(reselected_index)
 
-func attack_enemy_soldier(enemy_soldier):
+func attack_enemy_object(enemy_object):
 	# Command each selected soldier to target the enemy soldier
 	for select_box_parent in select_box_parents:
 		# If the soldier and enemy_soldier still exist
-		if select_box_parent[0] and enemy_soldier: 
-			select_box_parent[0].assign_target(enemy_soldier)
+		if select_box_parent[0] and enemy_object: 
+			select_box_parent[0].assign_target(enemy_object)
+
+
 
 func _process(delta):
 	if Input.is_action_pressed("sprint"):

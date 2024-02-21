@@ -15,8 +15,8 @@ func _ready():
 			enemy_main_base = base
 
 
-func _on_squirrel_base_health_changed(num):
+func _on_bird_base_health_changed(num):
 	self.value = num
 
-func _on_bird_base_health_changed(num):
+func _on_squirrel_base_health_changed(num):
 	self.value = num
