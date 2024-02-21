@@ -10,6 +10,9 @@ var upper_limit = -55
 var lower_limit = 0
 var scroll_upper_limit = 45
 var scroll_lower_limit = 15
+var left_turn_limit = 1
+var right_turn_limit = -1
+
 
 var speed = 5.0
 var speed_normal = 5.0
@@ -22,14 +25,19 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # For selecting the objects
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
-#@onready var current_select_box = select_box.instantiate()
 var select_box_parents = []
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == 1:
-			rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+			print(self.rotation.y, "y'")
+			print(event.relative.x)
+			if self.rotation.y <= left_turn_limit and event.relative.x > 0:
+				rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+			elif self.rotation.y >= right_turn_limit and event.relative.x < 0:
+				rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+				
 	# Click on Objects in Scene
 	if Input.is_action_just_pressed("left_mouse"):
 		var result = cast_ray_to_select()
