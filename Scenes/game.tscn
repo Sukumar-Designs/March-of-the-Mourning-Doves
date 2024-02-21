@@ -28,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 
 script = ExtResource("1_2ihiu")
 
 [node name="Camera3D" type="Camera3D" parent="UI_Controller"]
-transform = Transform3D(1, 0, 0, 0, 0.926292, 0.376806, 0, -0.376806, 0.926292, 0, 2.30457, 0)
+transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 0, 2.30457, 0)
 
 [node name="Interface_Controller" type="Control" parent="."]
 layout_mode = 3

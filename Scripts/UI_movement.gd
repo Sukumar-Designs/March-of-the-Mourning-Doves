@@ -31,8 +31,6 @@ var select_box_parents = []
 func _input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == 1:
-			print(self.rotation.y, "y'")
-			print(event.relative.x)
 			if self.rotation.y <= left_turn_limit and event.relative.x > 0:
 				rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
 			elif self.rotation.y >= right_turn_limit and event.relative.x < 0:
@@ -82,6 +80,7 @@ func try_to_select(result):
 			#if select_box_parent.is_in_group("soldier"):
 
 func clear_selection():
+	""" This function clears all selected soldiers """
 	# Deselect all current select boxs
 	for select_box_parent in select_box_parents:
 		# If the parent still exists
@@ -128,7 +127,6 @@ func _process(delta):
 		speed = speed_normal
 
 func _physics_process(delta):
-		
 	var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
