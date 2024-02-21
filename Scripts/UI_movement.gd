@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var side = "bird"
 var enemy = "squirrel"
-
+var soldier_type = "soldier"
 # Camera Movement
 var left_limit = -50
 var right_limit = 50
@@ -22,8 +22,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # For selecting the objects
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
-@onready var current_select_box = select_box.instantiate()
-var select_box_parent 
+#@onready var current_select_box = select_box.instantiate()
+var select_box_parents = []
 
 
 func _input(event):
@@ -31,22 +31,26 @@ func _input(event):
 		if event.button_mask == 1:
 			rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
 	# Click on Objects in Scene
-	elif Input.is_action_just_pressed("left_mouse"):
+	if Input.is_action_just_pressed("left_mouse"):
 		var result = cast_ray_to_select()
 		if result:
 			try_to_select(result)
-	elif Input.is_action_just_pressed("camera_zoom_up") and self.position.y <= scroll_upper_limit:
+	if Input.is_action_just_pressed("camera_zoom_up") and self.position.y <= scroll_upper_limit:
 		self.position.y += 5
 	elif Input.is_action_just_pressed("camera_zoom_down") and self.position.y >= scroll_lower_limit:
 		self.position.y -= 5
-		
+	
+	if Input.is_action_just_pressed("clear_selection"):
+		clear_selection()
+	
+	
 func cast_ray_to_select():
 	"""" 
 	This function casts a ray from the camera that returns the 
 	first thing the ray hits, can be null.
 	"""
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 1000
+	var ray_length = 100
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var space = get_world_3d().direct_space_state
@@ -59,32 +63,55 @@ func cast_ray_to_select():
 		
 func try_to_select(result):
 	var object = result["collider"].get_parent()
-	# If choosing a troop on your side, select them
-	if object.is_in_group(side):
-		# If select box parent exists
-		if select_box_parent:
-			# Deselect current select box
-			select_box_parent.remove_child(current_select_box)
-			
-			# If the selected object is the same as the previously select object
-			if select_box_parent == object:
-				select_box_parent = null
-			else:
-				# Select the new parent
-				object.add_child(current_select_box)
-				# update select box parent
-				select_box_parent = object
-		else:
-			# Add select box to object
-			object.add_child(current_select_box)
-			select_box_parent = object
+	# If choosing a soldier on your side, select them
+	if object.is_in_group(side) and object.is_in_group(soldier_type):
+		multiple_select(object)
 	# Else, if you're selecting an enemy
 	elif object.is_in_group(enemy):
 		# if you have you're type=soldier selected, attack enemy soldier
-		if select_box_parent:
-			if select_box_parent.is_in_group("soldier"):
-				select_box_parent.assign_target(object)
-			
+		if object.is_in_group("soldier"):
+			attack_enemy_soldier(object)
+			#if select_box_parent.is_in_group("soldier"):
+
+func clear_selection():
+	# Deselect all current select boxs
+	for select_box_parent in select_box_parents:
+		# If the parent still exists
+		if select_box_parent[0]:
+			# Remove the selection 
+			select_box_parent[0].remove_child(select_box_parent[1])
+	# Then clear the list
+	select_box_parents = []
+		
+func multiple_select(object):
+	""" This function controls selecting multiple soldiers on your team """
+	# If selecting multiple objects
+	var reselected_index = -1
+	var index = -1
+	for select_box_parent in select_box_parents:
+		index += 1
+		# If the object is on the list, mark it
+		if object == select_box_parent[0]:
+			reselected_index = index
+	
+	# If the object is not reselected, select it and add it to selected objects
+	if reselected_index == -1:
+		var new_select_box = select_box.instantiate()
+		object.add_child(new_select_box)
+		select_box_parents.append([object, new_select_box])
+	# Otherwise, the object is reselect and needs to be deselected
+	else:
+		# Check if object still exists
+		select_box_parents[reselected_index][0].remove_child(select_box_parents[reselected_index][1])
+		# Regardless of if it exists, remove it from the list
+		select_box_parents.remove_at(reselected_index)
+
+func attack_enemy_soldier(enemy_soldier):
+	# Command each selected soldier to target the enemy soldier
+	for select_box_parent in select_box_parents:
+		# If the soldier and enemy_soldier still exist
+		if select_box_parent[0] and enemy_soldier: 
+			select_box_parent[0].assign_target(enemy_soldier)
 
 func _process(delta):
 	if Input.is_action_pressed("sprint"):

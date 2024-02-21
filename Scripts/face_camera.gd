@@ -56,7 +56,6 @@ func set_health(amount):
 	else:
 		current_health += amount
 	health_bar.value = float(current_health)/float(max_health)
-	print_debug(health_bar.value)
 	if current_health <= 0:
 		kill()
 

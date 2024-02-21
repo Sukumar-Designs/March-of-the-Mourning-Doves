@@ -675,6 +675,9 @@ transform = Transform3D(1.51133, 0, 0, 0, 1.20095, 8.2345e-15, 0, -2.60869e-13, 
 side = "bird"
 enemy = "squirrel"
 
+[node name="squirrel2" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.51133, 0, 0, 0, 1.20095, 8.2345e-15, 0, -2.60869e-13, 0.237988, 33.5613, 1.73196, -43.0096)
+
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton3" to="Interface_Controller/TabContainer/Critters/SquirrelButton3" method="_on_pressed"]
