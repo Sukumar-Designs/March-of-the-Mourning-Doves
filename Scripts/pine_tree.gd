@@ -11,7 +11,7 @@ var current_health
 @onready var health_bar_controller = $CharacterBody3D
 var health_bar_visible_timer_initial = 600
 var health_bar_visible_timer 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	add_to_group(side)
 	add_to_group(type)
@@ -38,7 +38,9 @@ func set_health(amount):
 		current_health += amount
 	health_bar.value = float(current_health)/float(max_health)
 	if current_health <= 0:
+		
 		kill()
+	print_debug(current_health, "CURRENT HEALTH")
 
 func on_hit(damage):
 	set_health(-damage)

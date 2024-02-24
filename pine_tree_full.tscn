@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c720yiw6pru12"]
 
 [ext_resource type="Script" path="res://Scripts/pine_tree.gd" id="1_fi6qn"]
-[ext_resource type="PackedScene" uid="uid://bt5x7vvkvykp3" path="res://Assets/Pine_Tree.glb" id="2_nx5ge"]
+[ext_resource type="PackedScene" uid="uid://ddkktpxa3rujj" path="res://Assets/Pine_Tree.glb" id="2_nx5ge"]
 [ext_resource type="PackedScene" uid="uid://kxa32rvasbfe" path="res://Full_Assets/soldier_health_bar.tscn" id="3_5kkte"]
 [ext_resource type="Script" path="res://Scripts/look_at.gd" id="3_qq51d"]
 

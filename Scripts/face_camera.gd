@@ -46,7 +46,7 @@ func update_target_location(target_location):
 func _process(delta):
 	if camera_location:
 		look_at(camera_location.position)
-	if current_target:
+	if current_target and is_instance_valid(current_target):
 		update_target_location(current_target.position)
 		
 	# If there's a current target AND current target is within range
