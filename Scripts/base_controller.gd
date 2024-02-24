@@ -15,6 +15,9 @@ var heal_tick
 signal healthChanged
 signal baseDestroyed
 
+# Inventory Variables
+@onready var inventory = $Inventory
+
 
 func _ready():
 	# Main base has 10x health
@@ -57,3 +60,7 @@ func on_hit(damage):
 func kill():
 	queue_free()
 	emit_signal("baseDestroyed", side, main_base)
+
+func try_deposite_item(item, amount):
+	return inventory.try_deposite_item(item, amount)
+	

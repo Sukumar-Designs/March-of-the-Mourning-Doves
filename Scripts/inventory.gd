@@ -10,9 +10,14 @@ var inventory_items = {
 
 func try_pick_up_item(item):
 	""" This function controls trying to pick up an item """
-	if inventory_items[item.resource_type] < max_items_per_type:
+	if inventory_items[item.resource_type] <= max_items_per_type:
 		inventory_items[item.resource_type] = inventory_items[item.resource_type] + 1
-		print_debug(inventory_items)
 		return true
 	else:
 		return false
+		
+func try_deposite_item(depository):
+	for item in inventory_items:
+		var amount_left_over = depository.try_deposite_item(item, inventory_items[item])
+		# Assign amount left over to inventory
+		inventory_items[item] = amount_left_over

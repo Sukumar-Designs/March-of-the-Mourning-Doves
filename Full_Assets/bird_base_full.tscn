@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c20qaxx3gpxc"]
+[gd_scene load_steps=6 format=3 uid="uid://c20qaxx3gpxc"]
 
 [ext_resource type="Script" path="res://Scripts/base_controller.gd" id="1_5oh11"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_d73xk"]
+[ext_resource type="Script" path="res://Scripts/base_inventory.gd" id="3_htu3h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3aeda"]
 
@@ -25,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.69407e-21, 0, -1.35525e-20, 1, -1.15485
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(4.56337, 0, 0, 0, 4.56337, 0, 0, 0, 4.56337, -1.35845, 2.06566, -1.81055)
 shape = SubResource("BoxShape3D_k7sp5")
+
+[node name="Inventory" type="Node3D" parent="."]
+script = ExtResource("3_htu3h")

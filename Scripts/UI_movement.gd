@@ -82,7 +82,11 @@ func try_to_select(result):
 		# if you have you're type=soldier or building selected, attack enemy soldier
 		if object.is_in_group(soldier_type) or object.is_in_group(building_type):
 			attack_enemy_object(object)
+	# Collecting resources
 	elif object.is_in_group(natural_structure) or object.is_in_group(resource):
+		attack_enemy_object(object)
+	# Depositing resources in base on player's side
+	elif object.is_in_group(building_type) and object.is_in_group(side):
 		attack_enemy_object(object)
 		
 func clear_selection():

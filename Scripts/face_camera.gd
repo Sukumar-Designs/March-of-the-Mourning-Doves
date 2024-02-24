@@ -64,14 +64,19 @@ func _process(delta):
 			attack_cooldown_counter -= attack_speed
 
 		
-func assign_target(opposing_object_selected):
+func assign_target(object_selected):
 	# If the target is an enemy, then send soldier to attack
-	if opposing_object_selected.is_in_group(enemy):
-		current_target = opposing_object_selected
-	elif opposing_object_selected.is_in_group("natural_structure"):
-		current_target = opposing_object_selected
-	elif opposing_object_selected.is_in_group("resource"):
-		current_target = opposing_object_selected
+	if object_selected.is_in_group(enemy):
+		current_target = object_selected
+	# Attacking natural structures to get resources
+	elif object_selected.is_in_group("natural_structure"):
+		current_target = object_selected
+	# Picking up resources
+	elif object_selected.is_in_group("resource"):
+		current_target = object_selected
+	# Depositing resources in base
+	elif object_selected.is_in_group("building"):
+		current_target = object_selected
 
 
 # Health Based Function
@@ -121,8 +126,10 @@ func _on_area_3d_body_entered(body):
 		# Try to pick up the item
 		if inventory.try_pick_up_item(body):
 			body.queue_free()
-		
-		
+	elif body.is_in_group("main_base") and body.is_in_group(side) and body == current_target:
+		inventory.try_deposite_item(body)
+
+
 func _on_area_3d_body_exited(body):
 	if body in targets_in_range:
 		var index = targets_in_range.find(body, 0)
