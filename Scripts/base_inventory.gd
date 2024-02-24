@@ -24,5 +24,4 @@ func try_deposite_item(item, amount):
 		inventory_items[item] = max_items_per_type
 		# Get the number of items in excess 
 		item_overflow = item_total - max_items_per_type
-
 	return item_overflow

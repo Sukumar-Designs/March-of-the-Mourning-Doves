@@ -664,7 +664,22 @@ side = "squirrel"
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
 [node name="bird" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -12.5729)
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -44.5354)
+side = "bird"
+enemy = "squirrel"
+
+[node name="bird2" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 25.8793, 1.0944, -44.5354)
+side = "bird"
+enemy = "squirrel"
+
+[node name="bird3" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 8.84154, 1.0944, -44.5354)
+side = "bird"
+enemy = "squirrel"
+
+[node name="bird4" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -23.7335)
 side = "bird"
 enemy = "squirrel"
 

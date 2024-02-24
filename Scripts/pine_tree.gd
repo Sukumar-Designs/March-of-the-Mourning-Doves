@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var side = "tree" 
 @export var type = "natural_structure"
 # Base Stats
-var max_health = 100
+var max_health = 10
 var current_health
 
 # Health Bar
@@ -17,6 +17,10 @@ var falling = false
 var rotation_speed = 90.0  # Adjust this value to control the rotation speed
 var target_rotation = Vector3(-93, 0, 0)  # Adjust the target rotation as needed
 
+# Drops after falling
+@onready var drops = preload("res://Full_Assets/Pines_Full.tscn") 
+var rng 
+
 func _ready():
 	add_to_group(side)
 	add_to_group(type)
@@ -24,6 +28,10 @@ func _ready():
 	health_bar_visible_timer = health_bar_visible_timer_initial 
 	update_health_bar()
 	health_bar.visible = false
+	
+	# Variable for randomly displacing drops 
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 
 func _process(delta):
 	if health_bar.visible and health_bar_visible_timer > 0:
@@ -74,6 +82,12 @@ func fall_over(delta):
 		kill()
 		
 func kill():
-	
+	for i in range(0, rng.randi_range(1, 4)):
+		var instance = drops.instantiate()
+		var offset = rng.randi_range(-2, 2)
+		instance.position.x = self.position.x + offset
+		instance.position.z = self.position.z + offset
+		instance.position.y = self.position.y 
+		get_tree().current_scene.add_child(instance)
 	queue_free()
 
