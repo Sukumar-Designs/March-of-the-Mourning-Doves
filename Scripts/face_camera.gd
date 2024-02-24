@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var side = "squirrel"
 @export var enemy = "bird"
 @export var type = "soldier"
+@export var can_pick_up = "resource"
 var speed = 5
 
 # Navigation 
@@ -24,6 +25,8 @@ var attack_cooldown = 300
 var attack_cooldown_counter = attack_cooldown
 var attack_damage = 1
 
+# Inventory
+@onready var inventory = $Inventory
 
 func _ready():
 	add_to_group(side)
@@ -67,6 +70,8 @@ func assign_target(opposing_object_selected):
 		current_target = opposing_object_selected
 	elif opposing_object_selected.is_in_group("natural_structure"):
 		current_target = opposing_object_selected
+	elif opposing_object_selected.is_in_group("resource"):
+		current_target = opposing_object_selected
 
 
 # Health Based Function
@@ -102,7 +107,6 @@ func attack():
 		# if the current target is in range
 		if current_target in targets_in_range:
 			current_target.on_hit(attack_damage)
-			
 
 
 func _on_area_3d_body_entered(body):
@@ -112,7 +116,13 @@ func _on_area_3d_body_entered(body):
 		 ##If there's no target
 		#if !target:
 			#target = body
-
+	# Else if it's a resource and the troop was told to get it
+	elif body.is_in_group(can_pick_up) and body == current_target:
+		# Try to pick up the item
+		if inventory.try_pick_up_item(body):
+			body.queue_free()
+		
+		
 func _on_area_3d_body_exited(body):
 	if body in targets_in_range:
 		var index = targets_in_range.find(body, 0)

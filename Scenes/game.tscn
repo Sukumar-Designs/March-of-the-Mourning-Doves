@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=17 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/squirrel_full.tscn" id="14_adg51"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://pine_tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Pines_Full.tscn" id="15_4qpbd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
 vertices = PackedVector3Array(37.6705, 0.481945, -11.9384, 37.6705, 0.481945, -11.4384, 50.6705, 0.481945, -11.4384, 36.1705, 0.481945, -13.1884, 37.6705, 0.481945, -11.9384, 50.6705, 0.481945, -11.4384, 16.6705, 0.481945, -27.1884, 36.1705, 0.481945, -13.1884, 50.6705, 0.481945, -11.4384, 50.6705, 0.481945, -55.1884, -38.0795, 0.481945, -55.1884, 16.6705, 0.481945, -27.1884, 50.6705, 0.481945, -11.4384, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -51.4384, -50.5795, 0.481945, -0.4384, 33.6705, 0.481945, -0.4384, 33.6705, 0.481945, -6.6884, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -0.4384, 37.6705, 0.481945, -10.6884, 36.4205, 0.481945, -9.6884, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -6.6884, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 37.6705, 0.481945, -11.4384, 37.6705, 0.481945, -10.6884)
@@ -663,9 +664,12 @@ side = "squirrel"
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
 [node name="bird" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 11.3643, 1.0944, -34.2063)
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -12.5729)
 side = "bird"
 enemy = "squirrel"
+
+[node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
+transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
 
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton" to="Interface_Controller/TabContainer/Critters/SquirrelButton" method="_on_pressed"]
 [connection signal="pressed" from="Interface_Controller/TabContainer/Critters/SquirrelButton2" to="Interface_Controller/TabContainer/Critters/SquirrelButton2" method="_on_pressed"]
