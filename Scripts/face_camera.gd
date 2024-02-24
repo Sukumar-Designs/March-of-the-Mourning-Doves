@@ -13,7 +13,8 @@ var speed = 5
 var max_health = 50
 var current_health
 var heal_amount = 5
-@onready var health_bar = $HealthBar/SubViewport/Healthbar
+@onready var image = $Squirrel
+@onready var health_bar = $HealthBar
 
 # Attack Variables
 var current_target
@@ -28,7 +29,8 @@ func _ready():
 	add_to_group(side)
 	add_to_group(type)
 	current_health = max_health
-	health_bar.value = float(current_health)/float(max_health)
+	update_health_bar()
+
 
 func _physics_process(delta):
 	var current_location = global_transform.origin
@@ -65,7 +67,6 @@ func assign_target(opposing_object_selected):
 		current_target = opposing_object_selected
 	elif opposing_object_selected.is_in_group("natural_structure"):
 		current_target = opposing_object_selected
-		print_debug("Assigned Target", current_target)
 
 
 # Health Based Function
@@ -76,35 +77,37 @@ func set_health(amount):
 		pass
 	else:
 		current_health += amount
-	health_bar.value = float(current_health)/float(max_health)
+	update_health_bar()
 	if current_health <= 0:
 		kill()
 
+func update_health_bar():
+	""" This function controlls the health bar """
+	health_bar.side = side
+	health_bar.update_health_bar(current_health, max_health)
+	
+	
 func on_hit(damage):
 	set_health(-damage)
+	image.just_hit()
+
 
 func kill():
 	queue_free()
 	
 
 func attack():
-	#print_debug("attempt to attack")
 	# If the current target still exists
 	if current_target:
-		#print_debug("current target", current_target)
 		# if the current target is in range
 		if current_target in targets_in_range:
-			print_debug("HIT", current_target)
 			current_target.on_hit(attack_damage)
 			
-	print_debug(targets_in_range, "TARGETS IN RANGE")
 
 
 func _on_area_3d_body_entered(body):
-	print_debug("Body entered!!", body)
 	# If the object is an enemy
 	if body.is_in_group(enemy) or body.is_in_group("natural_structure"):
-		print_debug("Body attackable!!", body)
 		targets_in_range.append(body)
 		 ##If there's no target
 		#if !target:

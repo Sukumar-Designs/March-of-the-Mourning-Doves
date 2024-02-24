@@ -28,7 +28,7 @@ func _process(delta):
 		return
 	for item in markers:
 		# Check if item still exists
-		if item:
+		if item and is_instance_valid(item):
 			if item.is_in_group("player"):
 				# Move Player Icon
 				var speed = (8.5/player.speed) * player.speed

@@ -655,11 +655,6 @@ polygon = PackedVector2Array(0.7979, 1.19593, 0.202487, 1.45422, -0.0150268, 1.4
 [node name="squirrel" parent="." instance=ExtResource("14_adg51")]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 1.57482, -40.7772)
 
-[node name="bird" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -34.5114, 1.57482, -20.9323)
-side = "bird"
-enemy = "squirrel"
-
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.762, 0, -51.0447)
 side = "squirrel"
@@ -667,23 +662,8 @@ side = "squirrel"
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
-[node name="bird2" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.51133, 0, 0, 0, 1.20095, 8.2345e-15, 0, -2.60869e-13, 0.237988, 4.53243, 3.30063, -31.1439)
-side = "bird"
-enemy = "squirrel"
-
-[node name="bird3" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(2.28412, 0, 0, 0, 1.44228, 1.18489e-14, 0, -3.75374e-13, 0.0566383, 11.3824, 2.01483, -38.5558)
-side = "bird"
-enemy = "squirrel"
-
-[node name="bird4" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(2.28412, 0, 0, 0, 1.44228, 1.18489e-14, 0, -3.75374e-13, 0.0566383, 11.3824, 1.62503, -42.4759)
-side = "bird"
-enemy = "squirrel"
-
-[node name="bird5" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(2.28412, 0, 0, 0, 1.44228, 1.18489e-14, 0, -3.75374e-13, 0.0566383, 11.3824, 1.02477, -30.6332)
+[node name="bird" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 11.3643, 1.0944, -34.2063)
 side = "bird"
 enemy = "squirrel"
 
