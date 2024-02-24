@@ -4,11 +4,11 @@ extends Node
 @export var side = "squirrel" 
 @export var type = "building"
 # Base Stats
-var max_health = 1000
+var max_health = 10
 var current_health
 var heal_amount = 5
 
-var heal_tick_counter = 300
+var heal_tick_counter = 3000000
 var heal_tick 
 
 @export var main_base = false

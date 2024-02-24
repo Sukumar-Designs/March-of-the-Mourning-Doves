@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct5n8h6i1yp26"]
+[gd_scene load_steps=8 format=3 uid="uid://ct5n8h6i1yp26"]
 
 [ext_resource type="Script" path="res://Scripts/face_camera.gd" id="1_wj4yl"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
-[ext_resource type="Script" path="res://Scripts/Attack.gd" id="3_kyps1"]
 [ext_resource type="PackedScene" uid="uid://kxa32rvasbfe" path="res://Full_Assets/soldier_health_bar.tscn" id="5_kulaq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
@@ -31,10 +30,9 @@ transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-2
 texture = ExtResource("2_kckwu")
 
 [node name="Area3D" type="Area3D" parent="."]
-script = ExtResource("3_kyps1")
 
 [node name="AttackRangeCollision" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+transform = Transform3D(2.24268, 0, 0, 0, 2.24268, -1.69407e-21, 0, 1.0842e-19, 2.24268, 0, 0, 0)
 shape = SubResource("SphereShape3D_80mq0")
 
 [node name="HealthBar" type="Sprite3D" parent="."]
@@ -48,6 +46,5 @@ size = Vector2i(5000, 1000)
 
 [node name="Healthbar" parent="HealthBar/SubViewport" instance=ExtResource("5_kulaq")]
 
-[connection signal="area_shape_entered" from="Area3D" to="Area3D" method="_on_area_shape_entered"]
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="Area3D" to="Area3D" method="_on_body_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

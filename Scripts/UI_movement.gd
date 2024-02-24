@@ -4,6 +4,7 @@ var side = "bird"
 var enemy = "squirrel"
 var soldier_type = "soldier"
 var building_type = "building"
+var natural_structure = "natural_structure"
 # Camera Movement
 var left_limit = -50
 var right_limit = 50
@@ -78,7 +79,9 @@ func try_to_select(result):
 		# if you have you're type=soldier or building selected, attack enemy soldier
 		if object.is_in_group(soldier_type) or object.is_in_group(building_type):
 			attack_enemy_object(object)
-
+	elif object.is_in_group(natural_structure):
+		attack_enemy_object(object)
+		
 func clear_selection():
 	""" This function clears all selected soldiers """
 	# Deselect all current select boxs

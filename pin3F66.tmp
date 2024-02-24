@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c720yiw6pru12"]
+
+[ext_resource type="Script" path="res://Scripts/pine_tree.gd" id="1_fi6qn"]
+[ext_resource type="PackedScene" uid="uid://bt5x7vvkvykp3" path="res://Assets/Pine_Tree.glb" id="2_nx5ge"]
+[ext_resource type="PackedScene" uid="uid://kxa32rvasbfe" path="res://Full_Assets/soldier_health_bar.tscn" id="3_5kkte"]
+[ext_resource type="Script" path="res://Scripts/look_at.gd" id="3_jefer"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1s6j8"]
+transparency = 1
+albedo_color = Color(1, 0, 0.00392157, 0.945098)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c2se2"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[node name="Pine_Tree_Full" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.71557)
+script = ExtResource("1_fi6qn")
+
+[node name="Pine_Tree_GLB" parent="." instance=ExtResource("2_nx5ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.179588, 0, -7.60528)
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(0.0430291, 0, 0, 0, 0.0338541, 0.0180448, 0, -0.0152487, 0.0400617, 0, 6.1363, -8.31781)
+material_override = SubResource("ORMMaterial3D_1s6j8")
+texture = SubResource("ViewportTexture_c2se2")
+script = ExtResource("3_jefer")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar"]
+transparent_bg = true
+size = Vector2i(5000, 1000)
+
+[node name="Healthbar" parent="HealthBar/SubViewport" instance=ExtResource("3_5kkte")]

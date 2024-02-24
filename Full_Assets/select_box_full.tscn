@@ -1,22 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4clt2ph8pdg8"]
 
-[ext_resource type="Material" uid="uid://j30p86w3ujw0" path="res://Themes/select_node_texture.tres" id="1_7emwk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljmgi"]
+albedo_color = Color(1, 0.54902, 0, 1)
 
 [node name="select_box" type="Node3D"]
 transform = Transform3D(0.715078, 0, 0, 0, 0.715078, 0, 0, 0, 0.715078, 0, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(4.77026, 0, 0, 0, 1, 0, 0, 0, 0.48131, 0, 0, 0)
-material = ExtResource("1_7emwk")
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(3.31765, 0, 0, 0, -2.87609e-08, -3.65957, 0, 0.657974, -1.59965e-07, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_ljmgi")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(4.77026, 0, 0, 0, 1, 0, 0, 0, 0.48131, 0, 0, -4.34164)
-material = ExtResource("1_7emwk")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-2.08515e-07, 0, -0.48131, 0, 1, 0, 4.77026, 0, -2.10387e-08, 2.14733, 0, -2.18947)
-material = ExtResource("1_7emwk")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-2.08515e-07, 0, -0.48131, 0, 1, 0, 4.77026, 0, -2.10387e-08, -2.14239, 0, -2.18947)
-material = ExtResource("1_7emwk")
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D5"]
+transform = Transform3D(0.914598, 0, 0, 0, 1.13237, 0, 0, 0, 0.929353, 0, 0, 0)
+operation = 2
