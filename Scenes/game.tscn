@@ -654,7 +654,7 @@ operation = 2
 polygon = PackedVector2Array(0.7979, 1.19593, 0.202487, 1.45422, -0.0150268, 1.45344, -0.0120477, 1.31184, 0.651099, 1.01038, 0.982903, 1.0064)
 
 [node name="squirrel" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 1.57482, -40.7772)
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 0.86278, -40.7772)
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.762, 0, -51.0447)

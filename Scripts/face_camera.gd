@@ -11,7 +11,7 @@ var speed = 5
 @onready var nav_agent = $NavigationAgent3D
 
 # Health variables
-var max_health = 50
+var max_health = 15
 var current_health
 var heal_amount = 5
 @onready var image = $Squirrel
@@ -27,13 +27,13 @@ var attack_damage = 1
 
 # Inventory
 @onready var inventory = $Inventory
+@onready var pine = preload("res://Full_Assets/Pines_Full.tscn")
 
 func _ready():
 	add_to_group(side)
 	add_to_group(type)
 	current_health = max_health
 	update_health_bar()
-
 
 func _physics_process(delta):
 	var current_location = global_transform.origin
@@ -62,7 +62,6 @@ func _process(delta):
 			attack()
 		else:
 			attack_cooldown_counter -= attack_speed
-
 		
 func assign_target(object_selected):
 	# If the target is an enemy, then send soldier to attack
@@ -103,6 +102,7 @@ func on_hit(damage):
 
 
 func kill():
+	inventory.drop_all_items(self)
 	queue_free()
 	
 

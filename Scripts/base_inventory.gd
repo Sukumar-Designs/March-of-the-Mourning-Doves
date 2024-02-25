@@ -7,6 +7,18 @@ var inventory_items = {
 	"pebble":0,
 	"seed":0
 } 
+var rng 
+@onready var inventory_items_scenes = {
+	"pine":preload("res://Full_Assets/Pines_Full.tscn"),
+	"acorn":preload("res://Full_Assets/Pines_Full.tscn"),
+	"pebble":preload("res://Full_Assets/Pines_Full.tscn"),
+	"seed":preload("res://Full_Assets/Pines_Full.tscn")
+}
+
+func _ready():
+	# Variable for randomly displacing drops 
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 
 func try_deposite_item(item, amount):
 	var item_space_occupied = inventory_items[item]
@@ -25,3 +37,13 @@ func try_deposite_item(item, amount):
 		# Get the number of items in excess 
 		item_overflow = item_total - max_items_per_type
 	return item_overflow
+
+func drop_all_items(parent):
+	for item in inventory_items:
+		for i in range(0, inventory_items[item]):
+			var instance = inventory_items_scenes[item].instantiate()
+			var offset = rng.randi_range(-2, 2)
+			instance.position.x = parent.position.x + offset
+			instance.position.z = parent.position.z + offset
+			instance.position.y = parent.position.y 
+			get_tree().current_scene.add_child(instance)

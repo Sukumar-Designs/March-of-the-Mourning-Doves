@@ -18,11 +18,10 @@ signal baseDestroyed
 # Inventory Variables
 @onready var inventory = $Inventory
 
-
 func _ready():
 	# Main base has 10x health
 	if main_base:
-		max_health *= 10 
+		max_health *= .10 
 	current_health = max_health
 	if main_base:
 		print_debug("added to main base")
@@ -58,6 +57,7 @@ func on_hit(damage):
 	set_health(-damage)
 
 func kill():
+	inventory.drop_all_items(self)
 	queue_free()
 	emit_signal("baseDestroyed", side, main_base)
 
