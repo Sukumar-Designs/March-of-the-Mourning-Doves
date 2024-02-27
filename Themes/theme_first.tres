@@ -1,16 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c07c6tpo0s50v"]
-
-[ext_resource type="StyleBox" uid="uid://cu7qutfkmmcu1" path="res://Themes/tab_control.tres" id="1_8l1y4"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c07c6tpo0s50v"]
 
 [sub_resource type="SystemFont" id="SystemFont_6ktcm"]
 
 [resource]
 default_font = SubResource("SystemFont_6ktcm")
-TabContainer/constants/icon_separation = 1
-TabContainer/constants/side_margin = 2
-TabContainer/font_sizes/font_size = 20
-TabContainer/fonts/font = SubResource("SystemFont_6ktcm")
-TabContainer/styles/tab_focus = ExtResource("1_8l1y4")
-TabContainer/styles/tab_hovered = ExtResource("1_8l1y4")
-TabContainer/styles/tab_selected = ExtResource("1_8l1y4")
-TabContainer/styles/tab_unselected = ExtResource("1_8l1y4")

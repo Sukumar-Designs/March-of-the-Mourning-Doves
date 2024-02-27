@@ -4,7 +4,7 @@ extends Node
 @export var side = "squirrel" 
 @export var type = "building"
 # Base Stats
-var max_health = 10
+var max_health = 100
 var current_health
 var heal_amount = 5
 
@@ -21,7 +21,7 @@ signal baseDestroyed
 func _ready():
 	# Main base has 10x health
 	if main_base:
-		max_health *= .10 
+		max_health *= 10 
 	current_health = max_health
 	if main_base:
 		print_debug("added to main base")
