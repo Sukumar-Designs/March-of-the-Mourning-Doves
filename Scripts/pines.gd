@@ -10,7 +10,7 @@ var height_delta = .05
 
 @export var side = "resource" 
 @export var type = "resource"
-@export var resource_type = "pine"
+@export var resource_type = "twig"
 
 
 func _ready():

@@ -2,14 +2,14 @@ extends Node
 
 var max_items_per_type = 3
 var inventory_items = {
-	"pine":0,
+	"twig":0,
 	"acorn":0,
 	"pebble":0,
 	"seed":0
 }
 var rng 
 @onready var inventory_items_scenes = {
-	"pine":preload("res://Full_Assets/Pines_Full.tscn"),
+	"twig":preload("res://Full_Assets/Pines_Full.tscn"),
 	"acorn":preload("res://Full_Assets/Pines_Full.tscn"),
 	"pebble":preload("res://Full_Assets/Pines_Full.tscn"),
 	"seed":preload("res://Full_Assets/Pines_Full.tscn")

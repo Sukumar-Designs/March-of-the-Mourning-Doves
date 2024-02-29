@@ -16,10 +16,10 @@ script = ExtResource("1_rcogs")
 [node name="Base_Resources" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.572549)
 self_modulate = Color(1, 1, 1, 0.537255)
-offset_left = 45.0
-offset_top = 71.0
-offset_right = 85.0
-offset_bottom = 111.0
+offset_left = 14.0
+offset_top = 142.0
+offset_right = 54.0
+offset_bottom = 182.0
 scale = Vector2(6.13897, 2.41277)
 color = Color(0, 1, 0.380392, 0.333333)
 
@@ -49,6 +49,7 @@ texture = ExtResource("6_265w2")
 expand_mode = 1
 
 [node name="Seeds_Amount" type="Label" parent="Base_Resources/Seeds"]
+layout_mode = 0
 offset_left = 42.8688
 offset_top = 6.89796
 offset_right = 82.8688
@@ -64,6 +65,7 @@ texture = ExtResource("6_265w2")
 expand_mode = 1
 
 [node name="Twigs_Amount" type="Label" parent="Base_Resources/Twigs"]
+layout_mode = 0
 offset_left = 38.8498
 offset_top = 9.85423
 offset_right = 78.8498
@@ -81,6 +83,7 @@ texture = ExtResource("6_265w2")
 expand_mode = 1
 
 [node name="Acorns_Amount" type="Label" parent="Base_Resources/Acorns"]
+layout_mode = 0
 offset_left = 42.8688
 offset_top = 6.89796
 offset_right = 82.8688
@@ -88,10 +91,10 @@ offset_bottom = 29.898
 
 [node name="Resource_Container" type="BoxContainer" parent="."]
 z_index = 5
-offset_left = 146.0
-offset_top = 174.0
-offset_right = 3136.0
-offset_bottom = 8186.0
+offset_left = 115.0
+offset_top = 245.0
+offset_right = 3105.0
+offset_bottom = 8257.0
 scale = Vector2(1.06483, 0.694983)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Resource_Container"]
@@ -402,10 +405,10 @@ text = "
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -176.0
-offset_right = 1656.0
-offset_bottom = 9276.0
+offset_left = -15.0
+offset_top = -105.0
+offset_right = 1625.0
+offset_bottom = 9347.0
 grow_vertical = 2
 scale = Vector2(0.088304, 0.0410608)
 

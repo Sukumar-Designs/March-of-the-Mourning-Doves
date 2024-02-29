@@ -5,6 +5,7 @@ extends Node3D
 # Tabs
 @onready var resources_ui = $Resource_Container
 @onready var buildings_ui = $Building_Container
+@onready var base_inventory = $Base_Resources
 
 # Building Types
 @onready var base_preview = load("res://Assets/Mushroom.glb") 
@@ -14,6 +15,7 @@ extends Node3D
 
 var preview_building
 var building 
+var base_selected # The base the player clicked on to open sidebar
 
 @onready var ray_caster = $"../UI_Controller"
 var terrian_name = "Terrian_Area3D"
@@ -56,6 +58,13 @@ var bridge_path = ui_paths + "bridge/Resource_Images/"
 	}
 }
 
+@onready var inventory_items = {
+	"twig":$Base_Resources/Twigs/Twigs_Amount,
+	"acorn":$Base_Resources/Acorns/Acorns_Amount,
+	"pebble":$Base_Resources/Pebbles/Pebbles_Amount,
+	"seed":$Base_Resources/Seeds/Seeds_Amount
+} 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("sidebar")
@@ -66,11 +75,30 @@ func _ready():
 	
 	resources_ui.visible = false
 	buildings_ui.visible = false
+	base_inventory.visible = false
 
-func show_sidebar_tab(to_show):
+func _process(delta):
+	fill_inventory_ui()
+
+
+
+func show_sidebar_tab(to_show, base_selected_inv):
 	if to_show == "resources":
 		resources_ui.visible = !resources_ui.visible
 		buildings_ui.visible = !buildings_ui.visible
+		base_inventory.visible = !base_inventory.visible 
+		if resources_ui.visible:
+			base_selected = base_selected_inv
+			fill_inventory_ui()
+		else:
+			base_selected = null
+		
+func fill_inventory_ui():
+	if base_selected:
+		var base_selected_inventory = base_selected.get_inventory()
+		for item in base_selected_inventory:
+			inventory_items[item].text = str(base_selected_inventory[item])
+		
 		
 func try_to_build(building_type_preview, building_actual):
 	preview_building = building_type_preview.instantiate()

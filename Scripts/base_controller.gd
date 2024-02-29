@@ -69,4 +69,4 @@ func try_deposite_item(item, amount):
 	
 func open_inventory():
 	inventory.open_inventory()
-	
+

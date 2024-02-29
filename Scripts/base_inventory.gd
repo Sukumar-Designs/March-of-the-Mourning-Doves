@@ -2,14 +2,14 @@ extends Node
 
 @export var max_items_per_type = 10
 var inventory_items = {
-	"pine":0,
+	"twig":0,
 	"acorn":0,
 	"pebble":0,
 	"seed":0
 } 
 var rng 
 @onready var inventory_items_scenes = {
-	"pine":preload("res://Full_Assets/Pines_Full.tscn"),
+	"twig":preload("res://Full_Assets/Pines_Full.tscn"),
 	"acorn":preload("res://Full_Assets/Pines_Full.tscn"),
 	"pebble":preload("res://Full_Assets/Pines_Full.tscn"),
 	"seed":preload("res://Full_Assets/Pines_Full.tscn")
@@ -51,4 +51,9 @@ func drop_all_items(parent):
 func open_inventory():
 	var sidebar = get_tree().get_nodes_in_group("sidebar")[0]
 	print_debug(sidebar)
-	sidebar.show_sidebar_tab("resources")
+	sidebar.show_sidebar_tab("resources", self)
+
+	
+	
+func get_inventory():
+	return inventory_items
