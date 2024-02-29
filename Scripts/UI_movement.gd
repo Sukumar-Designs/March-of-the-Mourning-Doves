@@ -32,7 +32,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
 var select_box_parents = []
 
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == 1:
@@ -88,6 +87,8 @@ func try_to_select(result):
 	# Depositing resources in base on player's side
 	elif object.is_in_group(building_type) and object.is_in_group(side):
 		attack_enemy_object(object)
+		if object.is_in_group("has_inventory"):
+			object.open_inventory()
 		
 func clear_selection():
 	""" This function clears all selected soldiers """

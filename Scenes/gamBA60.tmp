@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="13_7vkhq"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/squirrel_full.tscn" id="14_adg51"]
-[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/pine_tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://pine_tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Pines_Full.tscn" id="15_4qpbd"]
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="15_f4ugr"]
 [ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="17_xbn0p"]
@@ -133,10 +133,10 @@ transform = Transform3D(-0.955188, 0.235844, -7.09595e-10, 2.64869e-13, -1.78575
 operation = 2
 polygon = PackedVector2Array(0.7979, 1.19593, 0.202487, 1.45422, -0.0150268, 1.45344, -0.0120477, 1.31184, 0.651099, 1.01038, 0.982903, 1.0064)
 
-[node name="Terrian_Area3D" type="Area3D" parent="NavigationRegion3D"]
+[node name="Area3D" type="Area3D" parent="NavigationRegion3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -0.341423, -1.89349, -27.3287)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Area3D"]
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -0.341423, -2.55355, -27.3287)
 shape = SubResource("BoxShape3D_jfr3u")
 
 [node name="squirrel" parent="." instance=ExtResource("14_adg51")]
@@ -154,6 +154,21 @@ transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13,
 side = "bird"
 enemy = "squirrel"
 
+[node name="bird2" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 25.8793, 1.0944, -44.5354)
+side = "bird"
+enemy = "squirrel"
+
+[node name="bird3" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 8.84154, 1.0944, -44.5354)
+side = "bird"
+enemy = "squirrel"
+
+[node name="bird4" parent="." instance=ExtResource("14_adg51")]
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -23.7335)
+side = "bird"
+enemy = "squirrel"
+
 [node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
 
@@ -161,7 +176,6 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 script = ExtResource("13_2c0sv")
 
 [node name="Resource_Container" type="BoxContainer" parent="Sidebar"]
-z_index = 5
 offset_left = 146.0
 offset_top = 174.0
 offset_right = 3136.0
@@ -169,304 +183,76 @@ offset_bottom = 8186.0
 scale = Vector2(1.06483, 0.694983)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Sidebar/Resource_Container"]
-z_index = 5
 layout_mode = 2
 
-[node name="Base" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
+[node name="HBoxContainer" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
 layout_mode = 2
 
-[node name="Resource_Images" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base"]
+[node name="Resource_Images" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Pebble_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Pebble_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images"]
 layout_mode = 2
 
-[node name="Pebble_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
+[node name="Pebble_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "Pebble Image
 "
 
-[node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
+[node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 
-[node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images"]
 layout_mode = 2
 
-[node name="Twig_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
+[node name="Twig_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "Twig Image
 "
 
-[node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
+[node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "
 "
 
-[node name="Seed_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Seed_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images"]
 layout_mode = 2
 
-[node name="Seed_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
+[node name="Seed_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "Seed Image"
 
-[node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
+[node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "
 "
 
-[node name="Acorn_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Acorn_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 text = "Acorn Image
 "
 
-[node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
+[node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/HBoxContainer/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("17_xbn0p")
 
 [node name="Space" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
 layout_mode = 2
 
 [node name="Space" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Space"]
 layout_mode = 2
 
 [node name="Space2" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Space/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="range_tower_1" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Resource_Images" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Pebble Image
-"
-
-[node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
-layout_mode = 2
-
-[node name="Twig_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Twig Image
-"
-
-[node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Seed_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
-layout_mode = 2
-
-[node name="Seed_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Seed Image"
-
-[node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Acorn_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
-layout_mode = 2
-
-[node name="Acorn_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Acorn Image
-"
-
-[node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Space2" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Space" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Space2"]
-layout_mode = 2
-
-[node name="Space2" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Space2/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="range_tower_2" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Resource_Images" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Pebble Image
-"
-
-[node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
-layout_mode = 2
-
-[node name="Twig_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Twig Image
-"
-
-[node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Seed_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
-layout_mode = 2
-
-[node name="Seed_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Seed Image"
-
-[node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Acorn_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
-layout_mode = 2
-
-[node name="Acorn_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Acorn Image
-"
-
-[node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Space3" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Space" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Space3"]
-layout_mode = 2
-
-[node name="Space2" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Space3/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="bridge" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Resource_Images" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Pebble Image
-"
-
-[node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images"]
-layout_mode = 2
-
-[node name="Twig_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Twig Image
-"
-
-[node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Seed_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images"]
-layout_mode = 2
-
-[node name="Seed_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Seed Image"
-
-[node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "
-"
-
-[node name="Acorn_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images"]
-layout_mode = 2
-
-[node name="Acorn_Image" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-text = "Acorn Image
-"
-
-[node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
-layout_mode = 2
-theme = ExtResource("17_xbn0p")
-
-[node name="Space4" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Space" type="VBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Space4"]
-layout_mode = 2
-
-[node name="Space2" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Space4/Space"]
 layout_mode = 2
 theme = SubResource("Theme_7vot1")
 text = "

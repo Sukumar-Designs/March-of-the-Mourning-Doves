@@ -47,3 +47,8 @@ func drop_all_items(parent):
 			instance.position.z = parent.position.z + offset
 			instance.position.y = parent.position.y 
 			get_tree().current_scene.add_child(instance)
+			
+func open_inventory():
+	var sidebar = get_tree().get_nodes_in_group("sidebar")[0]
+	print_debug(sidebar)
+	sidebar.show_sidebar_tab("resources")

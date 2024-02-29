@@ -3,6 +3,7 @@ extends Node
 # General Stats
 @export var side = "squirrel" 
 @export var type = "building"
+@export var has_inventory = "has_inventory"
 # Base Stats
 var max_health = 100
 var current_health
@@ -29,6 +30,8 @@ func _ready():
 	add_to_group(side + "_" + type)
 	add_to_group(side)
 	add_to_group(type)
+	add_to_group(has_inventory)
+	
 	emit_signal("healthChanged", float(current_health)/float(max_health))
 	
 	# Set starting health
@@ -63,4 +66,7 @@ func kill():
 
 func try_deposite_item(item, amount):
 	return inventory.try_deposite_item(item, amount)
+	
+func open_inventory():
+	inventory.open_inventory()
 	
