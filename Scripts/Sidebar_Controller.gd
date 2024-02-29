@@ -97,6 +97,7 @@ func _input(event):
 			clear_preview()
 
 func clear_preview():
+	""" This function controls removing preview of building after selecting building """
 	if preview_building != null and building != null:
 		preview_building.queue_free()
 		preview_building = null
