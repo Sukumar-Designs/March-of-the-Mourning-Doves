@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
-[ext_resource type="PackedScene" uid="uid://c5snj02lfcnc4" path="res://Full_Assets/sidebar.tscn" id="13_53qpc"]
+[ext_resource type="PackedScene" path="res://Full_Assets/sidebar.tscn" id="13_53qpc"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/squirrel_full.tscn" id="14_adg51"]
-[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/pine_tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" path="res://Full_Assets/pine_tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Pines_Full.tscn" id="15_4qpbd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
