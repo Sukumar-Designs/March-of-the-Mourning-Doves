@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=17 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://Full_Assets/sidebar.tscn" id="13_53qpc"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/squirrel_full.tscn" id="14_adg51"]
+[ext_resource type="PackedScene" uid="uid://bimx7u0rb8wit" path="res://Birdie Base.glb" id="14_gux4k"]
 [ext_resource type="PackedScene" path="res://Full_Assets/pine_tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Pines_Full.tscn" id="15_4qpbd"]
 
@@ -130,7 +131,13 @@ transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -0.341423, 
 shape = SubResource("BoxShape3D_jfr3u")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, -6.97574e-16, -1.52459e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 2.95411, 32.3378, -26.0107)
+transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205562, -0.152921, -6.38445e-09, -0.991086, 0.133225, 71.2342, 56.2216, -28.1464)
+light_energy = 1.914
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 48.12
+shadow_bias = 0.0
+shadow_normal_bias = 4.952
+shadow_reverse_cull_face = true
 
 [node name="squirrel" parent="." instance=ExtResource("14_adg51")]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 0.86278, -40.7772)
@@ -151,6 +158,9 @@ enemy = "squirrel"
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
 
 [node name="Sidebar" parent="." instance=ExtResource("13_53qpc")]
+
+[node name="Birdie Base" parent="." instance=ExtResource("14_gux4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2117, -3.58766, -151.97)
 
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
 [connection signal="healthChanged" from="squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]
