@@ -2,10 +2,10 @@ extends Node
 
 @export var max_items_per_type = 10
 var inventory_items = {
-	"twig":0,
-	"acorn":0,
-	"pebble":0,
-	"seed":0
+	"twig":20,
+	"acorn":20,
+	"pebble":20,
+	"seed":20
 } 
 var rng 
 @onready var inventory_items_scenes = {
@@ -53,7 +53,8 @@ func open_inventory():
 	print_debug(sidebar)
 	sidebar.show_sidebar_tab("resources", self)
 
-	
-	
 func get_inventory():
 	return inventory_items
+	
+func change_item_amount(item, amt):
+	inventory_items[item] = inventory_items[item] + amt 

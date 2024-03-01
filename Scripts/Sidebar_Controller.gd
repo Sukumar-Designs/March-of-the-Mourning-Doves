@@ -16,6 +16,7 @@ extends Node3D
 var preview_building
 var building 
 var base_selected # The base the player clicked on to open sidebar
+var base_type_selected
 
 @onready var ray_caster = $"../UI_Controller"
 var terrian_name = "Terrian_Area3D"
@@ -100,10 +101,23 @@ func fill_inventory_ui():
 			inventory_items[item].text = str(base_selected_inventory[item])
 		
 		
-func try_to_build(building_type_preview, building_actual):
-	preview_building = building_type_preview.instantiate()
-	get_tree().current_scene.add_child(preview_building) 
-	building = building_actual
+func try_to_build(building_type_preview, building_actual, to_build_type):
+	if player_can_affort(to_build_type):
+		base_type_selected = to_build_type
+		preview_building = building_type_preview.instantiate()
+		get_tree().current_scene.add_child(preview_building) 
+		building = building_actual
+	
+func player_can_affort(to_build_type):
+	""" This function figures out if the player can afford the building they clicked on"""
+	var can_affort = true
+	for item in buildings[to_build_type]: 
+		# Amount player has - cost  
+		var difference = base_selected.get_inventory()[item.to_lower()] - buildings[to_build_type][item][1]
+		if difference < 0:
+			can_affort = false
+	return can_affort
+	
 	
 func _input(event):
 	if preview_building != null:
@@ -116,13 +130,22 @@ func _input(event):
 				
 		elif Input.is_action_just_pressed("place") and ray:
 			if ray != { } and ray["collider"].name == terrian_name:
-				var instance = building.instantiate()
-				instance.position = ray.position + Vector3(1.55, 0, 1.55)
-				get_tree().current_scene.add_child(instance) 
-				clear_preview()
+				purchase_and_place()
+		
 		
 		if Input.is_action_just_pressed("clear_selection"):
 			clear_preview()
+
+
+func purchase_and_place():
+	if player_can_affort(base_type_selected):
+		for item in buildings[base_type_selected]: 
+			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
+		var instance = building.instantiate()
+		instance.position = ray.position + Vector3(1.55, 0, 1.55)
+		get_tree().current_scene.add_child(instance) 
+		clear_preview()
+
 
 func clear_preview():
 	""" This function controls removing preview of building after selecting building """
@@ -130,22 +153,23 @@ func clear_preview():
 		preview_building.queue_free()
 		preview_building = null
 		building = null
+		base_type_selected = null
 		
 func _on_base_pressed():
 	clear_preview()
-	try_to_build(base_preview, base)
+	try_to_build(base_preview, base, "base")
 
 
 func _on_range_tower_1_pressed():
 	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1)
+	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
 
 
 func _on_range_tower_2_pressed():
 	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1)
+	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
 
 
 func _on_bridge_pressed():
 	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1)
+	try_to_build(range_tower_1_preview, range_tower_1, "bridge")
