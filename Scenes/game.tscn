@@ -147,7 +147,7 @@ transform = Transform3D(0.780856, -5.3524e-07, 0.624711, -0.327238, -0.851828, 0
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 0.86278, -40.7772)
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.762, 0, -51.0447)
+transform = Transform3D(-0.0789771, 0, -0.66124, 0, 0.66594, 0, 0.66124, 0, -0.0789771, 49.762, 2.11623, -51.0447)
 side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
