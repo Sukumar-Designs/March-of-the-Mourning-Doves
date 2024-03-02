@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
+[ext_resource type="Script" path="res://Scripts/main_node_controller.gd" id="1_o8dap"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
@@ -21,6 +22,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 size = Vector3(1.8974, 1, 0.748688)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_o8dap")
 
 [node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
 transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 0, 24.8924, 0)
@@ -154,7 +156,7 @@ side = "side_squirrel"
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
 [node name="bird" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -44.5354)
+transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 24.1342, 1.0944, -12.2748)
 sub_type = "sub_type_bird"
 side = "side_bird"
 enemy = "enemy_squirrel"
@@ -165,5 +167,6 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 
 [node name="Sidebar" parent="." instance=ExtResource("13_53qpc")]
 
+[connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
 [connection signal="healthChanged" from="squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]

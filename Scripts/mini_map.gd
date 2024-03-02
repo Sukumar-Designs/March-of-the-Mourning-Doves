@@ -10,29 +10,39 @@ extends MarginContainer
 
 var grid_scale 
 var markers = {}
+var map_objects
+var minimap_objects_group = "minimap_objects"
+var game_started = false
 
 func _ready():
 	player_marker.position.x = grid.size.x /2
 	player_marker.position.y = grid.size.y 
 	grid_scale = grid.size / (get_viewport_rect().size * zoom)
-	var map_objects = get_tree().get_nodes_in_group("minimap_objects")
+	var map_objects = get_tree().get_nodes_in_group(minimap_objects_group)
 	for item in map_objects:
-		var new_marker = icons[item.side].duplicate()
-		grid.add_child(new_marker)
-		new_marker.show()
-		markers[item] = new_marker
-		print_debug("Player Added To MiniMap")
+		add_minimap_marker(item)
+
+
+func add_minimap_marker(item):
+	var new_marker = icons[item.side].duplicate()
+	grid.add_child(new_marker)
+	new_marker.show()
+	markers[item] = new_marker
+	print_debug("Creature Added To MiniMap")
+
 
 func _process(delta):
+	game_started = true
 	if !player:
 		return
 	for item in markers:
 		# Check if item still exists
 		if item and is_instance_valid(item):
+			var obj_pos 
 			if item.is_in_group("player"):
 				# Move Player Icon
 				var speed = (8.5/player.speed) * player.speed
-				var obj_pos = Vector2(0, 0)
+				obj_pos = Vector2(0, 0)
 				obj_pos.x = speed*(item.position.x + player.position.x) * grid_scale.x + grid.size.x / 2
 				obj_pos.y = speed*(item.position.z + player.position.z) * grid_scale.y + grid.size.y #/2
 				markers[item].position = obj_pos
@@ -43,6 +53,16 @@ func _process(delta):
 				
 			else:
 				# Move all other icons
-				var speed = (15.25/15) * item.speed 
-				var obj_pos = speed*(Vector2(item.position.x, item.position.y))* grid_scale + grid.size / 2
-				markers[item].position = obj_pos
+				#var speed = (15.25/15) * item.speed 
+				var speed = (float(15.6)/float(item.speed)) * float(item.speed) 
+				obj_pos = Vector2(0, 0)
+				obj_pos.x = speed*(item.position.x) * grid_scale.x + grid.size.x / 2
+				obj_pos.y = (speed+2)*(item.position.z) * grid_scale.y + grid.size.y 
+			markers[item].position = obj_pos
+
+
+func _on_node_3d_child_entered_tree(node):
+	if game_started:
+		if(node.is_in_group(minimap_objects_group)):
+			add_minimap_marker(node)
+	
