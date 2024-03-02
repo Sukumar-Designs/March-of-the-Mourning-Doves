@@ -2,10 +2,10 @@ extends Node
 
 @export var max_items_per_type = 10
 var inventory_items = {
-	"twig":20,
-	"acorn":20,
-	"pebble":20,
-	"seed":20
+	"twig":0,
+	"acorn":0,
+	"pebble":0,
+	"seed":0
 } 
 var rng 
 @onready var inventory_items_scenes = {

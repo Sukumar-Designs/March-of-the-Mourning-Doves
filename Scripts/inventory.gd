@@ -1,6 +1,6 @@
 extends Node
 
-var max_items_per_type = 3
+@export var max_items_per_type = 3
 var inventory_items = {
 	"twig":0,
 	"acorn":0,
@@ -43,3 +43,5 @@ func drop_all_items(parent):
 			instance.position.z = parent.position.z + offset
 			instance.position.y = parent.position.y 
 			get_tree().current_scene.add_child(instance)
+
+
