@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=15 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
-[ext_resource type="Script" path="res://Scripts/main_node_controller.gd" id="1_uemgi"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
@@ -10,9 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://c5snj02lfcnc4" path="res://Full_Assets/sidebar.tscn" id="13_53qpc"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
-[ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/squirrel_full.tscn" id="14_adg51"]
-[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/pine_tree_full.tscn" id="14_kow6g"]
-[ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Pines_Full.tscn" id="15_4qpbd"]
+[ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/creature_full.tscn" id="14_adg51"]
+[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
 vertices = PackedVector3Array(37.6705, 0.481945, -11.9384, 37.6705, 0.481945, -11.4384, 50.6705, 0.481945, -11.4384, 36.1705, 0.481945, -13.1884, 37.6705, 0.481945, -11.9384, 50.6705, 0.481945, -11.4384, 16.6705, 0.481945, -27.1884, 36.1705, 0.481945, -13.1884, 50.6705, 0.481945, -11.4384, 50.6705, 0.481945, -55.1884, -38.0795, 0.481945, -55.1884, 16.6705, 0.481945, -27.1884, 50.6705, 0.481945, -11.4384, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -51.4384, -50.5795, 0.481945, -0.4384, 33.6705, 0.481945, -0.4384, 33.6705, 0.481945, -6.6884, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -0.4384, 37.6705, 0.481945, -10.6884, 36.4205, 0.481945, -9.6884, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -6.6884, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 37.6705, 0.481945, -11.4384, 37.6705, 0.481945, -10.6884)
@@ -22,7 +21,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 size = Vector3(1.8974, 1, 0.748688)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_uemgi")
 
 [node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
 transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 0, 24.8924, 0)
@@ -55,6 +53,8 @@ patch_margin_bottom = 64
 layout_mode = 2
 
 [node name="BackgroundMap" type="TextureRect" parent="MiniMap/MarginContainer"]
+modulate = Color(1, 1, 1, 0.419608)
+self_modulate = Color(1, 1, 1, 0.466667)
 layout_mode = 2
 texture = ExtResource("4_ykqu8")
 
@@ -104,6 +104,8 @@ script = ExtResource("12_l3ivy")
 
 [node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -44.563, 1.42356, -8.51336)
+side = "side_bird"
+enemy = "enemy_squirrel"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_bx183")
@@ -139,22 +141,24 @@ shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.780856, 0, 0.624711, -0.327238, -0.851828, 0.40903, 0.532146, -0.523822, -0.665155, 215.01, -47.8889, -510.689)
+transform = Transform3D(0.780856, -5.3524e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, 212.217, 19.6152, -858.337)
 
 [node name="squirrel" parent="." instance=ExtResource("14_adg51")]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 0.86278, -40.7772)
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.762, 0, -51.0447)
-side = "squirrel"
+side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
 [node name="bird" parent="." instance=ExtResource("14_adg51")]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, -6.01669, 1.0944, -44.5354)
-side = "bird"
-enemy = "squirrel"
+sub_type = "sub_type_bird"
+side = "side_bird"
+enemy = "enemy_squirrel"
+enemy_type = "side_squirrel"
 
 [node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)

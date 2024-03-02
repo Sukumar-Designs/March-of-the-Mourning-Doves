@@ -1,10 +1,17 @@
 extends CharacterBody3D
 
 @onready var camera_location = $"../UI_Controller"
-@export var side = "squirrel"
-@export var enemy = "bird"
-@export var type = "soldier"
-@export var can_pick_up = "resource"
+
+# General Stats
+@export var main_type = "main_type_creatures"
+@export var sub_type = "sub_type_squirrel"
+@export var side = "side_squirrel"
+@export var enemy = "enemy_bird"
+@export var has_inventory = "has_inventory_true"
+
+@export var enemy_type = "side_bird"
+
+@export var can_pick_up = "main_type_resources"
 var speed = 5
 
 # Navigation 
@@ -27,11 +34,16 @@ var attack_damage = 1
 
 # Inventory
 @onready var inventory = $Inventory
-@onready var pine = preload("res://Full_Assets/Pines_Full.tscn")
+@onready var pine = preload("res://Full_Assets/Twig_Full.tscn")
 
 func _ready():
+	# Add to 5 basic groups
+	add_to_group(main_type)
+	add_to_group(sub_type)
 	add_to_group(side)
-	add_to_group(type)
+	add_to_group(enemy)
+	add_to_group(has_inventory)
+
 	current_health = max_health
 	update_health_bar()
 
@@ -64,17 +76,18 @@ func _process(delta):
 			attack_cooldown_counter -= attack_speed
 		
 func assign_target(object_selected):
+	print_debug(object_selected, "ENEMY 4")
 	# If the target is an enemy, then send soldier to attack
-	if object_selected.is_in_group(enemy):
+	if object_selected.is_in_group(enemy_type):
 		current_target = object_selected
 	# Attacking natural structures to get resources
-	elif object_selected.is_in_group("natural_structure"):
+	elif object_selected.is_in_group("main_type_other_structures"):
 		current_target = object_selected
 	# Picking up resources
-	elif object_selected.is_in_group("resource"):
+	elif object_selected.is_in_group("main_type_resources"):
 		current_target = object_selected
 	# Depositing resources in base
-	elif object_selected.is_in_group("building"):
+	elif object_selected.is_in_group("main_type_buildings"):
 		current_target = object_selected
 
 
@@ -116,7 +129,7 @@ func attack():
 
 func _on_area_3d_body_entered(body):
 	# If the object is an enemy
-	if body.is_in_group(enemy) or body.is_in_group("natural_structure"):
+	if body.is_in_group(enemy) or body.is_in_group("main_type_other_structures"):
 		targets_in_range.append(body)
 		 ##If there's no target
 		#if !target:
@@ -126,7 +139,7 @@ func _on_area_3d_body_entered(body):
 		# Try to pick up the item
 		if inventory.try_pick_up_item(body):
 			body.queue_free()
-	elif body.is_in_group("main_base") and body.is_in_group(side) and body == current_target:
+	elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
 		inventory.try_deposite_item(body)
 
 

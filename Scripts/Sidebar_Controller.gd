@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var side = "bird"
+@export var side = "side_bird"
 
 # Tabs
 @onready var resources_ui = $Resource_Container
@@ -60,10 +60,10 @@ var bridge_path = ui_paths + "bridge/Resource_Images/"
 }
 
 @onready var inventory_items = {
-	"twig":$Base_Resources/Twigs/Twigs_Amount,
-	"acorn":$Base_Resources/Acorns/Acorns_Amount,
-	"pebble":$Base_Resources/Pebbles/Pebbles_Amount,
-	"seed":$Base_Resources/Seeds/Seeds_Amount
+	"sub_type_twig":$Base_Resources/Twigs/Twigs_Amount,
+	"sub_type_acorn":$Base_Resources/Acorns/Acorns_Amount,
+	"sub_type_pebble":$Base_Resources/Pebbles/Pebbles_Amount,
+	"sub_type_seed":$Base_Resources/Seeds/Seeds_Amount
 } 
 
 # Called when the node enters the scene tree for the first time.
@@ -80,8 +80,6 @@ func _ready():
 
 func _process(delta):
 	fill_inventory_ui()
-
-
 
 func show_sidebar_tab(to_show, base_selected_inv):
 	if to_show == "resources":

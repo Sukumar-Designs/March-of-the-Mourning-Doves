@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c20qaxx3gpxc"]
 
-[ext_resource type="Script" path="res://Scripts/base_controller.gd" id="1_5oh11"]
+[ext_resource type="Script" path="res://Scripts/base.gd" id="1_hc1ws"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_d73xk"]
 [ext_resource type="Script" path="res://Scripts/base_inventory.gd" id="3_htu3h"]
 [ext_resource type="PackedScene" uid="uid://bimx7u0rb8wit" path="res://Assets/Birdie Base.glb" id="4_q3pk5"]
@@ -12,7 +12,7 @@ size = Vector3(1, 1.42194, 1)
 
 [node name="bird_base" type="CharacterBody3D" groups=["main_base"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58195, 0, 0)
-script = ExtResource("1_5oh11")
+script = ExtResource("1_hc1ws")
 side = "bird"
 main_base = true
 

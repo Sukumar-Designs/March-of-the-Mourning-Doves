@@ -10,7 +10,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_80mq0"]
 
-[node name="squirrel" type="CharacterBody3D" groups=["minimap_objects"]]
+[node name="creature" type="CharacterBody3D" groups=["minimap_objects"]]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 0.884871, 1.57482, 0.724487)
 script = ExtResource("1_wj4yl")
 
