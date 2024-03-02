@@ -1,15 +1,17 @@
 extends Node
 
 # General Stats
-@export var side = "squirrel" 
-@export var type = "building"
-@export var has_inventory = "has_inventory"
+@export var main_type = "main_type_buildings"
+@export var sub_type = "sub_type_base_main_base"
+@export var side = "side_bird"
+@export var enemy = "enemy_bird"
+@export var has_inventory = "has_inventory_true"
 # Base Stats
 var max_health = 100
 var current_health
 var heal_amount = 5
 
-var heal_tick_counter = 3000000
+var heal_tick_counter = 30000
 var heal_tick 
 
 @export var main_base = false
@@ -20,23 +22,23 @@ signal baseDestroyed
 @onready var inventory = $Inventory
 
 func _ready():
-	# Main base has 10x health
-	if main_base:
-		max_health *= 10 
-	current_health = max_health
-	if main_base:
+	if sub_type == "sub_type_base_main_base":
+		# Main base has 10x health
+		max_health *= 10
 		print_debug("added to main base")
-		add_to_group("main_base")
-	add_to_group(side + "_" + type)
-	add_to_group(side)
-	add_to_group(type)
-	add_to_group(has_inventory)
+		#add_to_group("main_base")
 	
+	current_health = max_health
 	emit_signal("healthChanged", float(current_health)/float(max_health))
-	
 	# Set starting health
 	heal_tick = heal_tick_counter
 	
+	# Add to 5 basic groups
+	add_to_group(main_type)
+	add_to_group(sub_type)
+	add_to_group(side)
+	add_to_group(enemy)
+	add_to_group(has_inventory)
 	
 func _process(delta):
 	heal_tick_counter -= 1

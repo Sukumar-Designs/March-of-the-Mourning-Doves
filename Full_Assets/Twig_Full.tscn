@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://lqpe03putqqm"]
 
-[ext_resource type="Script" path="res://Scripts/pines.gd" id="1_sost1"]
-[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="1_ydp4i"]
+[ext_resource type="Script" path="res://Scripts/twig.gd" id="1_7ptkm"]
+[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_u8gcc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaf58"]
 
-[node name="PinesFull" type="CharacterBody3D"]
+[node name="TwigFull" type="CharacterBody3D"]
 transform = Transform3D(0.402974, -0.122308, 0.0181095, 0.120935, 0.377051, -0.144509, 0.0257321, 0.143348, 0.395556, 0, 0.81764, 0)
-script = ExtResource("1_sost1")
+script = ExtResource("1_7ptkm")
 
-[node name="Pine_Visual" parent="." instance=ExtResource("1_ydp4i")]
+[node name="Twig_Visual" parent="." instance=ExtResource("2_u8gcc")]
 
 [node name="Area3D" type="Area3D" parent="."]
 

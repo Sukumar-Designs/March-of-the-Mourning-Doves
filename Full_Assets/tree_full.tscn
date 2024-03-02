@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://c720yiw6pru12"]
 
-[ext_resource type="Script" path="res://Scripts/pine_tree.gd" id="1_fi6qn"]
+[ext_resource type="Script" path="res://Scripts/tree.gd" id="1_fi6qn"]
 [ext_resource type="PackedScene" uid="uid://ddkktpxa3rujj" path="res://Assets/Pine_Tree.glb" id="2_nx5ge"]
 [ext_resource type="PackedScene" uid="uid://c34hc8o0nlbf0" path="res://Full_Assets/character_health_bar.tscn" id="3_ec8kp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bylco"]
 
-[node name="Pine_Tree_Full" type="CharacterBody3D"]
+[node name="Tree_Full" type="CharacterBody3D"]
 transform = Transform3D(0.0163593, 0, 0, 0, 0.0163593, 0, 0, 0, 0.0163593, 0, 0.212417, 0.108849)
 script = ExtResource("1_fi6qn")
 

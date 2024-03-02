@@ -9,7 +9,7 @@ func update_health_bar(current_health, max_health):
 	self.scale.x =  (health_proportion * x_scale)
 	
 	# If side is not bird, make health bar red
-	if side != "bird":
+	if side != "side_bird":
 		modulate[1] = 0
 		modulate[2] = 0
 	else:

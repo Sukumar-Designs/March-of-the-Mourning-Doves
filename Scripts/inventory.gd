@@ -2,17 +2,17 @@ extends Node
 
 @export var max_items_per_type = 3
 var inventory_items = {
-	"twig":0,
-	"acorn":0,
-	"pebble":0,
-	"seed":0
+	"sub_type_twig":0,
+	"sub_type_acorn":0,
+	"sub_type_pebble":0,
+	"sub_type_seed":0
 }
 var rng 
 @onready var inventory_items_scenes = {
-	"twig":preload("res://Full_Assets/Pines_Full.tscn"),
-	"acorn":preload("res://Full_Assets/Pines_Full.tscn"),
-	"pebble":preload("res://Full_Assets/Pines_Full.tscn"),
-	"seed":preload("res://Full_Assets/Pines_Full.tscn")
+	"sub_type_twig":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_acorn":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_pebble":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_seed":preload("res://Full_Assets/Twig_Full.tscn")
 }
 
 func _ready():
@@ -22,8 +22,8 @@ func _ready():
 
 func try_pick_up_item(item):
 	""" This function controls trying to pick up an item """
-	if inventory_items[item.resource_type] <= max_items_per_type:
-		inventory_items[item.resource_type] = inventory_items[item.resource_type] + 1
+	if inventory_items[item.sub_type] <= max_items_per_type:
+		inventory_items[item.sub_type] = inventory_items[item.sub_type] + 1
 		return true
 	else:
 		return false

@@ -1,12 +1,13 @@
 extends ProgressBar
-@export var side = "squirrel"
-@export var enemy = "bird"
+@export var side = "side_squirrel"
+@export var enemy = "enemy_bird"
+var look_for_main_base_sub_type = "sub_type_main_building"
 var side_main_base
 var enemy_main_base
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var bases = get_tree().get_nodes_in_group("main_base")
+	var bases = get_tree().get_nodes_in_group(look_for_main_base_sub_type)
 	for base in bases:
 		if base.is_in_group(side):
 			side_main_base = base

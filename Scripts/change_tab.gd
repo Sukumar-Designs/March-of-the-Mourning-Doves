@@ -7,10 +7,5 @@ func _ready():
 	tab_container = $"../.."
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_pressed():
 	tab_container.set_current_tab(tab_number)

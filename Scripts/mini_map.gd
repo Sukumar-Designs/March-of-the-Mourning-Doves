@@ -6,7 +6,7 @@ extends MarginContainer
 @onready var player_marker = $MarginContainer/BackgroundMap/SquirrelSoldierHighlight
 @onready var mob_marker = $MarginContainer/BackgroundMap/Squirrel
 
-@onready var icons = {"squirrel":mob_marker, "bird":player_marker}
+@onready var icons = {"side_squirrel":mob_marker, "side_bird":player_marker}
 
 var grid_scale 
 var markers = {}

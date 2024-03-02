@@ -1,7 +1,11 @@
 extends CharacterBody3D
 # General Stats
-@export var side = "tree" 
-@export var type = "natural_structure"
+@export var main_type = "main_type_other_structures"
+@export var sub_type = "sub_type_base_tree"
+@export var side = "side_neutral"
+@export var enemy = "enemy_neutral"
+@export var has_inventory = "has_inventory_false"
+
 # Base Stats
 var max_health = 10
 var current_health
@@ -18,12 +22,17 @@ var rotation_speed = 90.0  # Adjust this value to control the rotation speed
 var target_rotation = Vector3(-93, 0, 0)  # Adjust the target rotation as needed
 
 # Drops after falling
-@onready var drops = preload("res://Full_Assets/Pines_Full.tscn") 
+@onready var drops = preload("res://Full_Assets/Twig_Full.tscn") 
 var rng 
 
 func _ready():
+	# Add to 5 basic groups
+	add_to_group(main_type)
+	add_to_group(sub_type)
 	add_to_group(side)
-	add_to_group(type)
+	add_to_group(enemy)
+	add_to_group(has_inventory)
+
 	current_health = max_health
 	health_bar_visible_timer = health_bar_visible_timer_initial 
 	update_health_bar()

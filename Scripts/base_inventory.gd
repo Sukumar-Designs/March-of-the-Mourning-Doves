@@ -2,17 +2,17 @@ extends Node
 
 @export var max_items_per_type = 10
 var inventory_items = {
-	"twig":0,
-	"acorn":0,
-	"pebble":0,
-	"seed":0
+	"sub_type_twig":50,
+	"sub_type_acorn":50,
+	"sub_type_pebble":50,
+	"sub_type_seed":50
 } 
 var rng 
 @onready var inventory_items_scenes = {
-	"twig":preload("res://Full_Assets/Pines_Full.tscn"),
-	"acorn":preload("res://Full_Assets/Pines_Full.tscn"),
-	"pebble":preload("res://Full_Assets/Pines_Full.tscn"),
-	"seed":preload("res://Full_Assets/Pines_Full.tscn")
+	"sub_type_twig":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_acorn":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_pebble":preload("res://Full_Assets/Twig_Full.tscn"),
+	"sub_type_seed":preload("res://Full_Assets/Twig_Full.tscn")
 }
 
 func _ready():
