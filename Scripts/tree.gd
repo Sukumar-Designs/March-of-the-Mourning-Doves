@@ -69,7 +69,7 @@ func update_health_bar():
 	health_bar.update_health_bar(current_health, max_health)
 
 
-func on_hit(damage):
+func on_hit(damage, attacker):
 	set_health(-damage)
 	# Get healthbar to display
 	health_bar.visible = true

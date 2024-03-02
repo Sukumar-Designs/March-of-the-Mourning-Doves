@@ -69,7 +69,7 @@ func set_health(amount):
 	if current_health <= 0:
 		kill()
 
-func on_hit(damage):
+func on_hit(damage, attacker):
 	set_health(-damage)
 
 func kill():
@@ -92,7 +92,6 @@ func spawn_creatures(sub_type, side, enemy):
 		instance.enemy = enemy
 		instance.enemy_type = "side" + enemy.substr(5,len(side) + 1)
 		instance.add_to_group("minimap_objects")
-		
 		var offset = 1.5 * (i + 2.7)
 		var z_offset = offset-10 
 		if instance.side == "side_squirrel":

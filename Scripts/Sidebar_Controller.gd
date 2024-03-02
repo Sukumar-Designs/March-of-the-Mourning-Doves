@@ -1,6 +1,8 @@
 extends Node3D
 
 @export var side = "side_bird"
+@export var enemy = "enemy_squirrel"
+@export var enemy_type = "side_squirrel"
 
 # Tabs
 @onready var resources_ui = $Resource_Container
@@ -141,6 +143,8 @@ func purchase_and_place():
 			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
 		var instance = building.instantiate()
 		instance.position = ray.position + Vector3(1.55, 0, 1.55)
+		instance.side = side
+		instance.enemy = enemy
 		get_tree().current_scene.add_child(instance) 
 		clear_preview()
 

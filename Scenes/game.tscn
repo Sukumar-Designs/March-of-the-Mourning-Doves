@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=15 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
-[ext_resource type="Script" path="res://Scripts/main_node_controller.gd" id="1_o8dap"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
@@ -22,7 +21,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 size = Vector3(1.8974, 1, 0.748688)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_o8dap")
 
 [node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
 transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 0, 24.8924, 0)

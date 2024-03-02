@@ -108,10 +108,12 @@ func update_health_bar():
 	health_bar.update_health_bar(current_health, max_health)
 	
 	
-func on_hit(damage):
+func on_hit(damage, attacker):
 	set_health(-damage)
 	image.just_hit()
-
+	# If no target, create new target
+	if current_target == null:
+		assign_target(attacker)
 
 func kill():
 	inventory.drop_all_items(self)
@@ -123,12 +125,12 @@ func attack():
 	if current_target:
 		# if the current target is in range
 		if current_target in targets_in_range:
-			current_target.on_hit(attack_damage)
+			current_target.on_hit(attack_damage, self)
 
 
 func _on_area_3d_body_entered(body):
 	# If the object is an enemy
-	if body.is_in_group(enemy) or body.is_in_group("main_type_other_structures"):
+	if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures"):
 		targets_in_range.append(body)
 		 ##If there's no target
 		#if !target:

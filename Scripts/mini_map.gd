@@ -24,6 +24,8 @@ func _ready():
 
 
 func add_minimap_marker(item):
+	print_debug(item.side, "!!!")
+	print_debug(item)
 	var new_marker = icons[item.side].duplicate()
 	grid.add_child(new_marker)
 	new_marker.show()
@@ -32,7 +34,7 @@ func add_minimap_marker(item):
 
 
 func _process(delta):
-	game_started = true
+	game_started = true 
 	if !player:
 		return
 	for item in markers:
@@ -53,7 +55,6 @@ func _process(delta):
 				
 			else:
 				# Move all other icons
-				#var speed = (15.25/15) * item.speed 
 				var speed = (float(15.6)/float(item.speed)) * float(item.speed) 
 				obj_pos = Vector2(0, 0)
 				obj_pos.x = speed*(item.position.x) * grid_scale.x + grid.size.x / 2
@@ -62,7 +63,12 @@ func _process(delta):
 
 
 func _on_node_3d_child_entered_tree(node):
+	print_debug(1)
 	if game_started:
-		if(node.is_in_group(minimap_objects_group)):
+		print_debug(2)
+		if(node.is_in_group(minimap_objects_group) and node.side == "side_bird"):
+			print_debug(3)
+			print_debug(node.enemy)
+			print_debug(node)
 			add_minimap_marker(node)
 	

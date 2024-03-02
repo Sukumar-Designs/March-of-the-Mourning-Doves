@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5snj02lfcnc4"]
+[gd_scene load_steps=9 format=3 uid="uid://c5snj02lfcnc4"]
 
 [ext_resource type="Script" path="res://Scripts/Sidebar_Controller.gd" id="1_rcogs"]
 [ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="2_vaakh"]
+[ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="3_2hn0t"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="3_yrpd2"]
 [ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="4_d40sd"]
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="5_dixbb"]
@@ -79,7 +80,7 @@ offset_top = 21.1375
 offset_right = 59.2215
 offset_bottom = 61.1376
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("6_265w2")
+texture = ExtResource("3_2hn0t")
 expand_mode = 1
 
 [node name="Acorns_Amount" type="Label" parent="Base_Resources/Acorns"]
@@ -114,8 +115,7 @@ layout_mode = 2
 [node name="Pebble_Image" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Pebble Image
-"
+text = "Pebble Image"
 
 [node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
@@ -153,11 +153,11 @@ text = "
 [node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Acorn Image
-"
+texture = ExtResource("3_2hn0t")
+expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
 layout_mode = 2
@@ -228,11 +228,11 @@ text = "
 [node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Acorn Image
-"
+texture = ExtResource("3_2hn0t")
+expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
 layout_mode = 2
@@ -303,11 +303,11 @@ text = "
 [node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Acorn Image
-"
+texture = ExtResource("3_2hn0t")
+expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
 layout_mode = 2
@@ -378,11 +378,11 @@ text = "
 [node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Acorn Image
-"
+texture = ExtResource("3_2hn0t")
+expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
 layout_mode = 2
