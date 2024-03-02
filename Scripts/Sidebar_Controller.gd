@@ -11,7 +11,7 @@ extends Node3D
 @onready var base_preview = load("res://Assets/Mushroom.glb") 
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
 @onready var range_tower_1_preview = load("res://Assets/Pine_Tree.glb") 
-@onready var range_tower_1 = load("res://Full_Assets/pine_tree_full.tscn")
+@onready var range_tower_1 = load("res://Full_Assets/tree_full.tscn")
 
 var preview_building
 var building 
@@ -22,10 +22,10 @@ var base_type_selected
 var terrian_name = "Terrian_Area3D"
 var ray
 # Resource Type
-var pebble = "Pebble"
-var twig = "Twig"
-var seed = "Seed"
-var acorn = "Acorn"
+var pebble = "sub_type_pebble"
+var twig = "sub_type_twig"
+var seed = "sub_type_seed"
+var acorn = "sub_type_acorn"
 var resource_types = [pebble, twig, seed, acorn]
 var ui_paths = "Resource_Container/VBoxContainer/"
 var ui_base_path = ui_paths + "Base/Resource_Images/"

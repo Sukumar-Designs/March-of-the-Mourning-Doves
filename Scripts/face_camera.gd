@@ -76,7 +76,6 @@ func _process(delta):
 			attack_cooldown_counter -= attack_speed
 		
 func assign_target(object_selected):
-	print_debug(object_selected, "ENEMY 4")
 	# If the target is an enemy, then send soldier to attack
 	if object_selected.is_in_group(enemy_type):
 		current_target = object_selected

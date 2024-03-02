@@ -73,16 +73,13 @@ func cast_ray_to_select():
 		
 func try_to_select(result):
 	var object = result["collider"].get_parent()
-	print_debug(object.get_groups(), "OBJECT")
 	# If choosing a soldier on your side, select them
 	if object.is_in_group(side) and object.is_in_group(creature_main_type):
 		multiple_select(object)
 	# Else, if you're selecting an enemy
 	elif object.is_in_group(enemy_type):
-		print_debug(enemy, "ENEMY 1")
 		# if you have you're type=soldier or building selected, attack enemy soldier
 		if object.is_in_group(creature_main_type) or object.is_in_group(building_type):
-			print_debug(enemy, "ENEMY 2")
 			attack_enemy_object(object)
 	# Collecting resources
 	elif object.is_in_group(other_structures_type) or object.is_in_group(resource_main_type):
@@ -132,7 +129,6 @@ func attack_enemy_object(enemy_object):
 	for select_box_parent in select_box_parents:
 		# If the soldier and enemy_soldier still exist
 		if select_box_parent[0] and enemy_object: 
-			print_debug(enemy, "ENEMY 3")
 			select_box_parent[0].assign_target(enemy_object)
 
 func _process(delta):
