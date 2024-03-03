@@ -24,8 +24,6 @@ func _ready():
 
 
 func add_minimap_marker(item):
-	print_debug(item.side, "!!!")
-	print_debug(item)
 	var new_marker = icons[item.side].duplicate()
 	grid.add_child(new_marker)
 	new_marker.show()

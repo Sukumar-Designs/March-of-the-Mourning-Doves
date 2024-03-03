@@ -89,6 +89,8 @@ func try_to_select(result):
 		attack_enemy_object(object)
 		if object.is_in_group("has_inventory_true"):
 			object.open_inventory()
+	elif object.is_in_group("side_spider"):
+		attack_enemy_object(object)
 		
 func clear_selection():
 	""" This function clears all selected soldiers """

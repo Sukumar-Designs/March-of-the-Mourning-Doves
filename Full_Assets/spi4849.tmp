@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dytei0vu4y524"]
+
+[ext_resource type="Script" path="res://Scripts/spider.gd" id="1_5jjui"]
+
+[node name="CharacterBody3D" type="Node3D"]
+script = ExtResource("1_5jjui")
+
+[node name="Leg1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.339247, 0, 0, 0, 1, 0, 0, 0, 0.176416, 0.0437196, -0.0232444, -0.243499)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 1, 1)

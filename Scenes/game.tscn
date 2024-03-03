@@ -1,15 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=14 format=3 uid="uid://dnepl2iikj3k5"]
 
-[ext_resource type="Texture2D" uid="uid://cjg1s23f347pj" path="res://Assets/Background.jpg" id="1_0q8t2"]
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
+[ext_resource type="PackedScene" uid="uid://8ogvg73x20dk" path="res://Full_Assets/spider_full.tscn" id="11_nsct0"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://c5snj02lfcnc4" path="res://Full_Assets/sidebar.tscn" id="13_53qpc"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
-[ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/creature_full.tscn" id="14_adg51"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
 
@@ -115,11 +114,6 @@ metadata/_edit_lock_ = true
 transform = Transform3D(102.159, 0, 0, 0, 1.01329, 0, 0, 0, 55.6988, 0, -0.51141, -27.839)
 operation = 2
 
-[node name="Terrain" type="Sprite3D" parent="NavigationRegion3D/Terrain"]
-transform = Transform3D(0.0097887, 0, 0, 0, -1.34592e-07, 0.986887, 0, -0.0560156, -7.84782e-10, 0, 0.65563, 0.00919554)
-visible = false
-texture = ExtResource("1_0q8t2")
-
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="NavigationRegion3D/Terrain"]
 transform = Transform3D(-0.955188, 0.235844, -7.09595e-10, 2.64869e-13, -1.78575e-06, -2.81201, -1.25394, -0.604359, 1.81837e-09, 0.0112154, -1.41649, 1.15305)
 operation = 2
@@ -143,9 +137,6 @@ shadow_reverse_cull_face = true
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.780856, -5.3524e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, 212.217, 19.6152, -858.337)
 
-[node name="squirrel" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 13.9698, 0.86278, -40.7772)
-
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(-0.0789771, 0, -0.66124, 0, 0.66594, 0, 0.66124, 0, -0.0789771, 49.762, 2.11623, -51.0447)
 side = "side_squirrel"
@@ -153,17 +144,13 @@ side = "side_squirrel"
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
 
-[node name="bird" parent="." instance=ExtResource("14_adg51")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 24.1342, 1.0944, -12.2748)
-sub_type = "sub_type_bird"
-side = "side_bird"
-enemy = "enemy_squirrel"
-enemy_type = "side_squirrel"
-
 [node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
 
 [node name="Sidebar" parent="." instance=ExtResource("13_53qpc")]
+
+[node name="Spider" parent="." groups=["test"] instance=ExtResource("11_nsct0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5626, 0.928609, -24.2062)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
