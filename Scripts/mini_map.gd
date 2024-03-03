@@ -63,12 +63,7 @@ func _process(delta):
 
 
 func _on_node_3d_child_entered_tree(node):
-	print_debug(1)
 	if game_started:
-		print_debug(2)
 		if(node.is_in_group(minimap_objects_group) and node.side == "side_bird"):
-			print_debug(3)
-			print_debug(node.enemy)
-			print_debug(node)
 			add_minimap_marker(node)
 	

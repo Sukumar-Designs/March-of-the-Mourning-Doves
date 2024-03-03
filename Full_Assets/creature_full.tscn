@@ -19,6 +19,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 4.23516e-22, 0, 2.71051e-20, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_dew5v")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="Squirrel" type="Sprite3D" parent="."]
 transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-21, 0.129141, -0.182833, 0.285359, 0)

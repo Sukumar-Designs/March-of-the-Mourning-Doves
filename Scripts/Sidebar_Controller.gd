@@ -93,6 +93,7 @@ func show_sidebar_tab(to_show, base_selected_inv):
 			fill_inventory_ui()
 		else:
 			base_selected = null
+			clear_preview()
 		
 func fill_inventory_ui():
 	if base_selected:
@@ -143,6 +144,7 @@ func purchase_and_place():
 			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
 		var instance = building.instantiate()
 		instance.position = ray.position + Vector3(1.55, 0, 1.55)
+		instance.sub_type = "sub_type_" + base_type_selected
 		instance.side = side
 		instance.enemy = enemy
 		get_tree().current_scene.add_child(instance) 

@@ -48,12 +48,14 @@ func _ready():
 	update_health_bar()
 
 func _physics_process(delta):
-	var current_location = global_transform.origin
-	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized() * speed
-	
-	velocity = velocity.move_toward(new_velocity, .25)
-	move_and_slide()
+	if current_target:
+		print("!")
+		var current_location = global_transform.origin
+		var next_location = nav_agent.get_next_path_position()
+		var new_velocity = (next_location - current_location).normalized() * speed
+		
+		velocity = velocity.move_toward(new_velocity, .25)
+		move_and_slide()
 
 
 func update_target_location(target_location):
@@ -140,6 +142,7 @@ func _on_area_3d_body_entered(body):
 		# Try to pick up the item
 		if inventory.try_pick_up_item(body):
 			body.queue_free()
+			current_target = null
 	elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
 		inventory.try_deposite_item(body)
 
