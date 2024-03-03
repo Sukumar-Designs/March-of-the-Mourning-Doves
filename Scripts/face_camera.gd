@@ -49,7 +49,6 @@ func _ready():
 
 func _physics_process(delta):
 	if current_target:
-		print("!")
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * speed
@@ -68,8 +67,8 @@ func _process(delta):
 	if current_target and is_instance_valid(current_target):
 		update_target_location(current_target.position)
 		
-	# If there's a current target AND current target is within range
-	if current_target:
+	# If there's a current target AND current target is within range and current target is enemy
+	if current_target and current_target in targets_in_range and current_target.is_in_group(enemy_type):
 		if attack_cooldown_counter <= 0:
 			# Reset attack cooldown
 			attack_cooldown_counter = attack_cooldown
@@ -144,8 +143,9 @@ func _on_area_3d_body_entered(body):
 			body.queue_free()
 			current_target = null
 	elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
+		# Creature has arrived at the building
 		inventory.try_deposite_item(body)
-
+		current_target = null
 
 func _on_area_3d_body_exited(body):
 	if body in targets_in_range:

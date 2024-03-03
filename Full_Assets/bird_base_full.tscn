@@ -9,6 +9,7 @@
 size = Vector3(1, 1.42194, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7sp5"]
+size = Vector3(1, 1, 1.1532)
 
 [node name="bird_base" type="CharacterBody3D" groups=["main_base"]]
 transform = Transform3D(0.250129, 0, 0, 0, 0.250129, 0, 0, 0, 0.250129, 1.58195, 0, 0)
@@ -17,7 +18,7 @@ side = "bird"
 main_base = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(16.2487, 0, 0, 0, 22.8515, 2.59521e-20, 0, 0, 16.2487, -3.41186, 14.2183, 2.74825)
+transform = Transform3D(16.2487, 0, 0, 0, 22.8515, 2.59521e-20, 0, 0, 16.2487, -3.41186, 14.2183, 1.39088)
 shape = SubResource("BoxShape3D_3aeda")
 
 [node name="bird_base" parent="." instance=ExtResource("2_d73xk")]
@@ -33,7 +34,7 @@ transform = Transform3D(0.357936, 0.151012, 0.255649, -0.268592, 0.296643, 0.059
 transform = Transform3D(3.9415, 0, 0, 0, 7.01425, 0, 0, 0, 2.94245, 1.98326, 0, 7.50894)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(4.56337, 0, 0, 0, 4.56337, 0, 0, 0, 4.56337, -1.35845, 2.06566, -1.81055)
+transform = Transform3D(5.75263, 0, 0, 0, 4.56337, 0, 0, 0, 5.14172, -1.35845, 2.06566, -2.27342)
 shape = SubResource("BoxShape3D_k7sp5")
 
 [node name="Inventory" type="Node3D" parent="."]
