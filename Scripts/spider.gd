@@ -21,7 +21,9 @@ var heal_amount = 5
 @onready var health_bar = $HealthBar
 
 # Attack Variables
-var current_target
+var main_target
+var other_x_targets = []
+var max_number_of_targets = 3
 var targets_in_range = []
 var attack_speed = 1 
 var attack_cooldown = 300
@@ -40,7 +42,7 @@ func _ready():
 	update_health_bar()
 
 func _physics_process(delta):
-	if current_target:
+	if main_target:
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * speed
@@ -58,11 +60,11 @@ func update_target_location(target_location):
 
 
 func _process(delta):
-	if current_target and is_instance_valid(current_target):
-		update_target_location(current_target.position)
+	if main_target and is_instance_valid(main_target):
+		update_target_location(main_target.position)
 		
 	# If there's a current target AND current target is within range and current target is enemy
-	if current_target and current_target in targets_in_range:
+	if main_target and main_target in targets_in_range:
 		if attack_cooldown_counter <= 0:
 			# Reset attack cooldown
 			attack_cooldown_counter = attack_cooldown
@@ -73,7 +75,7 @@ func _process(delta):
 func assign_target(object_selected):
 	# If the target is an enemy, then send soldier to attack
 	if object_selected.is_in_group("main_type_creatures") and !object_selected.is_in_group(side):
-		current_target = object_selected
+		main_target = object_selected
 
 # Health Based Function
 func set_health(amount):
@@ -96,24 +98,30 @@ func update_health_bar():
 func on_hit(damage, attacker):
 	set_health(-damage)
 	# If no target, create new target
-	if current_target == null:
+	if main_target == null:
 		assign_target(attacker)
+	# Spider can attack multiple targets, don't readd a target
+	elif len(other_x_targets) < max_number_of_targets and !(attacker in other_x_targets):
+		other_x_targets.append(attacker)
 
 func kill():
 	queue_free()
 
 func attack():
 	# If the current target still exists
-	if current_target:
+	if main_target:
 		# if the current target is in range
-		if current_target in targets_in_range:
-			current_target.on_hit(attack_damage, self)
+		if main_target in targets_in_range:
+			main_target.on_hit(attack_damage, self)
+		for target in other_x_targets:
+			if target != null and target in targets_in_range:
+				target.on_hit(attack_damage, self)
 
 func _on_area_3d_body_entered(body):
 	## If the object is an enemy
 	if body.is_in_group("main_type_creatures") and !body.is_in_group(side):
 		targets_in_range.append(body)
-		if current_target == null:
+		if main_target == null:
 			assign_target(body)
 			
 
