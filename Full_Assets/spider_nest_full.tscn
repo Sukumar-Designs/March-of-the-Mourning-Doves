@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b87ljctwoj854"]
+
+[ext_resource type="Script" path="res://Full_Assets/spider_nest.gd" id="1_a268u"]
+[ext_resource type="Material" path="res://resources/red.tres" id="1_wq4qg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ukj84"]
+
+[node name="SpiderNestFull" type="Node3D" groups=["sub_type_spider_nest"]]
+script = ExtResource("1_a268u")
+
+[node name="NestLayer" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.01459, 0, 0, -1.17264e-09, 0.416126, 0, -4.69059e-09, 0, 2.5899, 0, 0.872493, 0.767876)
+material_override = ExtResource("1_wq4qg")
+mesh = SubResource("CapsuleMesh_ukj84")
+
+[node name="NestLayer2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.61268, 0, 0, -9.38703e-10, 0.333109, 0, -3.75482e-09, 0, 2.07321, 0, 1.44818, 0.767876)
+material_override = ExtResource("1_wq4qg")
+mesh = SubResource("CapsuleMesh_ukj84")
+
+[node name="NestLayer3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.36678, 0, 0, -7.95568e-10, 0.282316, 0, -3.18228e-09, 0, 1.75709, 0, 1.88372, 0.767876)
+material_override = ExtResource("1_wq4qg")
+mesh = SubResource("CapsuleMesh_ukj84")

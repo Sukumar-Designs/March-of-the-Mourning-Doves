@@ -30,6 +30,8 @@ var attack_cooldown = 300
 var attack_cooldown_counter = attack_cooldown
 var attack_damage = 1
 
+var spider_nest
+
 func _ready():
 	# Add to 5 basic groups
 	add_to_group(main_type)
@@ -40,6 +42,9 @@ func _ready():
 
 	current_health = max_health
 	update_health_bar()
+
+	spider_nest = get_tree().scene_tree.get_node_in_group("sub_type_spider_nest")
+
 
 func _physics_process(delta):
 	if main_target:
