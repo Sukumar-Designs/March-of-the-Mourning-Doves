@@ -43,7 +43,7 @@ func _ready():
 	current_health = max_health
 	update_health_bar()
 
-	spider_nest = get_tree().scene_tree.get_node_in_group("sub_type_spider_nest")
+	#spider_nest = get_tree().scene_tree.get_node_in_group("sub_type_spider_nest")
 
 
 func _physics_process(delta):
