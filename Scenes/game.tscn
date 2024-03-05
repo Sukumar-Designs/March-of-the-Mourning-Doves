@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
-[ext_resource type="Texture2D" uid="uid://lpy2udj2aime" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
+[ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
 [ext_resource type="PackedScene" uid="uid://8ogvg73x20dk" path="res://Full_Assets/spider_full.tscn" id="11_nsct0"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
