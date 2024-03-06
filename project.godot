@@ -19,6 +19,10 @@ config/icon="res://Assets/squirrel soldier.png"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false
