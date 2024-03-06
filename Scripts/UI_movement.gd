@@ -11,17 +11,17 @@ var resource_main_type = "main_type_resources"
 
 # Camera Movement
 var left_limit = -50
-var right_limit = 50
-var upper_limit = -55
+var right_limit = 150
+var upper_limit = -135
 var lower_limit = 0
 var scroll_upper_limit = 45
 var scroll_lower_limit = 15
 var left_turn_limit = 1
 var right_turn_limit = -1
 
-var speed = 5.0
-var speed_normal = 5.0
-var sprint = 15
+var speed = 9.0
+var speed_normal = 9.0
+var sprint = 19
 var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
