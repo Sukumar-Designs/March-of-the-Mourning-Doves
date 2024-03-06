@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://c5snj02lfcnc4"]
 
 [ext_resource type="Script" path="res://Scripts/Sidebar_Controller.gd" id="1_rcogs"]
-[ext_resource type="Theme" path="res://Themes/label_theme.tres" id="2_vaakh"]
+[ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="2_vaakh"]
 [ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="3_2hn0t"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="3_yrpd2"]
-[ext_resource type="Texture2D" uid="uid://cc1tlq32twb0i" path="res://Assets/resources_2d/Twig 2D.png" id="4_6ve03"]
+[ext_resource type="Texture2D" uid="uid://b14avqyfhnwqw" path="res://Assets/resources_2d/Twig 2D.png" id="4_6ve03"]
 [ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="4_d40sd"]
 [ext_resource type="Texture2D" uid="uid://djgflkbkxbd38" path="res://Assets/resources_2d/Pebble 2D.png" id="5_cxnug"]
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="5_dixbb"]
-[ext_resource type="Texture2D" uid="uid://cy0jqk0h1jkma" path="res://Assets/Pine Tree_Pine Trunk.jpg" id="6_265w2"]
+[ext_resource type="Texture2D" uid="uid://ch1lptegeru2w" path="res://Assets/resources_2d/Seeds 2D.png" id="7_gud8i"]
 
 [sub_resource type="Theme" id="Theme_7vot1"]
 Label/font_sizes/font_size = 8
@@ -48,7 +48,7 @@ offset_left = 19.0586
 offset_right = 59.0586
 offset_bottom = 40.0
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("6_265w2")
+texture = ExtResource("7_gud8i")
 expand_mode = 1
 
 [node name="Seeds_Amount" type="Label" parent="Base_Resources/Seeds"]
@@ -142,10 +142,11 @@ text = "
 [node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
 layout_mode = 2
 
-[node name="Seed_Image" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Seed Image"
+texture = ExtResource("7_gud8i")
+expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
 layout_mode = 2
@@ -217,10 +218,11 @@ text = "
 [node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
 layout_mode = 2
 
-[node name="Seed_Image" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Seed Image"
+texture = ExtResource("7_gud8i")
+expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
 layout_mode = 2
@@ -292,10 +294,11 @@ text = "
 [node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
 layout_mode = 2
 
-[node name="Seed_Image" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Seed Image"
+texture = ExtResource("7_gud8i")
+expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
 layout_mode = 2
@@ -367,10 +370,11 @@ text = "
 [node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
 layout_mode = 2
 
-[node name="Seed_Image" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-text = "Seed Image"
+texture = ExtResource("7_gud8i")
+expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
 layout_mode = 2
