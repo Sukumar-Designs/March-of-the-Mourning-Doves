@@ -392,6 +392,13 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = true
 shader_params/u_tile_reduction = null
 
+[node name="Terrian_Area3D" type="Area3D" parent="NavigationRegion3D2"]
+transform = Transform3D(2.01398, 0, 0, 0, 1, 0, 0, 0, 2.21068, 274.825, -5.71167, -3.64553)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/Terrian_Area3D"]
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -112.704, -1.89349, -27.3287)
+shape = SubResource("BoxShape3D_jfr3u")
+
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
 [connection signal="healthChanged" from="squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]

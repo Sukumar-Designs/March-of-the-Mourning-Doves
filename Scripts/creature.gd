@@ -68,7 +68,7 @@ func _process(delta):
 		update_target_location(current_target.position)
 		
 	# If there's a current target AND current target is within range and current target is enemy
-	if current_target and current_target in targets_in_range and (current_target.is_in_group(enemy_type) or current_target.is_in_group("side_spider")):
+	if current_target and current_target in targets_in_range and (current_target.is_in_group(enemy_type) or current_target.is_in_group("side_spider") or current_target.is_in_group("sub_type_construction")):
 		if attack_cooldown_counter <= 0:
 			# Reset attack cooldown
 			attack_cooldown_counter = attack_cooldown
@@ -131,7 +131,7 @@ func attack():
 
 func _on_area_3d_body_entered(body):
 	# If the object is an enemy
-	if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("side_spider"):
+	if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("sub_type_construction") or body.is_in_group("side_spider"):
 		targets_in_range.append(body)
 		 ##If there's no target
 		#if !target:

@@ -15,6 +15,8 @@ extends Node3D
 @onready var range_tower_1_preview = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_1 = load("res://Full_Assets/tree_full.tscn")
 
+@onready var construction = load("res://Full_Assets/Construction_Site_Full.tscn")
+
 var preview_building
 var building 
 var base_selected # The base the player clicked on to open sidebar
@@ -142,9 +144,11 @@ func purchase_and_place():
 	if player_can_affort(base_type_selected):
 		for item in buildings[base_type_selected]: 
 			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
-		var instance = building.instantiate()
+		# Place construction ready to be worked on:
+		var instance = construction.instantiate()
+		instance.final_construction_type = building 
 		instance.position = ray.position + Vector3(1.55, 0, 1.55)
-		instance.sub_type = "sub_type_" + base_type_selected
+		instance.final_construction_sub_type = "sub_type_" + base_type_selected
 		instance.side = side
 		instance.enemy = enemy
 		get_tree().current_scene.add_child(instance) 
