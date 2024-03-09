@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d13fh8524i4bx"]
+
+[ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_6xbxl"]
+[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_i2x28"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="UI_Controller" type="CharacterBody3D" groups=["minimap_objects", "player"]]
+transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, -6.56252, 56.9334, 40.1121)
+script = ExtResource("1_6xbxl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 0.178162, 4.66382, 0.917648)
+current = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_pcxnv")
+
+[node name="Mushroom2" parent="." instance=ExtResource("2_i2x28")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 5.58301, 18.1601, -56.5393)

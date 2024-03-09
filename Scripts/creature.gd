@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@onready var camera_location = $"../UI_Controller"
-
+@onready var cameras_list #= $"../UI_Controller"
+var camera_location
 # General Stats
 @export var main_type = "main_type_creatures"
 @export var sub_type = "sub_type_squirrel"
@@ -46,6 +46,9 @@ func _ready():
 
 	current_health = max_health
 	update_health_bar()
+	
+	cameras_list = get_tree().get_nodes_in_group(side + "camera")
+	
 
 func _physics_process(delta):
 	if current_target:
@@ -62,6 +65,12 @@ func update_target_location(target_location):
 
 
 func _process(delta):
+	if len(cameras_list) > 0:
+		camera_location = cameras_list[0]
+	else:
+		cameras_list = get_tree().get_nodes_in_group(side + "camera")
+		
+	
 	if camera_location:
 		look_at(camera_location.position)
 	if current_target and is_instance_valid(current_target):

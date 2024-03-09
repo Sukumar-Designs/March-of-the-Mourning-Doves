@@ -1,6 +1,5 @@
 [gd_scene load_steps=19 format=3 uid="uid://dnepl2iikj3k5"]
 
-[ext_resource type="Script" path="res://Scripts/UI_movement.gd" id="1_2ihiu"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bjy4jdblb2l2m" path="res://Scenes/game_slot0_albedo_bump.png" id="14_hpfbq"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
+[ext_resource type="PackedScene" uid="uid://cqisifpg2d8ny" path="res://Scenes/lobby.tscn" id="15_lagt7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bx183"]
 vertices = PackedVector3Array(37.6705, 0.481945, -11.9384, 37.6705, 0.481945, -11.4384, 50.6705, 0.481945, -11.4384, 36.1705, 0.481945, -13.1884, 37.6705, 0.481945, -11.9384, 50.6705, 0.481945, -11.4384, 16.6705, 0.481945, -27.1884, 36.1705, 0.481945, -13.1884, 50.6705, 0.481945, -11.4384, 50.6705, 0.481945, -55.1884, -38.0795, 0.481945, -55.1884, 16.6705, 0.481945, -27.1884, 50.6705, 0.481945, -11.4384, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -51.4384, -50.5795, 0.481945, -0.4384, 33.6705, 0.481945, -0.4384, 33.6705, 0.481945, -6.6884, -38.3295, 0.481945, -42.6884, -50.5795, 0.481945, -0.4384, 37.6705, 0.481945, -10.6884, 36.4205, 0.481945, -9.6884, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 35.4205, 0.481945, -7.9384, 33.6705, 0.481945, -6.6884, 33.6705, 0.481945, -0.4384, 50.6705, 0.481945, -11.4384, 37.6705, 0.481945, -11.4384, 37.6705, 0.481945, -10.6884)
@@ -243,14 +243,6 @@ textures = [[ExtResource("14_hpfbq")], [null]]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="UI_Controller" type="CharacterBody3D" parent="." groups=["minimap_objects", "player"]]
-transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, -6.56252, 87.8457, 127.783)
-script = ExtResource("1_2ihiu")
-
-[node name="Camera3D" type="Camera3D" parent="UI_Controller"]
-transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 0.178162, -94.7887, 40.6169)
-current = true
-
 [node name="MiniMap" type="MarginContainer" parent="."]
 offset_left = 8.0
 offset_top = 16.0
@@ -372,7 +364,16 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 
 [node name="Sidebar" parent="." instance=ExtResource("13_53qpc")]
 
-[node name="HTerrain" type="Node3D" parent="."]
+[node name="NavigationRegion3D2#Terrian_Area3D" type="Area3D" parent="."]
+transform = Transform3D(2.01398, 0, 0, 0, 1, 0, 0, 0, 2.21068, 274.825, -5.71167, -3.64553)
+
+[node name="NavigationRegion3D2_Terrian_Area3D#CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -112.704, -1.89349, -27.3287)
+shape = SubResource("BoxShape3D_jfr3u")
+
+[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="."]
+
+[node name="HTerrain" type="Node3D" parent="NavigationRegion3D2"]
 script = ExtResource("11_i0r1d")
 map_scale = Vector3(0.4, 0.5, 0.301)
 centered = true
@@ -392,12 +393,7 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = true
 shader_params/u_tile_reduction = null
 
-[node name="Terrian_Area3D" type="Area3D" parent="NavigationRegion3D2"]
-transform = Transform3D(2.01398, 0, 0, 0, 1, 0, 0, 0, 2.21068, 274.825, -5.71167, -3.64553)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, -112.704, -1.89349, -27.3287)
-shape = SubResource("BoxShape3D_jfr3u")
+[node name="Lobby" parent="." instance=ExtResource("15_lagt7")]
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
