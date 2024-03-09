@@ -22,7 +22,9 @@ var building
 var base_selected # The base the player clicked on to open sidebar
 var base_type_selected
 
-@onready var ray_caster = $"../UI_Controller"
+#@onready var ray_caster = $"../UI_Controller"
+var ray_caster_list 
+var ray_caster 
 var terrian_name = "Terrian_Area3D"
 var ray
 # Resource Type
@@ -84,6 +86,8 @@ func _ready():
 
 func _process(delta):
 	fill_inventory_ui()
+	ray_caster = get_tree().get_nodes_in_group("player")
+	
 
 func show_sidebar_tab(to_show, base_selected_inv):
 	if to_show == "resources":

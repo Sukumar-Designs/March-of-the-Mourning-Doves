@@ -56,10 +56,10 @@ func _input(event):
 	if is_multiplayer_authority():
 		if event is InputEventMouseMotion:
 			if event.button_mask == 1:
-				if self.rotation.y <= left_turn_limit and event.relative.x > 0:
-					rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
-				elif self.rotation.y >= right_turn_limit and event.relative.x < 0:
-					rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+				#if self.rotation.y <= left_turn_limit and event.relative.x > 0:
+				rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
+				#elif self.rotation.y >= right_turn_limit and event.relative.x < 0:
+					#rotate_y(deg_to_rad(event.relative.x * mouse_sensativity))
 		# Click on Objects in Scene
 		if Input.is_action_just_pressed("left_mouse"):
 			var result = cast_ray_to_select()
