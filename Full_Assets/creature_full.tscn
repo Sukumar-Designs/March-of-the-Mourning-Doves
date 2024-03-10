@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct5n8h6i1yp26"]
+[gd_scene load_steps=9 format=3 uid="uid://ct5n8h6i1yp26"]
 
 [ext_resource type="Script" path="res://Scripts/creature.gd" id="1_8jwgh"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
@@ -9,6 +9,11 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_80mq0"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cafgl"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="creature" type="CharacterBody3D" groups=["minimap_objects"]]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 0.884871, 1.57482, 0.724487)
@@ -26,6 +31,7 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="CreatureImage" type="Sprite3D" parent="."]
 transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-21, 0.129141, -0.182833, 0.285359, 0)
+billboard = 1
 texture = ExtResource("2_kckwu")
 script = ExtResource("3_yyhn8")
 
@@ -37,9 +43,13 @@ shape = SubResource("SphereShape3D_80mq0")
 
 [node name="HealthBar" parent="." instance=ExtResource("4_harxs")]
 transform = Transform3D(0.022, 0, 0, 0, 0.013, -9.34994e-21, 0, 2.96462e-21, 0.041, 0, 1.96033, 0)
+billboard = 1
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("5_xru1b")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cafgl")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

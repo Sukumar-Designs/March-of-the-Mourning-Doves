@@ -94,7 +94,6 @@ func cast_ray_to_select():
 		ray_query.to = to
 		ray_query.collide_with_areas = true
 		var result = space.intersect_ray(ray_query)
-		print_debug("RESULT ", result)
 		return result
 		
 func try_to_select(result):

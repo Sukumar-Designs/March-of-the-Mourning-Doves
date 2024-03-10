@@ -80,8 +80,6 @@ func _ready():
 	resources_ui.visible = false
 	buildings_ui.visible = false
 	base_inventory.visible = false
-	print_debug("BIRDY!!!!!! ", side)
-	print_debug("BIRDY??????? ", ray_caster.side)
 
 func _process(delta):
 	fill_inventory_ui()
@@ -108,11 +106,8 @@ func fill_inventory_ui():
 		
 func try_to_build(building_type_preview, building_actual, to_build_type):
 	if player_can_affort(to_build_type):
-		print("PLAYER CAN AFFORD")
 		base_type_selected = to_build_type
-		print("BASE TYPE ", base_type_selected)
 		preview_building = building_type_preview.instantiate()
-		print("PREVIEW::: ", preview_building)
 		get_tree().current_scene.add_child(preview_building) 
 		building = building_actual
 	
@@ -131,11 +126,9 @@ func _input(event):
 		if preview_building != null:
 			# If moving mouse, move the preview building
 			if event is InputEventMouseMotion:
-				print_debug("1 ", ray_caster)
 				ray = ray_caster.cast_ray_to_select()
 				# If looking at the ground (as oppose to off to infinity)
 				if ray != { }:
-					print_debug(ray)
 					preview_building.position = ray.position 
 					
 			elif Input.is_action_just_pressed("place") and ray:
@@ -165,7 +158,6 @@ func purchase_and_place():
 func clear_preview():
 	""" This function controls removing preview of building after selecting building """
 	if is_multiplayer_authority():
-		print("!!!!!!! CLEARING PREVIEW")
 		if preview_building != null and building != null:
 			preview_building.queue_free()
 			preview_building = null
@@ -173,9 +165,7 @@ func clear_preview():
 			base_type_selected = null
 		
 func _on_base_pressed():
-	print("BUTTON CLIECK FOR 1 ", side)
 	if is_multiplayer_authority():
-		print("BUTTON CLIECK FOR 2 ", side)
 		clear_preview()
 		try_to_build(base_preview, base, "base")
 
