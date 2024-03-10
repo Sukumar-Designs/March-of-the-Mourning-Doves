@@ -2,7 +2,9 @@ extends Node
 
 
 var peer = ENetMultiplayerPeer.new()
-@export var player_scene: PackedScene
+@export var player_scene_bird: PackedScene
+@export var player_scene_squirrel: PackedScene
+var spawn_bird = true
 
 func _on_host_pressed():
 	peer.create_server(135)
@@ -11,7 +13,12 @@ func _on_host_pressed():
 	_add_player()
 	
 func _add_player(id=1):
-	var player = player_scene.instantiate()
+	var player
+	if spawn_bird:
+		player = player_scene_bird.instantiate()
+		spawn_bird = false
+	else:
+		player = player_scene_squirrel.instantiate()
 	player.name = str(id)
 	var button1 = $Host
 	var button2 = $Join

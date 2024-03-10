@@ -1,8 +1,8 @@
 extends Node3D
 
-@export var side = "side_bird"
-@export var enemy = "enemy_squirrel"
-@export var enemy_type = "side_squirrel"
+var side = "side_squirrel"
+var enemy = "enemy_bird"
+var enemy_type = "side_bird"
 
 # Tabs
 @onready var resources_ui = $Resource_Container
@@ -22,9 +22,7 @@ var building
 var base_selected # The base the player clicked on to open sidebar
 var base_type_selected
 
-#@onready var ray_caster = $"../UI_Controller"
-var ray_caster_list 
-var ray_caster 
+@onready var ray_caster =  $".."
 var terrian_name = "Terrian_Area3D"
 var ray
 # Resource Type
@@ -77,17 +75,17 @@ func _ready():
 	add_to_group("sidebar")
 	for resource_cost in buildings:
 		for resource in buildings[resource_cost]:
-			print_debug(buildings[resource_cost][resource][0])
 			buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
-	
 	resources_ui.visible = false
 	buildings_ui.visible = false
 	base_inventory.visible = false
+	
+	print_debug("!!!!!!! ", side)
+	print_debug("??????? ", ray_caster.side)
 
 func _process(delta):
 	fill_inventory_ui()
-	ray_caster = get_tree().get_nodes_in_group("player")
-	
+
 
 func show_sidebar_tab(to_show, base_selected_inv):
 	if to_show == "resources":
@@ -110,8 +108,11 @@ func fill_inventory_ui():
 		
 func try_to_build(building_type_preview, building_actual, to_build_type):
 	if player_can_affort(to_build_type):
+		print("PLAYER CAN AFFORD")
 		base_type_selected = to_build_type
+		print("BASE TYPE ", base_type_selected)
 		preview_building = building_type_preview.instantiate()
+		print("PREVIEW::: ", preview_building)
 		get_tree().current_scene.add_child(preview_building) 
 		building = building_actual
 	
@@ -124,24 +125,26 @@ func player_can_affort(to_build_type):
 		if difference < 0:
 			can_affort = false
 	return can_affort
-	
-	
+
 func _input(event):
-	if preview_building != null:
-		# If moving mouse, move the preview building
-		if event is InputEventMouseMotion:
-			ray = ray_caster.cast_ray_to_select()
-			# If looking at the ground (as oppose to off to infinity)
-			if ray != { }:
-				preview_building.position = ray.position 
-				
-		elif Input.is_action_just_pressed("place") and ray:
-			if ray != { } and ray["collider"].name == terrian_name:
-				purchase_and_place()
-		
-		
-		if Input.is_action_just_pressed("clear_selection"):
-			clear_preview()
+	if is_multiplayer_authority():
+		if preview_building != null:
+			# If moving mouse, move the preview building
+			if event is InputEventMouseMotion:
+				print_debug("1 ", ray_caster)
+				ray = ray_caster.cast_ray_to_select()
+				# If looking at the ground (as oppose to off to infinity)
+				if ray != { }:
+					print_debug(ray)
+					preview_building.position = ray.position 
+					
+			elif Input.is_action_just_pressed("place") and ray:
+				if ray != { } and ray["collider"].name == terrian_name:
+					purchase_and_place()
+			
+			
+			if Input.is_action_just_pressed("clear_selection"):
+				clear_preview()
 
 
 func purchase_and_place():
@@ -161,27 +164,35 @@ func purchase_and_place():
 
 func clear_preview():
 	""" This function controls removing preview of building after selecting building """
-	if preview_building != null and building != null:
-		preview_building.queue_free()
-		preview_building = null
-		building = null
-		base_type_selected = null
+	if is_multiplayer_authority():
+		print("!!!!!!! CLEARING PREVIEW")
+		if preview_building != null and building != null:
+			preview_building.queue_free()
+			preview_building = null
+			building = null
+			base_type_selected = null
 		
 func _on_base_pressed():
-	clear_preview()
-	try_to_build(base_preview, base, "base")
+	print("BUTTON CLIECK FOR 1 ", side)
+	if is_multiplayer_authority():
+		print("BUTTON CLIECK FOR 2 ", side)
+		clear_preview()
+		try_to_build(base_preview, base, "base")
 
 
 func _on_range_tower_1_pressed():
-	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
+	if is_multiplayer_authority():
+		clear_preview()
+		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
 
 
 func _on_range_tower_2_pressed():
-	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
+	if is_multiplayer_authority():
+		clear_preview()
+		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
 
 
 func _on_bridge_pressed():
-	clear_preview()
-	try_to_build(range_tower_1_preview, range_tower_1, "bridge")
+	if is_multiplayer_authority():
+		clear_preview()
+		try_to_build(range_tower_1_preview, range_tower_1, "bridge")

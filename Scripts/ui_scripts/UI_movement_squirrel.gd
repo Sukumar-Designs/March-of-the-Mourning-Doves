@@ -1,13 +1,17 @@
 extends CharacterBody3D
 
 # For checking groups 
-@export var side = "side_bird"
-@export var enemy = "enemy_squirrel"
+@export var side = "side_squirrel"
+@export var enemy = "enemy_bird"
 var creature_main_type = "main_type_creatures"
 var building_type = "main_type_buildings"
 var other_structures_type = "main_type_other_structures"
 var resource_main_type = "main_type_resources"
-@export var enemy_type = "side_squirrel"
+@export var enemy_type = "side_bird"
+
+# Sidebar variables
+@onready var sidebar_scene = "res://Full_Assets/sidebar.tscn"
+@onready var sidebar = $Sidebar
 
 # Camera Movement
 #var left_limit = -50
@@ -30,7 +34,7 @@ var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var current_navigation_agent := $"../bird"
+#@onready var current_navigation_agent := $"../bird"
 # For selecting the objects
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
@@ -42,14 +46,8 @@ func _enter_tree():
 func _ready():
 	camera.current = is_multiplayer_authority()
 	# Assign the player to a side depending if a side is already taken
-	var player_in_scene = get_tree().get_nodes_in_group("player")
-	if player_in_scene.size() > 1:
-		side = "side_squirrel"
-		position = Vector3(position.x, position.y+5, position.z-150)
-		rotation.y += 180
-		side = "side_squirrel"
-		enemy = "enemy_bird"
-		enemy_type = "side_bird"
+	position = Vector3(position.x, position.y+5, position.z-150)
+	rotation.y += 180
 	add_to_group(side + "camera")
 	
 func _input(event):
@@ -75,11 +73,11 @@ func _input(event):
 	
 	
 func cast_ray_to_select():
+	"""" 
+	This function casts a ray from the camera that returns the 
+	first thing the ray hits, can be null.
+	"""
 	if is_multiplayer_authority():
-		"""" 
-		This function casts a ray from the camera that returns the 
-		first thing the ray hits, can be null.
-		"""
 		var mouse_pos = get_viewport().get_mouse_position()
 		var ray_length = 100
 		var from = camera.project_ray_origin(mouse_pos)
@@ -90,6 +88,7 @@ func cast_ray_to_select():
 		ray_query.to = to
 		ray_query.collide_with_areas = true
 		var result = space.intersect_ray(ray_query)
+		print_debug("RESULT ", result)
 		return result
 		
 func try_to_select(result):
@@ -183,3 +182,7 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
+
+
+func _on_bridge_pressed():
+	pass # Replace with function body.
