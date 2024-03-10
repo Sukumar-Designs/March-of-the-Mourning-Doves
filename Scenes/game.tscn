@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=13 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
@@ -12,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://c3pd6mdls3kla" path="res://Scenes/lobby.tscn" id="15_lagt7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
-size = Vector3(1.8974, 1, 0.748688)
+size = Vector3(3.86266, 1, 1.97599)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x00et"]
+size = Vector3(3.84933, 0.21582, 5.47998)
 
 [node name="Node3D" type="Node3D"]
 
@@ -121,11 +124,27 @@ shadow_reverse_cull_face = true
 transform = Transform3D(0.780856, -7.67953e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -115.831, 19.6616, -855.75)
 
 [node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -329.353, 12.6494, 2.58728)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 100.833, -1.89349, -27.3287)
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -10.7067, -76.8609)
 shape = SubResource("BoxShape3D_jfr3u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
+transform = Transform3D(12.3315, 1.30196, -7.45058e-09, -1.29615, 12.2764, 1.17017, 0.122865, -1.16371, 12.3447, -52.3889, -7.54545, -33.3455)
+shape = SubResource("BoxShape3D_x00et")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
+transform = Transform3D(0.121978, 1.16055, 12.345, 1.2904, 12.2773, -1.16694, -12.3321, 1.29615, -5.39616e-07, -42.3689, -7.72164, -131.905)
+shape = SubResource("BoxShape3D_x00et")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
+transform = Transform3D(12.3177, -1.42385, 0.0829635, 1.41961, 12.1698, -1.90805, 0.137671, 1.90488, 12.252, 103.769, -7.33358, -119.717)
+shape = SubResource("BoxShape3D_x00et")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
+transform = Transform3D(-0.0814658, -0.408985, -12.393, 0.256277, 12.3905, -0.410589, 12.3971, -0.25883, -0.0729511, 91.7336, -6.06675, -24.0682)
+shape = SubResource("BoxShape3D_x00et")
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
