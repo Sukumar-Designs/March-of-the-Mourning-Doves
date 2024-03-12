@@ -1,38 +1,41 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdlwgi4wvwiv7"]
+[gd_scene load_steps=14 format=3 uid="uid://csqqpoxh63diu"]
 
-[ext_resource type="Script" path="res://Scripts/ui_scripts/UI_movement_squirrel.gd" id="1_jmila"]
-[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_mg1nr"]
-[ext_resource type="Script" path="res://Scripts/ui_scripts/Sidebar_Controller_Squirrel.gd" id="3_6exqh"]
-[ext_resource type="Texture2D" uid="uid://djgflkbkxbd38" path="res://Assets/resources_2d/Pebble 2D.png" id="4_qrd1x"]
-[ext_resource type="Texture2D" uid="uid://ch1lptegeru2w" path="res://Assets/resources_2d/Seeds 2D.png" id="5_3cj7p"]
-[ext_resource type="Texture2D" uid="uid://b14avqyfhnwqw" path="res://Assets/resources_2d/Twig 2D.png" id="6_aaamu"]
-[ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="7_vbati"]
-[ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="8_rrw75"]
-[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="9_662pb"]
-[ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="10_sbua2"]
-[ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="11_y661k"]
-
-[sub_resource type="Theme" id="Theme_3jtmb"]
-Label/font_sizes/font_size = 8
+[ext_resource type="Script" path="res://Scripts/ui_scripts/UI_movement.gd" id="1_b1kq4"]
+[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_i2x28"]
+[ext_resource type="Script" path="res://Scripts/ui_scripts/Sidebar_Controller.gd" id="3_cri8n"]
+[ext_resource type="Texture2D" uid="uid://djgflkbkxbd38" path="res://Assets/resources_2d/Pebble 2D.png" id="3_r7vnl"]
+[ext_resource type="Texture2D" uid="uid://ch1lptegeru2w" path="res://Assets/resources_2d/Seeds 2D.png" id="4_weknd"]
+[ext_resource type="Texture2D" uid="uid://b14avqyfhnwqw" path="res://Assets/resources_2d/Twig 2D.png" id="5_kilji"]
+[ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="6_dtg73"]
+[ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="7_pom6h"]
+[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="8_u5ywj"]
+[ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="9_b24xe"]
+[ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="10_8rn4q"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="UI_Controller" type="CharacterBody3D" groups=["minimap_objects", "player", "side_squirrel"]]
+[sub_resource type="Theme" id="Theme_3jtmb"]
+Label/font_sizes/font_size = 8
+
+[node name="UI_Controller" type="CharacterBody3D" groups=["minimap_objects", "player"]]
 transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, -6.56252, 56.9334, 40.1121)
-script = ExtResource("1_jmila")
+script = ExtResource("1_b1kq4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 0.178162, 4.66382, 0.917648)
 current = true
 
-[node name="Mushroom2" parent="." instance=ExtResource("2_mg1nr")]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_pcxnv")
+
+[node name="Mushroom2" parent="." instance=ExtResource("2_i2x28")]
 transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 5.58301, 18.1601, -56.5393)
 
 [node name="Sidebar" type="Node3D" parent="."]
-script = ExtResource("3_6exqh")
+script = ExtResource("3_cri8n")
 
 [node name="Base_Resources" type="ColorRect" parent="Sidebar"]
 modulate = Color(1, 1, 1, 0.572549)
@@ -49,7 +52,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("4_qrd1x")
+texture = ExtResource("3_r7vnl")
 expand_mode = 1
 
 [node name="Pebbles_Amount" type="Label" parent="Sidebar/Base_Resources/Pebbles"]
@@ -66,7 +69,7 @@ offset_left = 19.0586
 offset_right = 59.0586
 offset_bottom = 40.0
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("5_3cj7p")
+texture = ExtResource("4_weknd")
 expand_mode = 1
 
 [node name="Seeds_Amount" type="Label" parent="Sidebar/Base_Resources/Seeds"]
@@ -82,7 +85,7 @@ offset_top = 21.1375
 offset_right = 40.0
 offset_bottom = 61.1376
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("6_aaamu")
+texture = ExtResource("5_kilji")
 expand_mode = 1
 
 [node name="Twigs_Amount" type="Label" parent="Sidebar/Base_Resources/Twigs"]
@@ -100,7 +103,7 @@ offset_top = 21.1375
 offset_right = 59.2215
 offset_bottom = 61.1376
 scale = Vector2(0.243189, 0.420593)
-texture = ExtResource("7_vbati")
+texture = ExtResource("6_dtg73")
 expand_mode = 1
 
 [node name="Acorns_Amount" type="Label" parent="Sidebar/Base_Resources/Acorns"]
@@ -134,26 +137,26 @@ layout_mode = 2
 
 [node name="Pebble_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("4_qrd1x")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("3_r7vnl")
 expand_mode = 2
 
 [node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images"]
 layout_mode = 2
 
 [node name="Twig_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("6_aaamu")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("5_kilji")
 expand_mode = 2
 
 [node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -162,13 +165,13 @@ layout_mode = 2
 
 [node name="Seed_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("5_3cj7p")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("4_weknd")
 expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -177,13 +180,13 @@ layout_mode = 2
 
 [node name="Acorn_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("7_vbati")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("6_dtg73")
 expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Space" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
 z_index = 5
@@ -210,26 +213,26 @@ layout_mode = 2
 
 [node name="Pebble_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("4_qrd1x")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("3_r7vnl")
 expand_mode = 2
 
 [node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
 layout_mode = 2
 
 [node name="Twig_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("6_aaamu")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("5_kilji")
 expand_mode = 2
 
 [node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -238,13 +241,13 @@ layout_mode = 2
 
 [node name="Seed_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("5_3cj7p")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("4_weknd")
 expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -253,13 +256,13 @@ layout_mode = 2
 
 [node name="Acorn_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("7_vbati")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("6_dtg73")
 expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Space2" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
 z_index = 5
@@ -286,26 +289,26 @@ layout_mode = 2
 
 [node name="Pebble_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("4_qrd1x")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("3_r7vnl")
 expand_mode = 2
 
 [node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
 layout_mode = 2
 
 [node name="Twig_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("6_aaamu")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("5_kilji")
 expand_mode = 2
 
 [node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -314,13 +317,13 @@ layout_mode = 2
 
 [node name="Seed_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("5_3cj7p")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("4_weknd")
 expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -329,13 +332,13 @@ layout_mode = 2
 
 [node name="Acorn_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("7_vbati")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("6_dtg73")
 expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Space3" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
 z_index = 5
@@ -362,26 +365,26 @@ layout_mode = 2
 
 [node name="Pebble_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("4_qrd1x")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("3_r7vnl")
 expand_mode = 2
 
 [node name="Pebble_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Twig_Container" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images"]
 layout_mode = 2
 
 [node name="Twig_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("6_aaamu")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("5_kilji")
 expand_mode = 2
 
 [node name="Twig_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -390,13 +393,13 @@ layout_mode = 2
 
 [node name="Seed_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("5_3cj7p")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("4_weknd")
 expand_mode = 2
 
 [node name="Seed_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 text = "
 "
 
@@ -405,13 +408,13 @@ layout_mode = 2
 
 [node name="Acorn_Image" type="TextureRect" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
-texture = ExtResource("7_vbati")
+theme = ExtResource("7_pom6h")
+texture = ExtResource("6_dtg73")
 expand_mode = 2
 
 [node name="Acorn_Amount" type="Label" parent="Sidebar/Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
 layout_mode = 2
-theme = ExtResource("8_rrw75")
+theme = ExtResource("7_pom6h")
 
 [node name="Space4" type="HBoxContainer" parent="Sidebar/Resource_Container/VBoxContainer"]
 z_index = 5
@@ -445,36 +448,33 @@ layout_mode = 2
 
 [node name="Base" type="TextureButton" parent="Sidebar/Building_Container/Building_Buttons/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("9_662pb")
-texture_pressed = ExtResource("10_sbua2")
-texture_hover = ExtResource("11_y661k")
+texture_normal = ExtResource("8_u5ywj")
+texture_pressed = ExtResource("9_b24xe")
+texture_hover = ExtResource("10_8rn4q")
 stretch_mode = 0
 
 [node name="Range_Tower_1" type="TextureButton" parent="Sidebar/Building_Container/Building_Buttons/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("9_662pb")
-texture_pressed = ExtResource("10_sbua2")
-texture_hover = ExtResource("11_y661k")
+texture_normal = ExtResource("8_u5ywj")
+texture_pressed = ExtResource("9_b24xe")
+texture_hover = ExtResource("10_8rn4q")
 stretch_mode = 0
 
 [node name="Range_Tower_2" type="TextureButton" parent="Sidebar/Building_Container/Building_Buttons/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("9_662pb")
-texture_pressed = ExtResource("10_sbua2")
-texture_hover = ExtResource("11_y661k")
+texture_normal = ExtResource("8_u5ywj")
+texture_pressed = ExtResource("9_b24xe")
+texture_hover = ExtResource("10_8rn4q")
 stretch_mode = 0
 
 [node name="Bridge" type="TextureButton" parent="Sidebar/Building_Container/Building_Buttons/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("9_662pb")
-texture_pressed = ExtResource("10_sbua2")
-texture_hover = ExtResource("11_y661k")
+texture_normal = ExtResource("8_u5ywj")
+texture_pressed = ExtResource("9_b24xe")
+texture_hover = ExtResource("10_8rn4q")
 stretch_mode = 0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_pcxnv")
 
 [connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Base" to="Sidebar" method="_on_base_pressed"]
 [connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Range_Tower_1" to="Sidebar" method="_on_range_tower_1_pressed"]
 [connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Range_Tower_2" to="Sidebar" method="_on_range_tower_2_pressed"]
-[connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Bridge" to="." method="_on_bridge_pressed"]
+[connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Bridge" to="Sidebar" method="_on_bridge_pressed"]

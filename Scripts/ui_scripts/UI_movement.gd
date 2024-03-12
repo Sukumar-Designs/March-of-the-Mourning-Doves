@@ -41,20 +41,14 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var select_box_parents = []
 
 func _enter_tree():
-	set_multiplayer_authority(name.to_int())
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	
 	camera.current = is_multiplayer_authority()
 	# Assign the player to a side depending if a side is already taken
 	var player_in_scene = get_tree().get_nodes_in_group("player")
 	add_to_group(side + "camera")
-	
-	
-	
-#func set_sidebar_variables():
-	#sidebar.side = side
-	#sidebar.enemy = enemy
-	#sidebar.enemy_type = enemy_type
 	
 func _input(event):
 	if is_multiplayer_authority():
@@ -168,6 +162,7 @@ func _process(delta):
 			speed=sprint
 		else:
 			speed = speed_normal
+	
 
 func _physics_process(delta):
 	if is_multiplayer_authority():
@@ -187,3 +182,24 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
+		
+		#var sync_pos = get_tree().get_nodes_in_group("player")
+		#for node in sync_pos:
+			#if node.is_in_group("side_squirrel"):
+				#sync_pos_func(node.creature_positions)
+		#rpc("remote_set_position", position)
+		#move_all_objects()
+
+@rpc("unreliable")
+func remote_set_position(authority_position):
+	position = authority_position
+		
+func sync_pos_func(creature_positions):
+	if is_multiplayer_authority():
+		if creature_positions.size() == 2:
+			creature_positions[0].assign_target(creature_positions[1])
+		#if creature_positions:
+			#print_debug("!!!!!!!!", creature_positions)
+			#if creature_positions.size() > 0:
+				#for creature in creature_positions:
+					#creature.move()

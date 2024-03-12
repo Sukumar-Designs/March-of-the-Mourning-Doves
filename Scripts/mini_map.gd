@@ -28,7 +28,7 @@ func add_minimap_marker(item):
 	grid.add_child(new_marker)
 	new_marker.show()
 	markers[item] = new_marker
-	print_debug("Creature Added To MiniMap")
+	#print_debug("Creature Added To MiniMap")
 
 
 func _process(delta):

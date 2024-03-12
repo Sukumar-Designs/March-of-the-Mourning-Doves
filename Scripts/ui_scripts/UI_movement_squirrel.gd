@@ -13,6 +13,7 @@ var resource_main_type = "main_type_resources"
 @onready var sidebar_scene = "res://Full_Assets/sidebar.tscn"
 @onready var sidebar = $Sidebar
 
+@export var creature_positions = []
 # Camera Movement
 #var left_limit = -50
 #var right_limit = 150
@@ -34,16 +35,20 @@ var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-#@onready var current_navigation_agent := $"../bird"
 # For selecting the objects
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
 var select_box_parents = []
 
+
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
+	var test = get_tree().get_nodes_in_group("side_squirrel")
+	for t in test:
+		t.set_multiplayer_authority(name.to_int())
 
 func _ready():
+	name = str(get_multiplayer_authority())
 	camera.current = is_multiplayer_authority()
 	# Assign the player to a side depending if a side is already taken
 	position = Vector3(position.x, position.y+5, position.z-150)
@@ -77,84 +82,86 @@ func cast_ray_to_select():
 	This function casts a ray from the camera that returns the 
 	first thing the ray hits, can be null.
 	"""
-	if is_multiplayer_authority():
-		var mouse_pos = get_viewport().get_mouse_position()
-		var ray_length = 100
-		var from = camera.project_ray_origin(mouse_pos)
-		var to = from + camera.project_ray_normal(mouse_pos) * ray_length
-		var space = get_world_3d().direct_space_state
-		var ray_query = PhysicsRayQueryParameters3D.new()
-		ray_query.from = from
-		ray_query.to = to
-		ray_query.collide_with_areas = true
-		var result = space.intersect_ray(ray_query)
-		return result
+	#if is_multiplayer_authority():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_length = 100
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
+	var space = get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.new()
+	ray_query.from = from
+	ray_query.to = to
+	ray_query.collide_with_areas = true
+	var result = space.intersect_ray(ray_query)
+	return result
 		
 func try_to_select(result):
-	if is_multiplayer_authority():
-		var object = result["collider"].get_parent()
-		# If choosing a soldier on your side, select them
-		if object.is_in_group(side) and object.is_in_group(creature_main_type):
-			multiple_select(object)
-		# Else, if you're selecting an enemy
-		elif object.is_in_group(enemy_type):
-			# if you have you're type=soldier or building selected, attack enemy soldier
-			if object.is_in_group(creature_main_type) or object.is_in_group(building_type):
-				attack_enemy_object(object)
-		# Collecting resources
-		elif object.is_in_group(other_structures_type) or object.is_in_group(resource_main_type):
-			attack_enemy_object(object)
-		# Depositing resources in base on player's side
-		elif object.is_in_group(building_type) and object.is_in_group(side):
-			attack_enemy_object(object)
-			if object.is_in_group("has_inventory_true"):
-				object.open_inventory()
-		elif object.is_in_group("side_spider"):
-			attack_enemy_object(object)
+	#if is_multiplayer_authority():
+	var object = result["collider"].get_parent()
+	# If choosing a soldier on your side, select them
+	if object.is_in_group(side) and object.is_in_group(creature_main_type):
+		multiple_select(object)
+		creature_positions.append(object)
+	# Else, if you're selecting an enemy
+	elif object.is_in_group(enemy_type):
+		# if you have you're type=soldier or building selected, attack enemy soldier
+		if object.is_in_group(creature_main_type) or object.is_in_group(building_type):
+			#attack_enemy_object(object)
+			creature_positions.append(object) 
+	# Collecting resources
+	elif object.is_in_group(other_structures_type) or object.is_in_group(resource_main_type):
+		attack_enemy_object(object)
+	# Depositing resources in base on player's side
+	elif object.is_in_group(building_type) and object.is_in_group(side):
+		attack_enemy_object(object)
+		if object.is_in_group("has_inventory_true"):
+			object.open_inventory()
+	elif object.is_in_group("side_spider"):
+		attack_enemy_object(object)
 		
 func clear_selection():
 	""" This function clears all selected soldiers """
-	if is_multiplayer_authority():
-		# Deselect all current select boxs
-		for select_box_parent in select_box_parents:
-			# If the parent still exists
-			if select_box_parent[0]:
-				# Remove the selection 
-				select_box_parent[0].remove_child(select_box_parent[1])
-		# Then clear the list
-		select_box_parents = []
+	#if is_multiplayer_authority():
+	# Deselect all current select boxs
+	for select_box_parent in select_box_parents:
+		# If the parent still exists
+		if select_box_parent[0]:
+			# Remove the selection 
+			select_box_parent[0].remove_child(select_box_parent[1])
+	# Then clear the list
+	select_box_parents = []
 		
 func multiple_select(object):
 	""" This function controls selecting multiple soldiers on your team """
-	if is_multiplayer_authority():
-		# If selecting multiple objects
-		var reselected_index = -1
-		var index = -1
-		for select_box_parent in select_box_parents:
-			index += 1
-			# If the object is on the list, mark it
-			if object == select_box_parent[0]:
-				reselected_index = index
-		
-		# If the object is not reselected, select it and add it to selected objects
-		if reselected_index == -1:
-			var new_select_box = select_box.instantiate()
-			object.add_child(new_select_box)
-			select_box_parents.append([object, new_select_box])
-		# Otherwise, the object is reselect and needs to be deselected
-		else:
-			# Check if object still exists
-			select_box_parents[reselected_index][0].remove_child(select_box_parents[reselected_index][1])
-			# Regardless of if it exists, remove it from the list
-			select_box_parents.remove_at(reselected_index)
+	#if is_multiplayer_authority():
+	# If selecting multiple objects
+	var reselected_index = -1
+	var index = -1
+	for select_box_parent in select_box_parents:
+		index += 1
+		# If the object is on the list, mark it
+		if object == select_box_parent[0]:
+			reselected_index = index
+	
+	# If the object is not reselected, select it and add it to selected objects
+	if reselected_index == -1:
+		var new_select_box = select_box.instantiate()
+		object.add_child(new_select_box)
+		select_box_parents.append([object, new_select_box])
+	# Otherwise, the object is reselect and needs to be deselected
+	else:
+		# Check if object still exists
+		select_box_parents[reselected_index][0].remove_child(select_box_parents[reselected_index][1])
+		# Regardless of if it exists, remove it from the list
+		select_box_parents.remove_at(reselected_index)
 
 func attack_enemy_object(enemy_object):
-	if is_multiplayer_authority():
-		# Command each selected soldier to target the enemy soldier
-		for select_box_parent in select_box_parents:
-			# If the soldier and enemy_soldier still exist
-			if select_box_parent[0] and enemy_object: 
-				select_box_parent[0].assign_target(enemy_object)
+	#if is_multiplayer_authority():
+	# Command each selected soldier to target the enemy soldier
+	for select_box_parent in select_box_parents:
+		# If the soldier and enemy_soldier still exist
+		if select_box_parent[0] and enemy_object: 
+			select_box_parent[0].assign_target(enemy_object)
 
 func _process(delta):
 	if is_multiplayer_authority():
@@ -181,7 +188,17 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
+		rpc("remote_set_position", position)
+		#move_all_objects()
 
+@rpc("unreliable")
+func remote_set_position(authority_position):
+	position = authority_position
 
-func _on_bridge_pressed():
-	pass # Replace with function body.
+func move_all_objects():
+	if is_multiplayer_authority():
+		#creature_positions = []
+		pass
+		#var creatures = get_tree().get_nodes_in_group("sub_type_squirrel")
+		#for creature in creatures:
+			#creature_positions.append(creature)

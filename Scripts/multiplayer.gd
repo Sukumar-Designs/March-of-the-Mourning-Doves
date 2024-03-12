@@ -1,18 +1,37 @@
-extends Node
+extends Node3D
 
 
-var peer = ENetMultiplayerPeer.new()
+var multiplayer_peer = ENetMultiplayerPeer.new()
 @export var player_scene_bird: PackedScene
 @export var player_scene_squirrel: PackedScene
 var spawn_bird = true
 
+const PORT = 9999
+const ADDRESS = "127.0.0.1"
+
+@onready var button1 = $Lobby/Host
+@onready var button2 = $Lobby/Join
+
 func _on_host_pressed():
-	peer.create_server(135)
-	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(_add_player)
-	_add_player()
+	multiplayer_peer.create_server(PORT)
+	multiplayer.multiplayer_peer = multiplayer_peer
+	#button1.visible = false
+	#button2.visible = false
+	multiplayer.peer_connected.connect(
+		func(id):
+			add_player(id)
+	)
+	button1.visible = false
+	button2.visible = false
+	add_player()
 	
-func _add_player(id=1):
+func _on_join_pressed():
+	multiplayer_peer.create_client(ADDRESS, PORT)
+	multiplayer.multiplayer_peer = multiplayer_peer
+	button1.visible = false
+	button2.visible = false
+
+func add_player(id=1):
 	var player
 	if spawn_bird:
 		player = player_scene_bird.instantiate()
@@ -20,16 +39,5 @@ func _add_player(id=1):
 	else:
 		player = player_scene_squirrel.instantiate()
 	player.name = str(id)
-	var button1 = $Host
-	var button2 = $Join
-	button1.visible = false
-	button2.visible = false
 	call_deferred("add_child", player)
 
-func _on_join_pressed():
-	peer.create_client("localhost", 135)
-	multiplayer.multiplayer_peer = peer
-	var button1 = $Host
-	var button2 = $Join
-	button1.visible = false
-	button2.visible = false

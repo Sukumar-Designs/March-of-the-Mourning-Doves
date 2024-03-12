@@ -53,7 +53,7 @@ func _process(delta):
 		heal_tick_counter = heal_tick
 		set_health(heal_amount)
 	if initial_place:
-		spawn_creatures(sub_type, side, enemy)
+		#spawn_creatures(sub_type, side, enemy)
 		initial_place = false
 
 	

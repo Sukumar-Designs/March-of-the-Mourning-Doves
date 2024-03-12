@@ -35,7 +35,7 @@ var attack_damage = 1
 # Inventory
 @onready var inventory = $Inventory
 @onready var pine = preload("res://Full_Assets/Twig_Full.tscn")
-
+@rpc("authority", "call_local")
 func _ready():
 	# Add to 5 basic groups
 	add_to_group(main_type)
@@ -48,22 +48,31 @@ func _ready():
 	update_health_bar()
 	
 	cameras_list = get_tree().get_nodes_in_group(side + "camera")
-	
 
+
+#@rpc("authority", "call_local")
 func _physics_process(delta):
+	#if get_multiplayer_authority() != multiplayer.get_unique_id():
+		#position = sync.sync_position
+		#return
+		
 	if current_target:
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * speed
 		
 		velocity = velocity.move_toward(new_velocity, .25)
+		#print_debug("MOVE AND SLIDE", current_target)
+		#print_debug("velocity", velocity)
 		move_and_slide()
-
-
+	print_debug(multiplayer.is_server(), position)
+	print("RPC called by: ", multiplayer.get_remote_sender_id())
+		
+@rpc("authority", "call_local")
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
 
-
+@rpc("authority", "call_local")
 func _process(delta):
 	if len(cameras_list) > 0:
 		camera_location = cameras_list[0]
@@ -84,7 +93,8 @@ func _process(delta):
 			attack()
 		else:
 			attack_cooldown_counter -= attack_speed
-		
+
+@rpc("authority", "call_local")
 func assign_target(object_selected):
 	# If the target is an enemy, then send soldier to attack
 	if object_selected.is_in_group(enemy_type) or object_selected.is_in_group("side_spider"):
@@ -98,6 +108,7 @@ func assign_target(object_selected):
 	# Depositing resources in base
 	elif object_selected.is_in_group("main_type_buildings"):
 		current_target = object_selected
+
 
 
 # Health Based Function
@@ -160,3 +171,4 @@ func _on_area_3d_body_exited(body):
 	if body in targets_in_range:
 		var index = targets_in_range.find(body, 0)
 		targets_in_range.remove_at(index)
+
