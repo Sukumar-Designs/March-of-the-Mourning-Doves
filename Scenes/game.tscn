@@ -1,17 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=18 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
-[ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
-[ext_resource type="PackedScene" uid="uid://bdlwgi4wvwiv7" path="res://Full_Assets/ui_controller_squirrel.tscn" id="3_xhl88"]
+[ext_resource type="PackedScene" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
+[ext_resource type="PackedScene" path="res://Full_Assets/ui_controller_squirrel.tscn" id="3_xhl88"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
-[ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/terrain_full.tscn" id="11_dh6q5"]
+[ext_resource type="PackedScene" path="res://Full_Assets/terrain_full.tscn" id="11_dh6q5"]
 [ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/creature_full.tscn" id="11_g85e0"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
+[ext_resource type="PackedScene" uid="uid://dbrw0q4itgyit" path="res://Full_Assets/Bridge.glb" id="14_2hl05"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" path="res://Full_Assets/Squirrel Nest.glb" id="15_2c4go"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
@@ -139,8 +141,8 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, -6.38445e-09, -0.991086, 0.133225, -256.814, 56.268, -25.5591)
-light_energy = 1.914
+transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, 5.58794e-09, -0.991086, 0.133225, -256.814, 56.268, -25.5591)
+light_energy = 0.39
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 48.12
 shadow_bias = 0.0
@@ -148,7 +150,9 @@ shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(0.780856, -7.67953e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -115.831, 19.6616, -855.75)
+transform = Transform3D(0.780856, -8.37767e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -107.552, 23.0277, -854.132)
+visible = false
+light_energy = 0.317
 
 [node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
@@ -174,7 +178,13 @@ transform = Transform3D(-0.0814658, -0.408985, -12.393, 0.256277, 12.3905, -0.41
 shape = SubResource("BoxShape3D_x00et")
 
 [node name="creature" parent="." instance=ExtResource("11_g85e0")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 16.6496, 2.03969, 28.8538)
+transform = Transform3D(1.23048, 0, 0, 0, 1.09688, 5.20422e-15, 0, -1.64869e-13, 0.488286, 16.6496, 2.03969, 28.8538)
+
+[node name="Bridge" parent="." instance=ExtResource("14_2hl05")]
+transform = Transform3D(0.819622, 0, -0.572904, 0, 1, 0, 0.572904, 0, 0.819622, 141.191, -5.62172, -124.731)
+
+[node name="Squirrel Nest" parent="." instance=ExtResource("15_2c4go")]
+transform = Transform3D(0.982995, 0, 0, 0, 0.982995, 0, 0, 0, 0.982995, -65.1631, 3.75263, -103.054)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="pressed" from="Lobby/Host" to="." method="_on_host_pressed"]
