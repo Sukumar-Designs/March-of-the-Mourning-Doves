@@ -40,18 +40,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
 var select_box_parents = []
 
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
+#func _enter_tree():
+	#set_multiplayer_authority(str(name).to_int())
 
 func _ready():
-	print_debug("!!!!!")
-	camera.current = is_multiplayer_authority()
-	# Assign the player to a side depending if a side is already taken
-	var player_in_scene = get_tree().get_nodes_in_group("player")
-	add_to_group(side + "camera")
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	#print_debug("!!!!!")
+	#camera.current = is_multiplayer_authority()
+	## Assign the player to a side depending if a side is already taken
+	#var player_in_scene = get_tree().get_nodes_in_group("player")
+	#add_to_group(side + "camera")
 	
 func _input(event):
-	if is_multiplayer_authority():
+	#if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
 			if event.button_mask == 1:
 				#if self.rotation.y <= left_turn_limit and event.relative.x > 0:
@@ -77,7 +79,7 @@ func cast_ray_to_select():
 	This function casts a ray from the camera that returns the 
 	first thing the ray hits, can be null.
 	"""
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var mouse_pos = get_viewport().get_mouse_position()
 		var ray_length = 100
 		var from = camera.project_ray_origin(mouse_pos)
@@ -91,7 +93,7 @@ func cast_ray_to_select():
 		return result
 		
 func try_to_select(result):
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var object = result["collider"].get_parent()
 		# If choosing a soldier on your side, select them
 		if object.is_in_group(side) and object.is_in_group(creature_main_type):
@@ -114,7 +116,7 @@ func try_to_select(result):
 		
 func clear_selection():
 	""" This function clears all selected soldiers """
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		# Deselect all current select boxs
 		for select_box_parent in select_box_parents:
 			# If the parent still exists
@@ -126,7 +128,7 @@ func clear_selection():
 		
 func multiple_select(object):
 	""" This function controls selecting multiple soldiers on your team """
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		# If selecting multiple objects
 		var reselected_index = -1
 		var index = -1
@@ -149,7 +151,7 @@ func multiple_select(object):
 			select_box_parents.remove_at(reselected_index)
 
 func attack_enemy_object(enemy_object):
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		# Command each selected soldier to target the enemy soldier
 		for select_box_parent in select_box_parents:
 			# If the soldier and enemy_soldier still exist
@@ -157,7 +159,7 @@ func attack_enemy_object(enemy_object):
 				select_box_parent[0].assign_target(enemy_object)
 
 func _process(delta):
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if Input.is_action_pressed("sprint"):
 			speed=sprint
 		else:
@@ -165,8 +167,7 @@ func _process(delta):
 	
 
 func _physics_process(delta):
-	if is_multiplayer_authority():
-		#if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:
@@ -190,14 +191,14 @@ func _physics_process(delta):
 		#rpc("remote_set_position", position)
 		#move_all_objects()
 
-@rpc("unreliable")
-func remote_set_position(authority_position):
-	position = authority_position
-		
-func sync_pos_func(creature_positions):
-	if is_multiplayer_authority():
-		if creature_positions.size() == 2:
-			creature_positions[0].assign_target(creature_positions[1])
+#@rpc("unreliable")
+#func remote_set_position(authority_position):
+	#position = authority_position
+		#
+#func sync_pos_func(creature_positions):
+	#if is_multiplayer_authority():
+		#if creature_positions.size() == 2:
+			#creature_positions[0].assign_target(creature_positions[1])
 		#if creature_positions:
 			#print_debug("!!!!!!!!", creature_positions)
 			#if creature_positions.size() > 0:

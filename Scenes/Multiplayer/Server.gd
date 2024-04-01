@@ -63,7 +63,7 @@ func _on_host_pressed():
 	# Set up multiplayer peer, the peer is the host
 	multiplayer.set_multiplayer_peer(peer)
 	print_debug("Waiting for Players...")
-	
+	SendPlayerInformation($LineEdit/Label.text, multiplayer.get_unique_id())
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()

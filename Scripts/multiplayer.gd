@@ -1,18 +1,43 @@
 extends Node3D
 
-@export var PlayerScene: PackedScene
+@export var BirdScene: PackedScene
+@export var SquirrelScene: PackedScene
 
+#@rpc("call_local")
 func _ready():
-	var index = 0
-	for i in GameManager.Players:
-		var currentPlayer = PlayerScene.instantiate()
-		call_deferred("add_child", currentPlayer)
-		#add_child(currentPlayer)
-		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
-			if spawn.name == str(index):
-				currentPlayer.global_position = spawn.global_position
-		index += 1
+	var PlayerOrder = 0
+	if multiplayer.is_server():
+		PlayerOrder = 1
+
+	var spawnPoss = get_tree().get_nodes_in_group("PlayerSpawnPoint")
+		#print_debug(spawn)
+	var gamePlayers = []
+	for gamePlayer in GameManager.Players:
+		gamePlayers.append(GameManager.Players[gamePlayer].id)
 		
+	if PlayerOrder == 0:
+		var bird = BirdScene.instantiate()
+		bird.name = str(gamePlayers[0])
+		add_child(bird)
+		bird.global_position = spawnPoss[0].global_position
+		
+		var squirrel = SquirrelScene.instantiate()
+		squirrel.name = str(gamePlayers[1])
+		add_child(squirrel)
+		squirrel.global_position = spawnPoss[1].global_position
+		print_debug("Making Camera", multiplayer.is_server())
+	elif PlayerOrder == 1:
+		var squirrel = SquirrelScene.instantiate()
+		squirrel.name = str(gamePlayers[1])
+		add_child(squirrel)
+		squirrel.global_position = spawnPoss[1].global_position
+		
+		var bird = BirdScene.instantiate()
+		bird.name = str(gamePlayers[0])
+		add_child(bird)
+		bird.global_position = spawnPoss[0].global_position
+		print_debug("Making Camera", multiplayer.is_server())
+
 
 
 #var multiplayer_peer = ENetMultiplayerPeer.new()
