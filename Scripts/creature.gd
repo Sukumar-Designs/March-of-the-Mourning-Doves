@@ -35,7 +35,7 @@ var attack_damage = 1
 # Inventory
 @onready var inventory = $Inventory
 @onready var pine = preload("res://Full_Assets/Twig_Full.tscn")
-@rpc("authority", "call_local")
+#@rpc("authority", "call_local")
 func _ready():
 	# Add to 5 basic groups
 	add_to_group(main_type)
@@ -65,14 +65,12 @@ func _physics_process(delta):
 		#print_debug("MOVE AND SLIDE", current_target)
 		#print_debug("velocity", velocity)
 		move_and_slide()
-	print_debug(multiplayer.is_server(), position)
-	print("RPC called by: ", multiplayer.get_remote_sender_id())
 		
-@rpc("authority", "call_local")
+#@rpc("authority", "call_local")
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
 
-@rpc("authority", "call_local")
+#@rpc("authority", "call_local")
 func _process(delta):
 	if len(cameras_list) > 0:
 		camera_location = cameras_list[0]
@@ -86,15 +84,16 @@ func _process(delta):
 		update_target_location(current_target.position)
 		
 	# If there's a current target AND current target is within range and current target is enemy
-	if current_target and current_target in targets_in_range and (current_target.is_in_group(enemy_type) or current_target.is_in_group("side_spider") or current_target.is_in_group("sub_type_construction")):
-		if attack_cooldown_counter <= 0:
-			# Reset attack cooldown
-			attack_cooldown_counter = attack_cooldown
-			attack()
-		else:
-			attack_cooldown_counter -= attack_speed
+	if current_target and current_target in targets_in_range:
+		if current_target.is_in_group(enemy_type) or current_target.is_in_group("side_spider") or current_target.is_in_group("sub_type_construction") or current_target.is_in_group("main_type_other_structures"):
+			if attack_cooldown_counter <= 0:
+				# Reset attack cooldown
+				attack_cooldown_counter = attack_cooldown
+				attack()
+			else:
+				attack_cooldown_counter -= attack_speed
 
-@rpc("authority", "call_local")
+#@rpc("authority", "call_local")
 func assign_target(object_selected):
 	# If the target is an enemy, then send soldier to attack
 	if object_selected.is_in_group(enemy_type) or object_selected.is_in_group("side_spider"):
@@ -108,8 +107,6 @@ func assign_target(object_selected):
 	# Depositing resources in base
 	elif object_selected.is_in_group("main_type_buildings"):
 		current_target = object_selected
-
-
 
 # Health Based Function
 func set_health(amount):

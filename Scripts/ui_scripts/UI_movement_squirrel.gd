@@ -169,6 +169,8 @@ func _process(delta):
 			speed=sprint
 		else:
 			speed = speed_normal
+		#if is_multiplayer_authority():
+			#print("!!!")
 
 func _physics_process(delta):
 	if is_multiplayer_authority():

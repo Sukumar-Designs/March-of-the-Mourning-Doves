@@ -1,14 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=14 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
-[ext_resource type="PackedScene" uid="uid://bdlwgi4wvwiv7" path="res://Full_Assets/ui_controller_squirrel.tscn" id="3_xhl88"]
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
 [ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/terrain_full.tscn" id="11_dh6q5"]
-[ext_resource type="PackedScene" uid="uid://ct5n8h6i1yp26" path="res://Full_Assets/creature_full.tscn" id="11_g85e0"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
@@ -22,31 +20,7 @@ size = Vector3(3.84933, 0.21582, 5.47998)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_16vvh")
-player_scene_bird = ExtResource("2_1yyuw")
-player_scene_squirrel = ExtResource("3_xhl88")
-
-[node name="Lobby" type="Node" parent="."]
-
-[node name="Host" type="Button" parent="Lobby"]
-offset_left = 49.0
-offset_top = 41.0
-offset_right = 93.0
-offset_bottom = 72.0
-scale = Vector2(10.381, 3.95652)
-text = "Host"
-
-[node name="Join" type="Button" parent="Lobby"]
-offset_left = 49.0
-offset_top = 198.0
-offset_right = 87.0
-offset_bottom = 229.0
-scale = Vector2(10.381, 3.95652)
-text = "Join"
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Lobby"]
-_spawnable_scenes = PackedStringArray("res://Full_Assets/ui_controller.tscn", "res://Full_Assets/ui_controller_squirrel.tscn")
-spawn_path = NodePath("../..")
-spawn_limit = 2
+PlayerScene = ExtResource("2_1yyuw")
 
 [node name="MiniMap" type="MarginContainer" parent="."]
 offset_left = 8.0
@@ -130,7 +104,7 @@ transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995,
 side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
-transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, -43.0822)
+transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, 23.6549)
 
 [node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
@@ -173,11 +147,17 @@ shape = SubResource("BoxShape3D_x00et")
 transform = Transform3D(-0.0814658, -0.408985, -12.393, 0.256277, 12.3905, -0.410589, 12.3971, -0.25883, -0.0729511, 91.7336, -6.06675, -24.0682)
 shape = SubResource("BoxShape3D_x00et")
 
-[node name="creature" parent="." instance=ExtResource("11_g85e0")]
-transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 16.6496, 2.03969, 28.8538)
+[node name="SpawnLocations" type="Node" parent="."]
+
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.8411, 2.09633, 50.0315)
+
+[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 2.09633, -63.0925)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.802432, 0.596743, 0, -0.596743, 0.802432, 0, 31.3706, 90.9533)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
-[connection signal="pressed" from="Lobby/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Lobby/Join" to="." method="_on_join_pressed"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
 [connection signal="healthChanged" from="squirrel_base" to="HealthBars/SquirrelHealth" method="_on_squirrel_base_health_changed"]

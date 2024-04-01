@@ -44,7 +44,7 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
-	
+	print_debug("!!!!!")
 	camera.current = is_multiplayer_authority()
 	# Assign the player to a side depending if a side is already taken
 	var player_in_scene = get_tree().get_nodes_in_group("player")
