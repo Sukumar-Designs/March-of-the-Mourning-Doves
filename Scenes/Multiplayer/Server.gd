@@ -9,6 +9,9 @@ func _ready():
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 	
+	if "--server" in OS.get_cmdline_args():
+		hostGame()
+		
 func _process(delta):
 	pass
 
@@ -50,8 +53,7 @@ func StartGame():
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	
 
-
-func _on_host_pressed():
+func hostGame():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 2)
 	if error != OK:
@@ -64,6 +66,9 @@ func _on_host_pressed():
 	multiplayer.set_multiplayer_peer(peer)
 	print_debug("Waiting for Players...")
 	SendPlayerInformation($LineEdit/Label.text, multiplayer.get_unique_id())
+	
+func _on_host_pressed():
+	hostGame()
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()

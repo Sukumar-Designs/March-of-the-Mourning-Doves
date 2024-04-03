@@ -152,10 +152,10 @@ shape = SubResource("BoxShape3D_x00et")
 [node name="SpawnLocations" type="Node" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.8411, 2.09633, 50.0315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.8411, 15.4493, 50.0315)
 
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 2.09633, -63.0925)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 20.0555, -63.0925)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]

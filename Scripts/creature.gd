@@ -48,15 +48,16 @@ func _ready():
 	update_health_bar()
 	
 	cameras_list = get_tree().get_nodes_in_group(side + "camera")
-
+	print_debug(cameras_list, "!!!")
 
 #@rpc("authority", "call_local")
 func _physics_process(delta):
 	#if get_multiplayer_authority() != multiplayer.get_unique_id():
 		#position = sync.sync_position
 		#return
-		
+	
 	if current_target:
+		#print_debug("Current Target Test")
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * speed

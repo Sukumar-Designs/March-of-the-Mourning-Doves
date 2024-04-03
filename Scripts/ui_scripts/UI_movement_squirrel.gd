@@ -41,22 +41,17 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var select_box_parents = []
 
 
-func _enter_tree():
-	set_multiplayer_authority(name.to_int())
-	var test = get_tree().get_nodes_in_group("side_squirrel")
-	for t in test:
-		t.set_multiplayer_authority(name.to_int())
-
 func _ready():
-	name = str(get_multiplayer_authority())
-	camera.current = is_multiplayer_authority()
-	# Assign the player to a side depending if a side is already taken
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	#camera.current = is_multiplayer_authority()
+	## Assign the player to a side depending if a side is already taken
 	position = Vector3(position.x, position.y+5, position.z-150)
 	rotation.y += 180
 	add_to_group(side + "camera")
 	
 func _input(event):
-	if is_multiplayer_authority():
+	#if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
 			if event.button_mask == 1:
 				#if self.rotation.y <= left_turn_limit and event.relative.x > 0:
@@ -169,12 +164,10 @@ func _process(delta):
 			speed=sprint
 		else:
 			speed = speed_normal
-		#if is_multiplayer_authority():
-			#print("!!!")
 
 func _physics_process(delta):
-	if is_multiplayer_authority():
-		#if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+	#if is_multiplayer_authority():
 		var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:
@@ -190,17 +183,4 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
-		rpc("remote_set_position", position)
-		#move_all_objects()
-
-@rpc("unreliable")
-func remote_set_position(authority_position):
-	position = authority_position
-
-func move_all_objects():
-	if is_multiplayer_authority():
-		#creature_positions = []
-		pass
-		#var creatures = get_tree().get_nodes_in_group("sub_type_squirrel")
-		#for creature in creatures:
-			#creature_positions.append(creature)
+		
