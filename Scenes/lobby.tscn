@@ -1,13 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3pd6mdls3kla"]
-
-[ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_yxu8d"]
-[ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_6icdj"]
-[ext_resource type="PackedScene" uid="uid://bdlwgi4wvwiv7" path="res://Full_Assets/ui_controller_squirrel.tscn" id="3_8eenn"]
+[gd_scene format=3 uid="uid://idc4uuryvvy6"]
 
 [node name="Lobby" type="Node2D"]
-script = ExtResource("1_yxu8d")
-player_scene_bird = ExtResource("2_6icdj")
-player_scene_squirrel = ExtResource("3_8eenn")
 
 [node name="Host" type="Button" parent="."]
 offset_left = 49.0
