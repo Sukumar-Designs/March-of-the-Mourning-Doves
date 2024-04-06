@@ -120,8 +120,6 @@ func assign_target(object_selected):
 
 # Health Based Function
 func set_health(amount):
-	print_debug("!----!")
-	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 	if current_health >= max_health:
 		current_health = max_health
 	if current_health >= max_health and amount > 0:
@@ -154,19 +152,11 @@ func kill():
 @rpc("any_peer") # works with 2 calls, one rpc and the other normal
 func attack(target):
 	var to_attack = get_node(target)
-	#print_debug("ATTACK!", multiplayer.get_unique_id())
 	if to_attack:
 		to_attack.on_hit(attack_damage, self)
 	else:
 		print_debug("ERROR ERROR ERROR ERROR", to_attack)
-	#var target1 = ObjectDB.instance.get_object(target)
-	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-	## If the current target still exists
-	#if current_target:
-		# if the current target is in range
-		#if current_target in targets_in_range:
-	#target = instance_from_id(target)
-	#target.on_hit(attack_damage, self)
+	
 
 func _on_area_3d_body_entered(body):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():

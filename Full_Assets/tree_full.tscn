@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c720yiw6pru12"]
 
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="1_fi6qn"]
-[ext_resource type="PackedScene" uid="uid://ddkktpxa3rujj" path="res://Assets/pine_tree/Pine_Tree.glb" id="2_nx5ge"]
 [ext_resource type="PackedScene" path="res://Full_Assets/character_health_bar.tscn" id="3_ec8kp"]
+[ext_resource type="PackedScene" uid="uid://ddkktpxa3rujj" path="res://Assets/pine_tree/Pine_Tree.glb" id="3_evqse"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bylco"]
 
@@ -27,7 +27,7 @@ shape = SubResource("CapsuleShape3D_bylco")
 transform = Transform3D(-2.16863, 3.25166e-21, 0.0450944, 0, 0.783246, -5.61773e-19, -0.0395951, -1.78094e-19, -2.46983, -10.0385, 437.656, 0)
 billboard = 1
 
-[node name="Pine_Tree_GLB" parent="." instance=ExtResource("2_nx5ge")]
+[node name="Pine_Tree_GLB" parent="." instance=ExtResource("3_evqse")]
 transform = Transform3D(66.1487, 0, 0, 0, 66.1487, 0, 0, 0, 66.1487, -0.179588, 0, -7.60528)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

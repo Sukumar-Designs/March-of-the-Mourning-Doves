@@ -97,7 +97,7 @@ show_percentage = false
 script = ExtResource("12_l3ivy")
 
 [node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, 47.4434, 6.23667, -50.1328)
+transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 10.6349, 55.8457)
 side = "side_bird"
 enemy = "enemy_squirrel"
 
