@@ -3,14 +3,19 @@
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
 [ext_resource type="PackedScene" uid="uid://bdlwgi4wvwiv7" path="res://Full_Assets/ui_controller_squirrel.tscn" id="2_261pk"]
+
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="4_ykqu8"]
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
+
 [ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/terrain_full.tscn" id="11_dh6q5"]
+
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
+[ext_resource type="PackedScene" uid="uid://dbrw0q4itgyit" path="res://Full_Assets/Bridge.glb" id="14_2hl05"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
+[ext_resource type="PackedScene" path="res://Full_Assets/Squirrel Nest.glb" id="15_2c4go"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
@@ -115,8 +120,8 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, -6.38445e-09, -0.991086, 0.133225, -256.814, 56.268, -25.5591)
-light_energy = 1.914
+transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, 5.58794e-09, -0.991086, 0.133225, -256.814, 56.268, -25.5591)
+light_energy = 0.39
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 48.12
 shadow_bias = 0.0
@@ -124,7 +129,9 @@ shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(0.780856, -7.67953e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -115.831, 19.6616, -855.75)
+transform = Transform3D(0.780856, -8.37767e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -107.552, 23.0277, -854.132)
+visible = false
+light_energy = 0.317
 
 [node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
