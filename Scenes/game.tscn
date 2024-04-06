@@ -97,12 +97,12 @@ show_percentage = false
 script = ExtResource("12_l3ivy")
 
 [node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -90.017, 10.1872, 59.9615)
+transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, 47.4434, 6.23667, -50.1328)
 side = "side_bird"
 enemy = "enemy_squirrel"
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.4606, 10.9825, -59.8921)
+transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.4606, 10.2061, -59.8921)
 side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]

@@ -18,8 +18,9 @@ var speed = 5
 @onready var nav_agent = $NavigationAgent3D
 
 # Health variables
-var max_health = 15
-var current_health
+var max_health = 5 #15
+var current_health = max_health
+@export var syncHealth = max_health
 var heal_amount = 5
 @onready var image = $CreatureImage
 @onready var health_bar = $HealthBar
@@ -37,7 +38,7 @@ var attack_damage = 1
 @onready var pine = preload("res://Full_Assets/Twig_Full.tscn")
 
 @export var syncPos = Vector3(0,0,0)
-	
+
 func _ready():
 	
 	var player = get_tree().get_first_node_in_group(side + "camera")
@@ -53,7 +54,6 @@ func _ready():
 	add_to_group(enemy)
 	add_to_group(has_inventory)
 
-	current_health = max_health
 	update_health_bar()
 	
 	cameras_list = get_tree().get_nodes_in_group(side + "camera")
@@ -94,43 +94,50 @@ func _process(delta):
 				if attack_cooldown_counter <= 0:
 					# Reset attack cooldown
 					attack_cooldown_counter = attack_cooldown
-					attack()
+					print_debug(multiplayer.get_unique_id(), "TRY TO ATTACK")
+					attack.rpc(current_target.get_path())
+					attack(current_target.get_path())
+
 				else:
 					attack_cooldown_counter -= attack_speed
 	else:
 		global_position = global_position.lerp(syncPos, .5)
 
 func assign_target(object_selected):
-	# If the target is an enemy, then send soldier to attack
-	if object_selected.is_in_group(enemy_type) or object_selected.is_in_group("side_spider"):
-		current_target = object_selected
-	# Attacking natural structures to get resources
-	elif object_selected.is_in_group("main_type_other_structures"):
-		current_target = object_selected
-	# Picking up resources
-	elif object_selected.is_in_group("main_type_resources"):
-		current_target = object_selected
-	# Depositing resources in base
-	elif object_selected.is_in_group("main_type_buildings"):
-		current_target = object_selected
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		# If the target is an enemy, then send soldier to attack
+		if object_selected.is_in_group(enemy_type) or object_selected.is_in_group("side_spider"):
+			current_target = object_selected
+		# Attacking natural structures to get resources
+		elif object_selected.is_in_group("main_type_other_structures"):
+			current_target = object_selected
+		# Picking up resources
+		elif object_selected.is_in_group("main_type_resources"):
+			current_target = object_selected
+		# Depositing resources in base
+		elif object_selected.is_in_group("main_type_buildings"):
+			current_target = object_selected
 
 # Health Based Function
 func set_health(amount):
+	print_debug("!----!")
+	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 	if current_health >= max_health:
 		current_health = max_health
 	if current_health >= max_health and amount > 0:
 		pass
 	else:
 		current_health += amount
+
 	update_health_bar()
 	if current_health <= 0:
-		kill()
+		kill.rpc()
+		print_debug("KILLED", multiplayer.get_unique_id())
 
 func update_health_bar():
 	""" This function controlls the health bar """
 	health_bar.side = side
 	health_bar.update_health_bar(current_health, max_health)
-	
 	
 func on_hit(damage, attacker):
 	set_health(-damage)
@@ -139,37 +146,47 @@ func on_hit(damage, attacker):
 	if current_target == null:
 		assign_target(attacker)
 
+@rpc("any_peer") 
 func kill():
 	inventory.drop_all_items(self)
 	queue_free()
 	
-
-func attack():
-	# If the current target still exists
-	if current_target:
+@rpc("any_peer") # works with 2 calls, one rpc and the other normal
+func attack(target):
+	var to_attack = get_node(target)
+	#print_debug("ATTACK!", multiplayer.get_unique_id())
+	if to_attack:
+		to_attack.on_hit(attack_damage, self)
+	else:
+		print_debug("ERROR ERROR ERROR ERROR", to_attack)
+	#var target1 = ObjectDB.instance.get_object(target)
+	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+	## If the current target still exists
+	#if current_target:
 		# if the current target is in range
-		if current_target in targets_in_range:
-			current_target.on_hit(attack_damage, self)
-
+		#if current_target in targets_in_range:
+	#target = instance_from_id(target)
+	#target.on_hit(attack_damage, self)
 
 func _on_area_3d_body_entered(body):
-	# If the object is an enemy
-	if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("sub_type_construction") or body.is_in_group("side_spider"):
-		targets_in_range.append(body)
-		 ##If there's no target
-		#if !target:
-			#target = body
-	# Else if it's a resource and the troop was told to get it
-	elif body.is_in_group(can_pick_up) and body == current_target:
-		# Try to pick up the item
-		if inventory.try_pick_up_item(body):
-			body.queue_free()
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		# If the object is an enemy
+		if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("sub_type_construction") or body.is_in_group("side_spider"):
+			targets_in_range.append(body)
+			 ##If there's no target
+			#if !target:
+				#target = body
+		# Else if it's a resource and the troop was told to get it
+		elif body.is_in_group(can_pick_up) and body == current_target:
+			# Try to pick up the item
+			if inventory.try_pick_up_item(body):
+				body.queue_free()
+				current_target = null
+		elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
+			# Creature has arrived at the building
+			inventory.try_deposite_item(body)
 			current_target = null
-	elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
-		# Creature has arrived at the building
-		inventory.try_deposite_item(body)
-		current_target = null
-
+		
 func _on_area_3d_body_exited(body):
 	if body in targets_in_range:
 		var index = targets_in_range.find(body, 0)
