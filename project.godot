@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="birdy_brigade"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="res://Scenes/Multiplayer/Lobby.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Assets/squirrel soldier.png"
+
+[autoload]
+
+GameManager="*res://Scenes/Multiplayer/GameManager.gd"
 
 [display]
 
@@ -100,3 +104,4 @@ place={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_s3tc_bptc=true

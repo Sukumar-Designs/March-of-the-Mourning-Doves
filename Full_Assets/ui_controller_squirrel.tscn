@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ch1lptegeru2w" path="res://Assets/resources_2d/Seeds 2D.png" id="5_3cj7p"]
 [ext_resource type="Texture2D" uid="uid://b14avqyfhnwqw" path="res://Assets/resources_2d/Twig 2D.png" id="6_aaamu"]
 [ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="7_vbati"]
-[ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="8_rrw75"]
+[ext_resource type="Theme" path="res://Themes/label_theme.tres" id="8_rrw75"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="9_662pb"]
 [ext_resource type="Texture2D" uid="uid://c1uysivr7j2h0" path="res://Assets/squirrel soldier highlight small.png" id="10_sbua2"]
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="11_y661k"]
@@ -16,7 +16,7 @@
 Label/font_sizes/font_size = 8
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:syncPos")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
@@ -472,6 +472,7 @@ texture_hover = ExtResource("11_y661k")
 stretch_mode = 0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_pcxnv")
 
 [connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Base" to="Sidebar" method="_on_base_pressed"]

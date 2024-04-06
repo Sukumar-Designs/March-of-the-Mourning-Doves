@@ -1,18 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct5n8h6i1yp26"]
+[gd_scene load_steps=9 format=3 uid="uid://ct5n8h6i1yp26"]
 
 [ext_resource type="Script" path="res://Scripts/creature.gd" id="1_8jwgh"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
 [ext_resource type="Script" path="res://Scripts/sprite_image.gd" id="3_yyhn8"]
-[ext_resource type="PackedScene" uid="uid://c34hc8o0nlbf0" path="res://Full_Assets/character_health_bar.tscn" id="4_harxs"]
+[ext_resource type="PackedScene" path="res://Full_Assets/character_health_bar.tscn" id="4_harxs"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="5_xru1b"]
-[ext_resource type="Script" path="res://Scripts/synchronizer.gd" id="6_mohjd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_80mq0"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0msd8"]
-properties/0/path = NodePath("..:position")
+properties/0/path = NodePath("..:syncPos")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
@@ -51,9 +50,9 @@ script = ExtResource("5_xru1b")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath(".")
+replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_0msd8")
 visibility_update_mode = 1
-script = ExtResource("6_mohjd")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

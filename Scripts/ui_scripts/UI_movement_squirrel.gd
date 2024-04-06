@@ -39,24 +39,17 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
 var select_box_parents = []
-
-
-func _enter_tree():
-	set_multiplayer_authority(name.to_int())
-	var test = get_tree().get_nodes_in_group("side_squirrel")
-	for t in test:
-		t.set_multiplayer_authority(name.to_int())
+var syncPos = Vector3(0,0,0)
 
 func _ready():
-	name = str(get_multiplayer_authority())
-	camera.current = is_multiplayer_authority()
-	# Assign the player to a side depending if a side is already taken
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	## Assign the player to a side depending if a side is already taken
 	position = Vector3(position.x, position.y+5, position.z-150)
 	rotation.y += 180
 	add_to_group(side + "camera")
 	
 func _input(event):
-	if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
 			if event.button_mask == 1:
 				#if self.rotation.y <= left_turn_limit and event.relative.x > 0:
@@ -82,7 +75,7 @@ func cast_ray_to_select():
 	This function casts a ray from the camera that returns the 
 	first thing the ray hits, can be null.
 	"""
-	#if is_multiplayer_authority():
+	
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_length = 100
 	var from = camera.project_ray_origin(mouse_pos)
@@ -96,7 +89,7 @@ func cast_ray_to_select():
 	return result
 		
 func try_to_select(result):
-	#if is_multiplayer_authority():
+	
 	var object = result["collider"].get_parent()
 	# If choosing a soldier on your side, select them
 	if object.is_in_group(side) and object.is_in_group(creature_main_type):
@@ -121,7 +114,6 @@ func try_to_select(result):
 		
 func clear_selection():
 	""" This function clears all selected soldiers """
-	#if is_multiplayer_authority():
 	# Deselect all current select boxs
 	for select_box_parent in select_box_parents:
 		# If the parent still exists
@@ -133,7 +125,6 @@ func clear_selection():
 		
 func multiple_select(object):
 	""" This function controls selecting multiple soldiers on your team """
-	#if is_multiplayer_authority():
 	# If selecting multiple objects
 	var reselected_index = -1
 	var index = -1
@@ -156,7 +147,6 @@ func multiple_select(object):
 		select_box_parents.remove_at(reselected_index)
 
 func attack_enemy_object(enemy_object):
-	#if is_multiplayer_authority():
 	# Command each selected soldier to target the enemy soldier
 	for select_box_parent in select_box_parents:
 		# If the soldier and enemy_soldier still exist
@@ -171,10 +161,10 @@ func _process(delta):
 			speed = speed_normal
 
 func _physics_process(delta):
-	if is_multiplayer_authority():
-		#if is_multiplayer_authority():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		syncPos = global_position
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -188,17 +178,5 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
-		rpc("remote_set_position", position)
-		#move_all_objects()
-
-@rpc("unreliable")
-func remote_set_position(authority_position):
-	position = authority_position
-
-func move_all_objects():
-	if is_multiplayer_authority():
-		#creature_positions = []
-		pass
-		#var creatures = get_tree().get_nodes_in_group("sub_type_squirrel")
-		#for creature in creatures:
-			#creature_positions.append(creature)
+	else:
+		global_position = global_position.lerp(syncPos, .5)	
