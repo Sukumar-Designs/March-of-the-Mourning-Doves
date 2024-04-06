@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://djyxladd5yxi5"
-path="res://.godot/imported/Oak Tree.glb-e42fb8f63dd68231c1ba08dcf0827560.scn"
+uid="uid://bq1e6dcb42d6y"
+path="res://.godot/imported/Squirrel Nest.glb-89eb8211b53bf5e75029dc2baca755bf.scn"
 
 [deps]
 
-source_file="res://Oak Tree.glb"
-dest_files=["res://.godot/imported/Oak Tree.glb-e42fb8f63dd68231c1ba08dcf0827560.scn"]
+source_file="res://Assets/squirrel_nest/Squirrel Nest.glb"
+dest_files=["res://.godot/imported/Squirrel Nest.glb-89eb8211b53bf5e75029dc2baca755bf.scn"]
 
 [params]
 

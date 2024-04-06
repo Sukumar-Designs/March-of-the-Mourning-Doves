@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bq1e6dcb42d6y"
-path="res://.godot/imported/Squirrel Nest.glb-7f3be8e435c4ff44f99ac79952484941.scn"
+uid="uid://dbrw0q4itgyit"
+path="res://.godot/imported/Bridge.glb-6c32591ebb990a6b0cb232391a981b74.scn"
 
 [deps]
 
-source_file="res://Full_Assets/Squirrel Nest.glb"
-dest_files=["res://.godot/imported/Squirrel Nest.glb-7f3be8e435c4ff44f99ac79952484941.scn"]
+source_file="res://Assets/bridge/Bridge.glb"
+dest_files=["res://.godot/imported/Bridge.glb-6c32591ebb990a6b0cb232391a981b74.scn"]
 
 [params]
 

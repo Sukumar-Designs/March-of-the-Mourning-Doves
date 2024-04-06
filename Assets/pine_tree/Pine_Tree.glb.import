@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbrw0q4itgyit"
-path="res://.godot/imported/Bridge.glb-d777686d830a7ffa85f62b2652917c52.scn"
+uid="uid://ddkktpxa3rujj"
+path="res://.godot/imported/Pine_Tree.glb-0b120831244a46a3a313b8f9e94480db.scn"
 
 [deps]
 
-source_file="res://Full_Assets/Bridge.glb"
-dest_files=["res://.godot/imported/Bridge.glb-d777686d830a7ffa85f62b2652917c52.scn"]
+source_file="res://Assets/pine_tree/Pine_Tree.glb"
+dest_files=["res://.godot/imported/Pine_Tree.glb-0b120831244a46a3a313b8f9e94480db.scn"]
 
 [params]
 

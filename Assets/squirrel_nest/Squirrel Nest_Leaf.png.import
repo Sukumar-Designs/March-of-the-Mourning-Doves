@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgsfgftwnm6nq"
-path.s3tc="res://.godot/imported/Squirrel Nest_Pine Trunk.jpg-e71c16ed85e440006aaa4cb02c3543ff.s3tc.ctex"
+uid="uid://y723rb6pemb4"
+path.s3tc="res://.godot/imported/Squirrel Nest_Leaf.png-dfea6ba17e71c61b59a80316d36d6ee7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Full_Assets/Squirrel Nest_Pine Trunk.jpg"
-dest_files=["res://.godot/imported/Squirrel Nest_Pine Trunk.jpg-e71c16ed85e440006aaa4cb02c3543ff.s3tc.ctex"]
+source_file="res://Assets/squirrel_nest/Squirrel Nest_Leaf.png"
+dest_files=["res://.godot/imported/Squirrel Nest_Leaf.png-dfea6ba17e71c61b59a80316d36d6ee7.s3tc.ctex"]
 
 [params]
 

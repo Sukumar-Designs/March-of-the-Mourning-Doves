@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpbnv3i44vyax"
-path.s3tc="res://.godot/imported/Oak Tree_Leaf.png-9ff63b2789d1297962d664ff5aed9d0b.s3tc.ctex"
+uid="uid://c6fjq3lh8ic5w"
+path.s3tc="res://.godot/imported/Bridge_Untitled_Artwork (4).jpg-35685ff71336920c40682956675e1739.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://Oak Tree_Leaf.png"
-dest_files=["res://.godot/imported/Oak Tree_Leaf.png-9ff63b2789d1297962d664ff5aed9d0b.s3tc.ctex"]
+source_file="res://Assets/bridge/Bridge_Untitled_Artwork (4).jpg"
+dest_files=["res://.godot/imported/Bridge_Untitled_Artwork (4).jpg-35685ff71336920c40682956675e1739.s3tc.ctex"]
 
 [params]
 

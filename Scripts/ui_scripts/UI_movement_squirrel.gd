@@ -68,6 +68,11 @@ func _input(event):
 		
 		if Input.is_action_just_pressed("clear_selection"):
 			clear_selection()
+			
+		if Input.is_action_pressed("sprint"):
+			speed=sprint
+		else:
+			speed = speed_normal
 	
 	
 func cast_ray_to_select():
@@ -153,12 +158,6 @@ func attack_enemy_object(enemy_object):
 		if select_box_parent[0] and enemy_object: 
 			select_box_parent[0].assign_target(enemy_object)
 
-func _process(delta):
-	if is_multiplayer_authority():
-		if Input.is_action_pressed("sprint"):
-			speed=sprint
-		else:
-			speed = speed_normal
 
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
@@ -179,4 +178,4 @@ func _physics_process(delta):
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
 	else:
-		global_position = global_position.lerp(syncPos, .5)	
+		global_position = global_position.lerp(syncPos, .5)

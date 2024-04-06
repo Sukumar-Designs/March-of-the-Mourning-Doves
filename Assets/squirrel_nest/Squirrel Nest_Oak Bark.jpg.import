@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cme47r2bp3xrd"
-path.s3tc="res://.godot/imported/Oak Tree_Oak Bark.jpg-be0b08bf313dbc47de3fc232b9f5e696.s3tc.ctex"
+uid="uid://1eji0d6ymg6v"
+path.s3tc="res://.godot/imported/Squirrel Nest_Oak Bark.jpg-a543bff2290045eb3a3eb04690f61ee6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://Oak Tree_Oak Bark.jpg"
-dest_files=["res://.godot/imported/Oak Tree_Oak Bark.jpg-be0b08bf313dbc47de3fc232b9f5e696.s3tc.ctex"]
+source_file="res://Assets/squirrel_nest/Squirrel Nest_Oak Bark.jpg"
+dest_files=["res://.godot/imported/Squirrel Nest_Oak Bark.jpg-a543bff2290045eb3a3eb04690f61ee6.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6fjq3lh8ic5w"
-path.s3tc="res://.godot/imported/Bridge_Untitled_Artwork (4).jpg-a1d845187c24e0fa33113253364b7e01.s3tc.ctex"
+uid="uid://dscuw1gv804kv"
+path.s3tc="res://.godot/imported/Bridge_Untitled_Artwork (5).jpg-fdd9618bea0d0be1cf64b7c460c84f56.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Full_Assets/Bridge_Untitled_Artwork (4).jpg"
-dest_files=["res://.godot/imported/Bridge_Untitled_Artwork (4).jpg-a1d845187c24e0fa33113253364b7e01.s3tc.ctex"]
+source_file="res://Assets/bridge/Bridge_Untitled_Artwork (5).jpg"
+dest_files=["res://.godot/imported/Bridge_Untitled_Artwork (5).jpg-fdd9618bea0d0be1cf64b7c460c84f56.s3tc.ctex"]
 
 [params]
 

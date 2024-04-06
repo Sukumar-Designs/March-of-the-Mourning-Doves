@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dscuw1gv804kv"
-path.s3tc="res://.godot/imported/Bridge_Untitled_Artwork (5).jpg-0f80d9b80db552b5f89bd4b05050a78b.s3tc.ctex"
+uid="uid://cgsfgftwnm6nq"
+path.s3tc="res://.godot/imported/Squirrel Nest_Pine Trunk.jpg-cfebc3cb263f542388d9e730d8e21854.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Full_Assets/Bridge_Untitled_Artwork (5).jpg"
-dest_files=["res://.godot/imported/Bridge_Untitled_Artwork (5).jpg-0f80d9b80db552b5f89bd4b05050a78b.s3tc.ctex"]
+source_file="res://Assets/squirrel_nest/Squirrel Nest_Pine Trunk.jpg"
+dest_files=["res://.godot/imported/Squirrel Nest_Pine Trunk.jpg-cfebc3cb263f542388d9e730d8e21854.s3tc.ctex"]
 
 [params]
 
