@@ -34,21 +34,18 @@ var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-#@onready var current_navigation_agent := $"../bird"
 # For selecting the objects
 @onready var camera := $Camera3D
 @onready var select_box := preload("res://Full_Assets/select_box_full.tscn")
 var select_box_parents = []
 
+var syncPos = Vector3(0,0,0)
+
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
-	#camera.current = is_multiplayer_authority()
-	## Assign the player to a side depending if a side is already taken
-	#var player_in_scene = get_tree().get_nodes_in_group("player")
 	add_to_group(side + "camera")
 	
 func _input(event):
-	#if is_multiplayer_authority():
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
 			if event.button_mask == 1:
@@ -166,6 +163,7 @@ func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var input_dir = Input.get_vector("camera_left", "camera_right", "camera_forward", "camera_back")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		syncPos = global_position
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -179,4 +177,6 @@ func _physics_process(delta):
 		new_position.x = clamp(new_position.x, left_limit, right_limit)
 		new_position.z = clamp(new_position.z, upper_limit, lower_limit)
 		position = new_position
+	else:
+		global_position = global_position.lerp(syncPos, .5)
 	

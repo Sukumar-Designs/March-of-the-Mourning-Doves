@@ -30,7 +30,6 @@ func _ready():
 		# Main base has 10x health
 		max_health *= 10
 		print_debug("added to main base")
-		#add_to_group("main_base")
 	
 	current_health = max_health
 	emit_signal("healthChanged", float(current_health)/float(max_health))
@@ -53,7 +52,7 @@ func _process(delta):
 		heal_tick_counter = heal_tick
 		set_health(heal_amount)
 	if initial_place:
-		spawn_creatures(sub_type, side, enemy)
+		spawn_creatures.rpc(sub_type, side, enemy)
 		initial_place = false
 
 	
@@ -69,7 +68,7 @@ func set_health(amount):
 	if current_health <= 0:
 		kill()
 
-func on_hit(damage, attacker):
+func on_hit(damage, _attacker):
 	set_health(-damage)
 
 func kill():
@@ -80,9 +79,10 @@ func kill():
 func try_deposite_item(item, amount):
 	return inventory.try_deposite_item(item, amount)
 	
-func open_inventory():
+func open_inventory(): 
 	inventory.open_inventory()
 
+@rpc("authority")
 func spawn_creatures(sub_type, side, enemy):
 	for i in range(0, number_of_spawns):
 		var creature = load("res://Full_Assets/creature_full.tscn")

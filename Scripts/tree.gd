@@ -73,7 +73,7 @@ func update_health_bar():
 	health_bar.update_health_bar(current_health, max_health)
 
 
-func on_hit(damage, current_attacker):
+func on_hit(damage, _current_attacker):
  	#self.set_multiplayer_authority(current_attacker.get_multiplayer_authority())
 	#print_debug(get_multiplayer_authority())
 	#attacker = current_attacker

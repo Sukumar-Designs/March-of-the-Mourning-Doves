@@ -16,7 +16,7 @@
 Label/font_sizes/font_size = 8
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:syncPos")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
@@ -472,6 +472,7 @@ texture_hover = ExtResource("11_y661k")
 stretch_mode = 0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_pcxnv")
 
 [connection signal="pressed" from="Sidebar/Building_Container/Building_Buttons/Buttons/Base" to="Sidebar" method="_on_base_pressed"]

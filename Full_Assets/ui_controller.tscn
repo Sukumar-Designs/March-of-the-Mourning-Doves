@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="10_8rn4q"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:syncPos")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
@@ -29,6 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 
 current = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_pcxnv")
 
 [node name="Mushroom2" parent="." instance=ExtResource("2_i2x28")]

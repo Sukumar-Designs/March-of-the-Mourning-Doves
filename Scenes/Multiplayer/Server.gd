@@ -11,7 +11,7 @@ func _ready():
 	
 	if "--server" in OS.get_cmdline_args():
 		hostGame()
-		
+
 func _process(delta):
 	pass
 
@@ -65,10 +65,10 @@ func hostGame():
 	# Set up multiplayer peer, the peer is the host
 	multiplayer.set_multiplayer_peer(peer)
 	print_debug("Waiting for Players...")
-	SendPlayerInformation($LineEdit/Label.text, multiplayer.get_unique_id())
 	
 func _on_host_pressed():
 	hostGame()
+	#SendPlayerInformation($LineEdit/Label.text, multiplayer.get_unique_id())
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()
