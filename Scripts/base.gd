@@ -79,8 +79,8 @@ func kill():
 func try_deposite_item(item, amount):
 	return inventory.try_deposite_item(item, amount)
 	
-func open_inventory(): 
-	inventory.open_inventory()
+func open_inventory(player_sidebar): 
+	inventory.open_inventory(player_sidebar)
 
 @rpc("authority")
 func spawn_creatures(sub_type, side, enemy):

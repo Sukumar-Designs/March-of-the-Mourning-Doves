@@ -72,30 +72,34 @@ var bridge_path = ui_paths + "bridge/Resource_Images/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("sidebar")
-	
-	for resource_cost in buildings:
-		for resource in buildings[resource_cost]:
-			buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
-	resources_ui.visible = false
-	buildings_ui.visible = false
-	base_inventory.visible = false
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+		add_to_group("sidebar")
+		
+		for resource_cost in buildings:
+			for resource in buildings[resource_cost]:
+				buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
+		resources_ui.visible = false
+		buildings_ui.visible = false
+		base_inventory.visible = false
+	else:
+		queue_free()
 
 func _process(delta):
 	fill_inventory_ui()
 
 
 func show_sidebar_tab(to_show, base_selected_inv):
-	if to_show == "resources":
-		resources_ui.visible = !resources_ui.visible
-		buildings_ui.visible = !buildings_ui.visible
-		base_inventory.visible = !base_inventory.visible 
-		if resources_ui.visible:
-			base_selected = base_selected_inv
-			fill_inventory_ui()
-		else:
-			base_selected = null
-			clear_preview()
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if to_show == "resources":
+			resources_ui.visible = !resources_ui.visible
+			buildings_ui.visible = !buildings_ui.visible
+			base_inventory.visible = !base_inventory.visible 
+			if resources_ui.visible:
+				base_selected = base_selected_inv
+				fill_inventory_ui()
+			else:
+				base_selected = null
+				clear_preview()
 		
 func fill_inventory_ui():
 	if base_selected:
@@ -105,11 +109,12 @@ func fill_inventory_ui():
 		
 		
 func try_to_build(building_type_preview, building_actual, to_build_type):
-	if player_can_affort(to_build_type):
-		base_type_selected = to_build_type
-		preview_building = building_type_preview.instantiate()
-		get_tree().current_scene.add_child(preview_building) 
-		building = building_actual
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if player_can_affort(to_build_type):
+			base_type_selected = to_build_type
+			preview_building = building_type_preview.instantiate()
+			get_tree().current_scene.add_child(preview_building) 
+			building = building_actual
 	
 func player_can_affort(to_build_type):
 	""" This function figures out if the player can afford the building they clicked on"""
@@ -122,7 +127,7 @@ func player_can_affort(to_build_type):
 	return can_affort
 
 func _input(event):
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if preview_building != null:
 			# If moving mouse, move the preview building
 			if event is InputEventMouseMotion:
@@ -141,23 +146,24 @@ func _input(event):
 
 
 func purchase_and_place():
-	if player_can_affort(base_type_selected):
-		for item in buildings[base_type_selected]: 
-			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
-		# Place construction ready to be worked on:
-		var instance = construction.instantiate()
-		instance.final_construction_type = building 
-		instance.position = ray.position + Vector3(1.55, 0, 1.55)
-		instance.final_construction_sub_type = "sub_type_" + base_type_selected
-		instance.side = side
-		instance.enemy = enemy
-		get_tree().current_scene.add_child(instance) 
-		clear_preview()
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if player_can_affort(base_type_selected):
+			for item in buildings[base_type_selected]: 
+				base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
+			# Place construction ready to be worked on:
+			var instance = construction.instantiate()
+			instance.final_construction_type = building 
+			instance.position = ray.position + Vector3(1.55, 0, 1.55)
+			instance.final_construction_sub_type = "sub_type_" + base_type_selected
+			instance.side = side
+			instance.enemy = enemy
+			get_tree().current_scene.add_child(instance) 
+			clear_preview()
 
 
 func clear_preview():
 	""" This function controls removing preview of building after selecting building """
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if preview_building != null and building != null:
 			preview_building.queue_free()
 			preview_building = null
@@ -165,24 +171,25 @@ func clear_preview():
 			base_type_selected = null
 		
 func _on_base_pressed():
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		clear_preview()
 		try_to_build(base_preview, base, "base")
+		print_debug('!!!!!! BASE PRESSED', multiplayer.get_unique_id())
 
 
 func _on_range_tower_1_pressed():
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		clear_preview()
 		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
 
 
 func _on_range_tower_2_pressed():
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		clear_preview()
 		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
 
 
 func _on_bridge_pressed():
-	if is_multiplayer_authority():
+	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 		clear_preview()
 		try_to_build(range_tower_1_preview, range_tower_1, "bridge")
