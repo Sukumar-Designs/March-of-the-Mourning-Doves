@@ -112,11 +112,12 @@ func try_to_select(result):
 		# Depositing resources in base on player's side
 		elif object.is_in_group(building_type) and object.is_in_group(side):
 			attack_enemy_object(object)
-			if object.is_in_group("has_inventory_true"):
-				object.open_inventory(sidebar)
+			if object.is_in_group("has_inventory_true") and object.is_in_group("sub_type_base_main_base"):
+				print_debug("TESTING OPEN INVENTORY OF Squirrel", object)
+				object.open_inventory()
 		elif object.is_in_group("side_spider"):
 			attack_enemy_object(object)
-			
+
 func clear_selection():
 	""" This function clears all selected soldiers """
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
@@ -128,7 +129,7 @@ func clear_selection():
 				select_box_parent[0].remove_child(select_box_parent[1])
 		# Then clear the list
 		select_box_parents = []
-		
+
 func multiple_select(object):
 	""" This function controls selecting multiple soldiers on your team """
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():

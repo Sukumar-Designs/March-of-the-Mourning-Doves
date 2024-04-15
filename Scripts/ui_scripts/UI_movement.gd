@@ -9,9 +9,9 @@ var other_structures_type = "main_type_other_structures"
 var resource_main_type = "main_type_resources"
 @export var enemy_type = "side_squirrel"
 
-# Sidebar variables
-@onready var sidebar_scene = "res://Full_Assets/sidebar.tscn"
-@onready var sidebar = $Sidebar
+## Sidebar variables
+#@onready var sidebar_scene = "res://Full_Assets/sidebar.tscn"
+#var sidebar# = $Sidebar
 
 # Camera Movement
 #var left_limit = -50
@@ -44,7 +44,14 @@ var syncPos = Vector3(0,0,0)
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	add_to_group(side + "camera")
-	
+	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		#var SBS = preload("res://Full_Assets/sidebar.tscn")
+		#var sbs = SBS.instantiate()
+		#sbs.name = "Sidebar"
+		#add_child(sbs)
+		#sidebar = $Sidebar
+	#else:
+		#print_debug("NO SIDEBAR ADDED")
 func _input(event):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
@@ -107,11 +114,12 @@ func try_to_select(result):
 		# Depositing resources in base on player's side
 		elif object.is_in_group(building_type) and object.is_in_group(side):
 			attack_enemy_object(object)
-			if object.is_in_group("has_inventory_true"):
-				object.open_inventory(sidebar)
+			if object.is_in_group("has_inventory_true") and object.is_in_group("sub_type_base_main_base"):
+				print_debug("TESTING OPEN INVENTORY OF BIRD", object)
+				object.open_inventory()
 		elif object.is_in_group("side_spider"):
 			attack_enemy_object(object)
-		
+
 func clear_selection():
 	""" This function clears all selected soldiers """
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():

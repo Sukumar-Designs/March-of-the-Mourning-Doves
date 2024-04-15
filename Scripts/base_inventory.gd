@@ -15,6 +15,8 @@ var rng
 	"sub_type_seed":preload("res://Full_Assets/Twig_Full.tscn")
 }
 
+@onready var sidebar = $"../Sidebar"
+
 func _ready():
 	# Variable for randomly displacing drops 
 	rng = RandomNumberGenerator.new()
@@ -47,12 +49,12 @@ func drop_all_items(parent):
 			instance.position.z = parent.position.z + offset
 			instance.position.y = parent.position.y 
 			get_tree().current_scene.add_child(instance)
-			
-func open_inventory(player_sidebar):
+
+func open_inventory():
+	print_debug("OPENING INVENTORY...")
 	#var sidebar = get_tree().get_nodes_in_group("sidebar")[0]
 	#print_debug(sidebar)
-	
-	player_sidebar.show_sidebar_tab("resources", self)
+	sidebar.show_sidebar_tab("resources", self)
 
 func get_inventory():
 	return inventory_items

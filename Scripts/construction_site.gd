@@ -6,15 +6,23 @@ extends CharacterBody3D
 @export var enemy = "enemy_squirrel"
 @export var has_inventory = "has_inventory_false"
 
+@onready var base = load("res://Full_Assets/bird_base_full.tscn")
+@onready var range_tower_1 = load("res://Assets/Pine_Tree.glb") 
+@onready var range_tower_2 = load("res://Full_Assets/tree_full.tscn")
+
+
 var final_construction_type
 var final_construction_sub_type
 
 # Health variables
-var max_health = 50
+var max_health = 10
 var current_health
 @onready var health_bar = $HealthBar
 
 func _ready():
+	var player = get_tree().get_first_node_in_group(side + "camera")
+	if player:
+		$MultiplayerSynchronizer.set_multiplayer_authority(str(player.name).to_int())
 	# Add to 5 basic groups
 	add_to_group(main_type)
 	add_to_group(sub_type)
@@ -23,15 +31,24 @@ func _ready():
 	add_to_group(has_inventory)
 	current_health = max_health
 
+
 func construct():
-	if final_construction_type:
-		var instance = final_construction_type.instantiate()
-		instance.position = self.position
-		instance.sub_type = final_construction_sub_type
-		instance.side = side
-		instance.enemy = enemy
-		get_tree().current_scene.add_child(instance) 
-		queue_free()
+	var instance
+	if final_construction_sub_type == "sub_type_base":
+		instance = base.instantiate()
+	elif final_construction_sub_type == "sub_type_range_tower_1":
+		instance = range_tower_1.instantiate()
+	elif final_construction_sub_type == "sub_type_range_tower_2":
+		instance = range_tower_2.instantiate()
+	
+	#if final_construction_type:
+		#var instance = final_construction_type.instantiate()
+	instance.position = self.position
+	instance.sub_type = final_construction_sub_type
+	instance.side = side
+	instance.enemy = enemy
+	get_tree().current_scene.add_child(instance) 
+	queue_free()
 
 # Health Based Function
 func set_health(amount):

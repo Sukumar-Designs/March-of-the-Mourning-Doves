@@ -22,7 +22,7 @@ var building
 var base_selected # The base the player clicked on to open sidebar
 var base_type_selected
 
-@onready var ray_caster = $".."
+var ray_caster 
 var terrian_name = "Terrian_Area3D"
 var ray
 # Resource Type
@@ -72,35 +72,39 @@ var bridge_path = ui_paths + "bridge/Resource_Images/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		add_to_group("sidebar")
-		
-		for resource_cost in buildings:
-			for resource in buildings[resource_cost]:
-				buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
-		resources_ui.visible = false
-		buildings_ui.visible = false
-		base_inventory.visible = false
-	else:
-		queue_free()
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+	add_to_group("sidebar")
+	
+	for resource_cost in buildings:
+		for resource in buildings[resource_cost]:
+			buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
+	resources_ui.visible = false
+	buildings_ui.visible = false
+	base_inventory.visible = false
+	#self.visible = false
+	#else:
+		#queue_free()
 
 func _process(delta):
 	fill_inventory_ui()
 
 
 func show_sidebar_tab(to_show, base_selected_inv):
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if to_show == "resources":
-			resources_ui.visible = !resources_ui.visible
-			buildings_ui.visible = !buildings_ui.visible
-			base_inventory.visible = !base_inventory.visible 
-			if resources_ui.visible:
-				base_selected = base_selected_inv
-				fill_inventory_ui()
-			else:
-				base_selected = null
-				clear_preview()
-		
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+		#if to_show == "resources":
+	resources_ui.visible = !resources_ui.visible
+	buildings_ui.visible = !buildings_ui.visible
+	base_inventory.visible = !base_inventory.visible 
+	if resources_ui.visible:
+		base_selected = base_selected_inv
+		fill_inventory_ui()
+	else:
+		base_selected = null
+		clear_preview()
+	#else:
+		#print_debug("!!!!!! CANNOT OPEN WINDOW !!!!!!")
+
+
 func fill_inventory_ui():
 	if base_selected:
 		var base_selected_inventory = base_selected.get_inventory()
@@ -109,72 +113,92 @@ func fill_inventory_ui():
 		
 		
 func try_to_build(building_type_preview, building_actual, to_build_type):
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if player_can_affort(to_build_type):
-			base_type_selected = to_build_type
-			preview_building = building_type_preview.instantiate()
-			get_tree().current_scene.add_child(preview_building) 
-			building = building_actual
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if player_can_affort(to_build_type):
+		base_type_selected = to_build_type
+		preview_building = building_type_preview.instantiate()
+		get_tree().current_scene.add_child(preview_building) 
+		building = building_actual
 	
 func player_can_affort(to_build_type):
 	""" This function figures out if the player can afford the building they clicked on"""
-	var can_affort = true
+	var can_afford = true
 	for item in buildings[to_build_type]: 
-		# Amount player has - cost  
+		# Amount player has - cost
 		var difference = base_selected.get_inventory()[item.to_lower()] - buildings[to_build_type][item][1]
 		if difference < 0:
-			can_affort = false
-	return can_affort
+			base_selected = false
+	return base_selected
+
+func get_ray_caster():
+	if !ray_caster:
+		var players = get_tree().get_nodes_in_group("player")
+		for player in players:
+			if str(player.name) == str(multiplayer.get_unique_id()):
+				ray_caster = player
+
 
 func _input(event):
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if preview_building != null:
-			# If moving mouse, move the preview building
-			if event is InputEventMouseMotion:
-				ray = ray_caster.cast_ray_to_select()
-				# If looking at the ground (as oppose to off to infinity)
-				if ray != { }:
-					preview_building.position = ray.position 
-					
-			elif Input.is_action_just_pressed("place") and ray:
-				if ray != { } and ray["collider"].name == terrian_name:
-					purchase_and_place()
-			
-			
-			if Input.is_action_just_pressed("clear_selection"):
-				clear_preview()
-
-
-func purchase_and_place():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if player_can_affort(base_type_selected):
-			for item in buildings[base_type_selected]: 
-				base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
-			# Place construction ready to be worked on:
-			var instance = construction.instantiate()
-			instance.final_construction_type = building 
-			instance.position = ray.position + Vector3(1.55, 0, 1.55)
-			instance.final_construction_sub_type = "sub_type_" + base_type_selected
-			instance.side = side
-			instance.enemy = enemy
-			get_tree().current_scene.add_child(instance) 
+	if !ray_caster:
+		get_ray_caster()
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if preview_building != null:
+		# If moving mouse, move the preview building
+		if event is InputEventMouseMotion:
+			ray = ray_caster.cast_ray_to_select()
+			# If looking at the ground (as oppose to off to infinity)
+			if ray != { }:
+				preview_building.position = ray.position 
+				
+		elif Input.is_action_just_pressed("place") and ray:
+			if ray != { } and ray["collider"].name == terrian_name:
+				purchase_building()
+		if Input.is_action_just_pressed("clear_selection"):
 			clear_preview()
+
+
+func find_ray_caster():
+	var players = get_tree().get_nodes_in_group("players")
+	for player in players:
+		if player.name == multiplayer.get_unique_id():
+			ray_caster = player
+
+func purchase_building():
+	if player_can_affort(base_type_selected):
+		for item in buildings[base_type_selected]: 
+			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
+		place_building.rpc(ray, base_type_selected, side, enemy)
+		place_building(ray, base_type_selected, side, enemy)
+
+
+@rpc("any_peer") 
+func place_building(placeRay, base_type_selected_string, s, e):
+	print_debug("!!!!!!!!!!!!!!!!!!! ", base_type_selected_string)
+	# Place construction ready to be worked on:
+	var instance = construction.instantiate()
+	instance.final_construction_type = building 
+	instance.position = placeRay.position + Vector3(1.55, 0, 1.55)
+	instance.final_construction_sub_type = "sub_type_" + base_type_selected_string
+	instance.side = s
+	instance.enemy = e
+	get_tree().current_scene.add_child(instance) 
+	clear_preview()
 
 
 func clear_preview():
 	""" This function controls removing preview of building after selecting building """
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if preview_building != null and building != null:
-			preview_building.queue_free()
-			preview_building = null
-			building = null
-			base_type_selected = null
-		
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if preview_building != null and building != null:
+		preview_building.queue_free()
+		preview_building = null
+		building = null
+		base_type_selected = null
+
+
 func _on_base_pressed():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		clear_preview()
-		try_to_build(base_preview, base, "base")
-		print_debug('!!!!!! BASE PRESSED', multiplayer.get_unique_id())
+	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
+	clear_preview()
+	try_to_build(base_preview, base, "base")
 
 
 func _on_range_tower_1_pressed():

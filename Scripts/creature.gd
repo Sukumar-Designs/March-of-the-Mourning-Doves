@@ -43,7 +43,6 @@ func _ready():
 	
 	var player = get_tree().get_first_node_in_group(side + "camera")
 	if player:
-		print_debug("PLAYER FOUND?:", player)
 		$MultiplayerSynchronizer.set_multiplayer_authority(str(player.name).to_int())
 
 	
