@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3xc1luwy3xw8"]
+
+[ext_resource type="PackedScene" uid="uid://dbrw0q4itgyit" path="res://Assets/bridge/Bridge.glb" id="1_tww4q"]
+
+[node name="Bridge" instance=ExtResource("1_tww4q")]
+
+[node name="Cube_103" parent="." index="0"]
+transform = Transform3D(6.39555, 0, 0, 0, 2.91388, 0, 0, 0, 2.91388, 2.08165e-12, 2.08165e-12, 2.08165e-12)

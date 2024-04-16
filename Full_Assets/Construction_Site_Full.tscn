@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://42b8wa07nqxe"]
+[gd_scene load_steps=6 format=3 uid="uid://42b8wa07nqxe"]
 
 [ext_resource type="Script" path="res://Scripts/construction_site.gd" id="1_b5pte"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_5mv0g"]
-[ext_resource type="PackedScene" path="res://Full_Assets/character_health_bar.tscn" id="3_8ksrh"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="3_8ksrh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaf58"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x2xar"]
 
 [node name="ConstructionSite" type="CharacterBody3D"]
 transform = Transform3D(0.792483, -0.00645284, 0.0575341, 0.0045752, 1.41574, -0.0129956, -0.0574665, 0.0236873, 0.792385, -0.00787766, 2.54598, 0.0289175)
@@ -25,3 +27,7 @@ shape = SubResource("CapsuleShape3D_vaf58")
 [node name="HealthBar" parent="." instance=ExtResource("3_8ksrh")]
 transform = Transform3D(0.036, -3.63798e-12, -2.32831e-10, -5.45697e-12, 0.013, 0, 0, 0, 0.041, 1.39698e-09, 4.00483, -7.45058e-09)
 billboard = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_x2xar")

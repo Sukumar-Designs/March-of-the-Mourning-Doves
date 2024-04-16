@@ -24,8 +24,11 @@ var rng
 var number_of_spawns = 5
 @onready var creature = preload("res://Full_Assets/creature_full.tscn") 
 var initial_place = true
+#var syncPos = Vector3(0,0,0)
+
 
 func _ready():
+	#$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if sub_type == "sub_type_base_main_base":
 		# Main base has 10x health
 		max_health *= 10
@@ -82,6 +85,7 @@ func try_deposite_item(item, amount):
 func open_inventory(): 
 	inventory.open_inventory()
 
+
 @rpc("authority")
 func spawn_creatures(sub_type, side, enemy):
 	for i in range(0, number_of_spawns):
@@ -99,3 +103,6 @@ func spawn_creatures(sub_type, side, enemy):
 			z_offset = -z_offset
 		instance.position = self.position + Vector3(offset, (self.position.y/self.position.y)-1, z_offset)
 		get_tree().current_scene.add_child(instance)
+
+
+

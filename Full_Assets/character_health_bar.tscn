@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c34hc8o0nlbf0"]
+[gd_scene load_steps=3 format=3 uid="uid://3na5vq7jdqi3"]
 
 [ext_resource type="Texture2D" uid="uid://bvassvlxwh2l6" path="res://Assets/Background_map.jpg" id="1_naoon"]
 [ext_resource type="Script" path="res://Scripts/Character_Health_Bar_Controller.gd" id="2_mbwjo"]
