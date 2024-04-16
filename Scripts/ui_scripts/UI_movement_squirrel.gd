@@ -99,7 +99,7 @@ func try_to_select(result):
 		# If choosing a soldier on your side, select them
 		if object.is_in_group(side) and object.is_in_group(creature_main_type):
 			multiple_select(object)
-			creature_positions.append(object)
+			#creature_positions.append(object)
 		# Else, if you're selecting an enemy
 		elif object.is_in_group(enemy_type):
 			# if you have you're type=soldier or building selected, attack enemy soldier
@@ -115,8 +115,6 @@ func try_to_select(result):
 			if object.is_in_group("has_inventory_true") and object.is_in_group("sub_type_base_main_base"):
 				print_debug("TESTING OPEN INVENTORY OF Squirrel", object)
 				object.open_inventory()
-		elif object.is_in_group("side_spider"):
-			attack_enemy_object(object)
 
 func clear_selection():
 	""" This function clears all selected soldiers """

@@ -117,8 +117,7 @@ func try_to_select(result):
 			if object.is_in_group("has_inventory_true") and object.is_in_group("sub_type_base_main_base"):
 				print_debug("TESTING OPEN INVENTORY OF BIRD", object)
 				object.open_inventory()
-		elif object.is_in_group("side_spider"):
-			attack_enemy_object(object)
+				
 
 func clear_selection():
 	""" This function clears all selected soldiers """

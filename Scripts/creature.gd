@@ -93,7 +93,6 @@ func _process(delta):
 				if attack_cooldown_counter <= 0:
 					# Reset attack cooldown
 					attack_cooldown_counter = attack_cooldown
-					print_debug(multiplayer.get_unique_id(), "TRY TO ATTACK")
 					attack.rpc(current_target.get_path())
 					attack(current_target.get_path())
 
@@ -129,7 +128,6 @@ func set_health(amount):
 	update_health_bar()
 	if current_health <= 0:
 		kill.rpc()
-		print_debug("KILLED", multiplayer.get_unique_id())
 
 func update_health_bar():
 	""" This function controlls the health bar """

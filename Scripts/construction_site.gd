@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
 @onready var range_tower_1 = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_2 = load("res://Full_Assets/tree_full.tscn")
-
+@onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
 
 var final_construction_type
 var final_construction_sub_type
@@ -40,6 +40,8 @@ func construct():
 		instance = range_tower_1.instantiate()
 	elif final_construction_sub_type == "sub_type_range_tower_2":
 		instance = range_tower_2.instantiate()
+	elif final_construction_sub_type == "sub_type_bridge":
+		instance = bridge.instantiate()
 	
 	#if final_construction_type:
 		#var instance = final_construction_type.instantiate()

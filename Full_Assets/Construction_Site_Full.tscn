@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/construction_site.gd" id="1_b5pte"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_5mv0g"]
-[ext_resource type="PackedScene" uid="uid://c34hc8o0nlbf0" path="res://Full_Assets/character_health_bar.tscn" id="3_8ksrh"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="3_8ksrh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaf58"]
 

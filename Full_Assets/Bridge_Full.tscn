@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvs5pgblmb17e"]
+
+[ext_resource type="Script" path="res://Scripts/Bridge.gd" id="1_n7qlq"]
+[ext_resource type="PackedScene" uid="uid://b3xc1luwy3xw8" path="res://Assets/bridge/bridge.tscn" id="1_pm3tf"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="3_qxbge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_se146"]
+size = Vector3(6.58655, 2.43213, 1.91226)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_88xfm"]
+
+[node name="Bridge" type="CharacterBody3D"]
+script = ExtResource("1_n7qlq")
+
+[node name="Bridge_visual" parent="." instance=ExtResource("1_pm3tf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.89013, 0)
+
+[node name="HealthBar" parent="." instance=ExtResource("3_qxbge")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(3.90589, 7.45058e-09, 3.72529e-07, -1.2666e-07, 3.90589, 8.34465e-07, 7.89762e-07, 2.38419e-07, 3.90589, 0.281918, 4.68174, 0.0481708)
+shape = SubResource("BoxShape3D_se146")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.16749, 3.72529e-08, 2.83122e-07, -8.9407e-08, 3.16749, 8.34465e-07, 5.66244e-07, 2.38419e-07, 3.16749, -0.183607, 0.251485, -0.0791928)
+shape = SubResource("CapsuleShape3D_88xfm")

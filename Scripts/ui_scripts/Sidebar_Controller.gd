@@ -15,6 +15,9 @@ var enemy_type = "side_squirrel"
 @onready var range_tower_1_preview = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_1 = load("res://Full_Assets/tree_full.tscn")
 
+@onready var bridge_preview = load("res://Full_Assets/tree_full.tscn")
+@onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
+
 @onready var construction = load("res://Full_Assets/Construction_Site_Full.tscn")
 
 var preview_building
@@ -196,24 +199,20 @@ func clear_preview():
 
 
 func _on_base_pressed():
-	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 	clear_preview()
 	try_to_build(base_preview, base, "base")
 
 
 func _on_range_tower_1_pressed():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		clear_preview()
-		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
+	clear_preview()
+	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_1")
 
 
 func _on_range_tower_2_pressed():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		clear_preview()
-		try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
+	clear_preview()
+	try_to_build(range_tower_1_preview, range_tower_1, "range_tower_2")
 
 
 func _on_bridge_pressed():
-	if self.get_multiplayer_authority() == multiplayer.get_unique_id():
-		clear_preview()
-		try_to_build(range_tower_1_preview, range_tower_1, "bridge")
+	clear_preview()
+	try_to_build(bridge_preview, bridge, "bridge")
