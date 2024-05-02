@@ -69,6 +69,7 @@ func hostGame():
 func _on_host_pressed():
 	hostGame()
 	#SendPlayerInformation($LineEdit/Label.text, multiplayer.get_unique_id())
+	$ServerBrowser.setUpBroadcast($LineEdit.text + "s server")
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()

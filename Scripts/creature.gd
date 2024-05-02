@@ -158,7 +158,7 @@ func attack(target):
 func _on_area_3d_body_entered(body):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		# If the object is an enemy
-		if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("sub_type_construction") or body.is_in_group("side_spider"):
+		if body.is_in_group(enemy_type) or body.is_in_group("main_type_other_structures") or body.is_in_group("sub_type_construction"):
 			targets_in_range.append(body)
 			 ##If there's no target
 			#if !target:
@@ -167,7 +167,8 @@ func _on_area_3d_body_entered(body):
 		elif body.is_in_group(can_pick_up) and body == current_target:
 			# Try to pick up the item
 			if inventory.try_pick_up_item(body):
-				body.queue_free()
+				body.kill.rpc()
+				body.kill()
 				current_target = null
 		elif body.is_in_group("sub_type_main_building") and body.is_in_group(side) and body == current_target:
 			# Creature has arrived at the building

@@ -46,6 +46,7 @@ func construct():
 	#if final_construction_type:
 		#var instance = final_construction_type.instantiate()
 	instance.position = self.position
+	instance.position.y += 10
 	instance.sub_type = final_construction_sub_type
 	instance.side = side
 	instance.enemy = enemy

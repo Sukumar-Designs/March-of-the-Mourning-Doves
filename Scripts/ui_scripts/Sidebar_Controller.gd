@@ -15,7 +15,7 @@ var enemy_type = "side_squirrel"
 @onready var range_tower_1_preview = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_1 = load("res://Full_Assets/tree_full.tscn")
 
-@onready var bridge_preview = load("res://Full_Assets/tree_full.tscn")
+@onready var bridge_preview = load("res://Assets/Mushroom.glb")
 @onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
 
 @onready var construction = load("res://Full_Assets/Construction_Site_Full.tscn")

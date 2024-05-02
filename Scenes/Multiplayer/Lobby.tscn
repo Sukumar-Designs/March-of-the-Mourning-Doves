@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkgxji66brw7e"]
+[gd_scene load_steps=3 format=3 uid="uid://dkgxji66brw7e"]
 
 [ext_resource type="Script" path="res://Scenes/Multiplayer/Server.gd" id="1_nwqde"]
+[ext_resource type="Script" path="res://Scenes/Multiplayer/ServerBrowser.gd" id="2_kv1ex"]
 
 [node name="Lobby" type="Node"]
 script = ExtResource("1_nwqde")
@@ -40,6 +41,16 @@ offset_right = -6.0
 offset_bottom = 26.0
 text = "Name"
 
+[node name="ServerBrowser" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_kv1ex")
+
+[node name="BroadcastTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="timeout" from="BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]

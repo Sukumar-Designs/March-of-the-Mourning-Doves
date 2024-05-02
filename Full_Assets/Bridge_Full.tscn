@@ -9,7 +9,7 @@ size = Vector3(6.58655, 2.43213, 1.91226)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_88xfm"]
 
-[node name="Bridge" type="CharacterBody3D"]
+[node name="Bridge3" type="CharacterBody3D"]
 script = ExtResource("1_n7qlq")
 
 [node name="Bridge_visual" parent="." instance=ExtResource("1_pm3tf")]

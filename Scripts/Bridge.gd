@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 
 var main_type = "main_type_buildings"
 var sub_type = "sub_type_bridge"
@@ -10,6 +10,8 @@ var has_inventory = "has_inventory_false"
 var max_health = 10
 var current_health
 @onready var health_bar = $HealthBar
+
+var GRAVITY = 5
 
 func _ready():
 	#var player = get_tree().get_first_node_in_group(side + "camera")
@@ -49,3 +51,4 @@ func on_hit(damage, attacker):
 @rpc("any_peer")
 func kill():
 	queue_free()
+
