@@ -48,9 +48,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_kv1ex")
 
-[node name="BroadcastTimer" type="Timer" parent="."]
+[node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
 
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="timeout" from="BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="timeout" from="ServerBrowser/BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]
