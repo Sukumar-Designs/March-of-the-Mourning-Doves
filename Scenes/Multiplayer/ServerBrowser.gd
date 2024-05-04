@@ -9,7 +9,7 @@ var broadcaster : PacketPeerUDP
 var listener : PacketPeerUDP
 @export var listenPort : int = 8911
 @export var broadcastPort : int = 8912
-@export var broadcastAddress : String = '192.168.1.255'
+@export var broadcastAddress : String = '192.168.1.255' # Local IP4 Address with .255 replacing last numbers
 
 func _ready():
 	broadcastTimer = $BroadcastTimer

@@ -1,7 +1,7 @@
 extends Node
 
 # @export var Address = "127.0.0.1"
-@export var Address = "192.168.1.177" # The address you are connecting to (if server, it's 0.0.0.0
+@export var Address = "192.168.1.177" # IP4 Address
 @export var port = 8910
 var peer 
 func _ready():
