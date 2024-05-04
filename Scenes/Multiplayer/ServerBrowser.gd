@@ -9,7 +9,7 @@ var broadcaster : PacketPeerUDP
 var listener : PacketPeerUDP
 @export var listenPort : int = 8911
 @export var broadcastPort : int = 8912
-@export var broadcastAddress : String = '172.20.10.255'
+@export var broadcastAddress : String = '192.168.1.255'
 
 func _ready():
 	broadcastTimer = $BroadcastTimer
@@ -21,8 +21,10 @@ func setUp():
 	
 	if ok == OK:
 		print_debug("Bound to Listen Port Successful", str(listenPort))
+		$Label.text = "Bound to Listen Port: true"
 	else:
 		print_debug("Failed to bind to Listen Port!")
+		$Label.text = "Bound to Listen Port: false"
 
 
 func setUpBroadcast(name):
@@ -39,7 +41,6 @@ func setUpBroadcast(name):
 		print_debug("Bound to Broadcast Port Successful", str(broadcastPort))
 	else:
 		print_debug("Failed to bind to Broadcast Port!")
-		
 	$BroadcastTimer.start()
 
 func _process(delta):
@@ -49,7 +50,7 @@ func _process(delta):
 		var bytes = listener.get_packet()
 		var data = bytes.get_string_from_ascii()
 		var roomInfo = JSON.parse_string(data)
-		print_debug("Server IP: " + serverip + " Server Port: " + serverPort + " Room Info: " + roomInfo)
+		print_debug("Server IP: " + str(serverip) + " Server Port: " + str(serverPort) + " Room Info: " + str(roomInfo))
 
 func _on_broadcast_timer_timeout():
 	print("Broadcasting Game!")
