@@ -12,9 +12,8 @@ func _ready():
 	
 	if "--server" in OS.get_cmdline_args():
 		hostGame()
-
-func _process(delta):
-	pass
+		
+	$ServerBrowser.joinGame.connect(joinByIP)
 
 # Called on the server and client
 func peer_connected(id):
@@ -73,8 +72,11 @@ func _on_host_pressed():
 	$ServerBrowser.setUpBroadcast($LineEdit.text + "s server")
 
 func _on_join_pressed():
+	joinByIP(Address)
+
+func joinByIP(ip):
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(Address, port)
+	peer.create_client(ip, port)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
 
