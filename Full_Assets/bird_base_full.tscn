@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_hc1ws"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_d73xk"]
 [ext_resource type="Script" path="res://Scripts/base_inventory.gd" id="3_htu3h"]
-[ext_resource type="PackedScene" uid="uid://bimx7u0rb8wit" path="res://Assets/Birdie Base.glb" id="4_q3pk5"]
+[ext_resource type="PackedScene" uid="uid://bimx7u0rb8wit" path="res://Assets/Birdie Base/Birdie Base.glb" id="4_q3pk5"]
 [ext_resource type="PackedScene" uid="uid://c5snj02lfcnc4" path="res://Full_Assets/sidebar.tscn" id="5_cktwg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3aeda"]
