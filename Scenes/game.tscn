@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=17 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="PackedScene" uid="uid://b3xc1luwy3xw8" path="res://Assets/bridge/bridge.tscn" id="13_dyt2c"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
+[ext_resource type="PackedScene" uid="uid://dywh4dirr7isn" path="res://Assets/Squirrel Mountain/Squirrel Mountain.glb" id="14_2uebb"]
 [ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/tree_full.tscn" id="14_kow6g"]
 [ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Twig_Full.tscn" id="15_4qpbd"]
 
@@ -164,6 +165,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 20.0555, -63.0925)
 
 [node name="Bridge" parent="RigidBody3D" instance=ExtResource("13_dyt2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.1758, 10.6143)
+
+[node name="Squirrel Mountain" parent="." instance=ExtResource("14_2uebb")]
+transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386, -45.5969)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
