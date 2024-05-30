@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://clipr1cd4ykpf"]
+
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_ees5n"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_se0qi"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_v5d88"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="6_wybch"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_sbl3x"]
+[ext_resource type="Texture2D" uid="uid://blnkfmvcvi7ib" path="res://Assets/Base Plate/Base Plate_Moss Texture.jpg" id="9_o2r4r"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_utfnn"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="11_7kxyk"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="12_ql6ht"]
+
+[sub_resource type="Resource" id="Resource_krkwf"]
+script = ExtResource("10_utfnn")
+amount = 1
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_pawuf"]
+script = ExtResource("4_v5d88")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_8gcdq"]
+script = ExtResource("11_7kxyk")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 20.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_seqrj"]
+script = ExtResource("2_se0qi")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_krkwf"), SubResource("Resource_pawuf"), SubResource("Resource_8gcdq")])
+
+[sub_resource type="Resource" id="Resource_2iu2o"]
+script = ExtResource("12_ql6ht")
+radius = 3.03782
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ne265"]
+albedo_texture = ExtResource("9_o2r4r")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w12c0"]
+size = Vector3(6, 1, 4)
+
+[node name="Terrain" type="Node3D"]
+
+[node name="Grass" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53694, 1.27427, 0.133096)
+script = ExtResource("1_ees5n")
+modifier_stack = SubResource("Resource_seqrj")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Grass"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("6_wybch")
+source_ignore_rotation = false
+path = "res://Full_Assets/grass.tscn"
+
+[node name="SphereShape" type="Node3D" parent="Grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66162, 1.19209e-07, -0.977096)
+visible = false
+script = ExtResource("7_sbl3x")
+shape = SubResource("Resource_2iu2o")
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.5)
+size = Vector3(6, 1, 4)
+material = SubResource("StandardMaterial3D_ne265")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -0.5)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground/CSGBox3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0.5)
+shape = SubResource("BoxShape3D_w12c0")
