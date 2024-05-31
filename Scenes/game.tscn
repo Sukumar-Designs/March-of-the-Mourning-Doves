@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=37 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -20,7 +20,10 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="17_kmr02"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="18_idgsx"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="19_nofqc"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="21_3isri"]
+[ext_resource type="PackedScene" uid="uid://b6tv2ureagved" path="res://Assets/Flowers/Pink Flower.glb" id="22_3y2xp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="22_lhnpy"]
+[ext_resource type="PackedScene" uid="uid://d1ed7w2si5s04" path="res://Assets/Flowers/Orange Flower.glb" id="23_vwddw"]
+[ext_resource type="PackedScene" uid="uid://bbnrixvsh8rqy" path="res://Assets/Flowers/Blue Flower.glb" id="24_xxtko"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
 size = Vector3(3.86266, 1, 1.97599)
@@ -28,27 +31,27 @@ size = Vector3(3.86266, 1, 1.97599)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x00et"]
 size = Vector3(3.84933, 0.21582, 5.47998)
 
-[sub_resource type="Resource" id="Resource_k7wex"]
+[sub_resource type="Resource" id="Resource_l7n34"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
-override_global_seed = false
-custom_seed = 0
+override_global_seed = true
+custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_reejg"]
+[sub_resource type="Resource" id="Resource_mt02x"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
+scale = Vector3(0, 0, 0)
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_de13n"]
+[sub_resource type="Resource" id="Resource_a2ktx"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -64,13 +67,57 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_m40v7"]
+[sub_resource type="Resource" id="Resource_obiav"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_k7wex"), SubResource("Resource_reejg"), SubResource("Resource_de13n")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_l7n34"), SubResource("Resource_mt02x"), SubResource("Resource_a2ktx")])
 
-[sub_resource type="Resource" id="Resource_edmm4"]
-script = ExtResource("21_3isri")
-radius = 160.621
+[sub_resource type="Resource" id="Resource_6tbds"]
+script = ExtResource("22_lhnpy")
+size = Vector3(1400, 2, 1400)
+
+[sub_resource type="Resource" id="Resource_7p6m7"]
+script = ExtResource("15_30fw0")
+amount = 10000
+enabled = true
+override_global_seed = true
+custom_seed = 4
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_ot4dk"]
+script = ExtResource("16_xyi13")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_3nre4"]
+script = ExtResource("17_kmr02")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 20.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_ejcsf"]
+script = ExtResource("14_h5mya")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_7p6m7"), SubResource("Resource_ot4dk"), SubResource("Resource_3nre4")])
+
+[sub_resource type="Resource" id="Resource_4f31u"]
+script = ExtResource("22_lhnpy")
+size = Vector3(1400, 2, 1400)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_16vvh")
@@ -167,8 +214,11 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 [node name="Terrain" parent="." instance=ExtResource("11_dh6q5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Terrain"]
+omni_range = 129.777
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, 5.58794e-09, -0.991086, 0.133225, -256.814, 56.268, -25.5591)
+transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, 5.58794e-09, -0.991086, 0.133225, -3.9489, 95.7571, -59.962)
 light_energy = 0.39
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 48.12
@@ -215,26 +265,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 20.0555, -63.0925)
 [node name="Squirrel Mountain" parent="." instance=ExtResource("14_2uebb")]
 transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386, -45.5969)
 
-[node name="Grass" type="Node3D" parent="."]
+[node name="Pink_Flowers" type="Node3D" parent="."]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53694, 1.27427, 0.133096)
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_m40v7")
+modifier_stack = SubResource("Resource_obiav")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="Grass"]
-transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+[node name="ScatterItem" type="Node3D" parent="Pink_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.18735, 0, 0, 0)
 script = ExtResource("18_idgsx")
-source_scale_multiplier = 0.25
-source_ignore_rotation = false
-path = "res://Full_Assets/grass.tscn"
+path = "res://Assets/Flowers/Pink Flower.glb"
 
-[node name="SphereShape" type="Node3D" parent="Grass"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66162, 1.19209e-07, -0.977096)
+[node name="SphereShape" type="Node3D" parent="Pink_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 script = ExtResource("19_nofqc")
-shape = SubResource("Resource_edmm4")
+shape = SubResource("Resource_6tbds")
+
+[node name="Orange_Flowers" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
+script = ExtResource("13_0gfyy")
+modifier_stack = SubResource("Resource_ejcsf")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Orange_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.18735, 0, 0, 0)
+script = ExtResource("18_idgsx")
+path = "res://Assets/Flowers/Orange Flower.glb"
+
+[node name="SphereShape" type="Node3D" parent="Orange_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+script = ExtResource("19_nofqc")
+shape = SubResource("Resource_4f31u")
+
+[node name="Pink Flower" parent="." instance=ExtResource("22_3y2xp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.4358, 9.84109, 64.0449)
+
+[node name="Orange Flower" parent="." instance=ExtResource("23_vwddw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.4397, 10.0337, 63.8253)
+
+[node name="Blue Flower" parent="." instance=ExtResource("24_xxtko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.0365, 8.9054, 64.9118)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
