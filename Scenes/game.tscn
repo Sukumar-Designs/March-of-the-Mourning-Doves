@@ -31,7 +31,7 @@ size = Vector3(3.86266, 1, 1.97599)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x00et"]
 size = Vector3(3.84933, 0.21582, 5.47998)
 
-[sub_resource type="Resource" id="Resource_l7n34"]
+[sub_resource type="Resource" id="Resource_dhmma"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -40,7 +40,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_mt02x"]
+[sub_resource type="Resource" id="Resource_qyc15"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -51,7 +51,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_a2ktx"]
+[sub_resource type="Resource" id="Resource_qmo0o"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -67,15 +67,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_obiav"]
+[sub_resource type="Resource" id="Resource_aa6f1"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_l7n34"), SubResource("Resource_mt02x"), SubResource("Resource_a2ktx")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_dhmma"), SubResource("Resource_qyc15"), SubResource("Resource_qmo0o")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_7p6m7"]
+[sub_resource type="Resource" id="Resource_q0tw3"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -84,7 +84,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ot4dk"]
+[sub_resource type="Resource" id="Resource_tyqab"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -95,7 +95,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_3nre4"]
+[sub_resource type="Resource" id="Resource_oexwn"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -111,9 +111,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ejcsf"]
+[sub_resource type="Resource" id="Resource_hld3s"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_7p6m7"), SubResource("Resource_ot4dk"), SubResource("Resource_3nre4")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_q0tw3"), SubResource("Resource_tyqab"), SubResource("Resource_oexwn")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -214,22 +214,15 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 [node name="Terrain" parent="." instance=ExtResource("11_dh6q5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Terrain"]
-omni_range = 129.777
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.154297, -0.13163, -0.979217, 0.988025, -0.0205563, -0.152921, 5.58794e-09, -0.991086, 0.133225, -3.9489, 95.7571, -59.962)
-light_energy = 0.39
+transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 16.9435, 196.619, 146.931)
+light_energy = 5.0
+light_indirect_energy = 12.428
 light_volumetric_fog_energy = 0.0
-light_angular_distance = 48.12
-shadow_bias = 0.0
+light_angular_distance = 28.18
+shadow_enabled = true
+shadow_bias = 10.0
 shadow_normal_bias = 4.952
-shadow_reverse_cull_face = true
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(0.780856, -8.37767e-07, 0.624711, -0.327238, -0.851828, 0.409029, 0.532146, -0.523822, -0.665155, -107.552, 23.0277, -854.132)
-visible = false
-light_energy = 0.317
 
 [node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
@@ -269,7 +262,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_obiav")
+modifier_stack = SubResource("Resource_aa6f1")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -279,7 +272,6 @@ script = ExtResource("18_idgsx")
 path = "res://Assets/Flowers/Pink Flower.glb"
 
 [node name="SphereShape" type="Node3D" parent="Pink_Flowers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 script = ExtResource("19_nofqc")
 shape = SubResource("Resource_6tbds")
@@ -288,7 +280,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_ejcsf")
+modifier_stack = SubResource("Resource_hld3s")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -298,7 +290,6 @@ script = ExtResource("18_idgsx")
 path = "res://Assets/Flowers/Orange Flower.glb"
 
 [node name="SphereShape" type="Node3D" parent="Orange_Flowers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 script = ExtResource("19_nofqc")
 shape = SubResource("Resource_4f31u")

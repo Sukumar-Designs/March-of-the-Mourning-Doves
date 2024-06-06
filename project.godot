@@ -102,5 +102,4 @@ place={
 
 [rendering]
 
-renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_s3tc_bptc=true
