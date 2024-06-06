@@ -216,13 +216,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
 transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 16.9435, 196.619, 146.931)
-light_energy = 5.0
-light_indirect_energy = 12.428
+light_energy = 1.768
+light_indirect_energy = 8.064
 light_volumetric_fog_energy = 0.0
-light_angular_distance = 28.18
 shadow_enabled = true
-shadow_bias = 10.0
+shadow_bias = 3.737
 shadow_normal_bias = 4.952
+shadow_reverse_cull_face = true
+shadow_blur = 5.343
 
 [node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
