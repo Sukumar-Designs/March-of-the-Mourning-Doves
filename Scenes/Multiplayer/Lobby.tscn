@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Multiplayer/Server.gd" id="1_nwqde"]
 [ext_resource type="Script" path="res://Scenes/Multiplayer/ServerBrowser.gd" id="2_kv1ex"]
-[ext_resource type="PackedScene" path="res://Scenes/Multiplayer/server_info.tscn" id="3_t0ybq"]
+[ext_resource type="PackedScene" uid="uid://iuj72g1b7fci" path="res://Scenes/Multiplayer/server_info.tscn" id="3_t0ybq"]
 
 [node name="Lobby" type="Node"]
 script = ExtResource("1_nwqde")

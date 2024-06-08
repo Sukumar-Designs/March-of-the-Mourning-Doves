@@ -14,17 +14,12 @@ var resource_main_type = "main_type_resources"
 @onready var sidebar = $Sidebar
 
 @export var creature_positions = []
-# Camera Movement
-#var left_limit = -50
-#var right_limit = 150
-#var upper_limit = -135
-#var lower_limit = 0
 var left_limit = -500
 var right_limit = 1500
 var upper_limit = -1350
 var lower_limit = 1000
-var scroll_upper_limit = 45
-var scroll_lower_limit = 15
+var scroll_upper_limit = 32
+var scroll_lower_limit = 12
 var left_turn_limit = 1
 var right_turn_limit = -1
 
@@ -61,11 +56,10 @@ func _input(event):
 			var result = cast_ray_to_select()
 			if result:
 				try_to_select(result)
-		if Input.is_action_just_pressed("camera_zoom_up") and self.position.y <= scroll_upper_limit:
-			self.position.y += 5
-		elif Input.is_action_just_pressed("camera_zoom_down") and self.position.y >= scroll_lower_limit:
-			self.position.y -= 5
-		
+		if Input.is_action_just_pressed("camera_zoom_up") and camera.size <= scroll_upper_limit:
+			camera.size += 5 
+		elif Input.is_action_just_pressed("camera_zoom_down") and camera.size >= scroll_lower_limit:
+			camera.size -= 5 
 		if Input.is_action_just_pressed("clear_selection"):
 			clear_selection()
 			

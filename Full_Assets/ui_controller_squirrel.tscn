@@ -13,8 +13,10 @@ transform = Transform3D(1, 0, 0, 0, 0.388706, 0.921362, 0, -0.921362, 0.388706, 
 script = ExtResource("1_jmila")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.895004, -0.446057, 0, 0.446057, 0.895004, 0.178162, 4.66382, 0.917648)
+transform = Transform3D(1, 0, 0, 0, 0.747172, -0.664631, 0, 0.664631, 0.747172, 0.178162, 4.66382, 0.917648)
+projection = 1
 current = true
+size = 12.029
 
 [node name="Mushroom2" parent="." instance=ExtResource("2_mg1nr")]
 transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 5.58301, 18.1601, -56.5393)
