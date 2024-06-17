@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends AnimatableBody3D
 
 @onready var cameras_list #= $"../UI_Controller"
 var camera_location
@@ -62,11 +62,17 @@ func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		syncPos = global_position
 		if current_target:
+			#var direction = nav_agent.get_next_path_position()
+			#var motion = direction * speed * delta
+			#var collision = move_and_collide(motion)
+				
 			var current_location = global_transform.origin
 			var next_location = nav_agent.get_next_path_position()
 			var new_velocity = (next_location - current_location).normalized() * speed
-			velocity = velocity.move_toward(new_velocity, .25)
-			move_and_slide()
+			#velocity = velocity.move_toward(new_velocity, .25)
+			#move_and_collide()
+			var collision = move_and_collide(new_velocity)
+			
 	else:
 		global_position = global_position.lerp(syncPos, .5)
 		
@@ -81,9 +87,6 @@ func _process(delta):
 		else:
 			cameras_list = get_tree().get_nodes_in_group(side + "camera")
 
-		
-		#if camera_location:
-			#look_at(camera_location.position)
 		if current_target and is_instance_valid(current_target):
 			update_target_location(current_target.position)
 			
