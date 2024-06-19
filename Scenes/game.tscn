@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=32 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -19,12 +19,9 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="17_kmr02"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="18_idgsx"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="19_nofqc"]
-[ext_resource type="PackedScene" uid="uid://b6tv2ureagved" path="res://Assets/Flowers/Pink Flower.glb" id="22_3y2xp"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="22_lhnpy"]
-[ext_resource type="PackedScene" uid="uid://d1ed7w2si5s04" path="res://Assets/Flowers/Orange Flower.glb" id="23_vwddw"]
-[ext_resource type="PackedScene" uid="uid://bbnrixvsh8rqy" path="res://Assets/Flowers/Blue Flower.glb" id="24_xxtko"]
 
-[sub_resource type="Resource" id="Resource_vemvw"]
+[sub_resource type="Resource" id="Resource_tbkxt"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -33,7 +30,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_6vigj"]
+[sub_resource type="Resource" id="Resource_oafla"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -44,7 +41,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_qo4kk"]
+[sub_resource type="Resource" id="Resource_gmpls"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -60,15 +57,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_visgs"]
+[sub_resource type="Resource" id="Resource_w72ki"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_vemvw"), SubResource("Resource_6vigj"), SubResource("Resource_qo4kk")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_tbkxt"), SubResource("Resource_oafla"), SubResource("Resource_gmpls")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_30ava"]
+[sub_resource type="Resource" id="Resource_qnjc3"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -77,7 +74,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_d7oah"]
+[sub_resource type="Resource" id="Resource_wdue5"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -88,7 +85,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_3n028"]
+[sub_resource type="Resource" id="Resource_k6se2"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -104,9 +101,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ls3km"]
+[sub_resource type="Resource" id="Resource_sbcd7"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_30ava"), SubResource("Resource_d7oah"), SubResource("Resource_3n028")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qnjc3"), SubResource("Resource_wdue5"), SubResource("Resource_k6se2")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -220,9 +217,9 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 
 [node name="Pink_Flowers" type="Node3D" parent="."]
 process_mode = 3
-transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_visgs")
+modifier_stack = SubResource("Resource_w72ki")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -240,7 +237,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_ls3km")
+modifier_stack = SubResource("Resource_sbcd7")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -253,15 +250,6 @@ path = "res://Assets/Flowers/Orange Flower.glb"
 visible = false
 script = ExtResource("19_nofqc")
 shape = SubResource("Resource_4f31u")
-
-[node name="Pink Flower" parent="." instance=ExtResource("22_3y2xp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.4358, 9.84109, 64.0449)
-
-[node name="Orange Flower" parent="." instance=ExtResource("23_vwddw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.4397, 10.0337, 63.8253)
-
-[node name="Blue Flower" parent="." instance=ExtResource("24_xxtko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.0365, 8.9054, 64.9118)
 
 [node name="Temporary_Terrain_Node" type="Node3D" parent="."]
 
@@ -281,7 +269,7 @@ shadow_blur = 5.343
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Temporary_Terrain_Node/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -6.9243, -76.8609)
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -10.6279, -76.8609)
 shape = SubResource("BoxShape3D_mt50c")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Temporary_Terrain_Node"]

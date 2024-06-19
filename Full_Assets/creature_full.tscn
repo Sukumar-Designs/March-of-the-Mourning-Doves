@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/creature.gd" id="1_8jwgh"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
 [ext_resource type="Script" path="res://Scripts/sprite_image.gd" id="3_yyhn8"]
-[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="4_ildpl"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="4_harxs"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="5_xru1b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
@@ -41,7 +41,7 @@ script = ExtResource("3_yyhn8")
 transform = Transform3D(2.24268, 0, 0, 0, 2.24268, -1.69407e-21, 0, 1.0842e-19, 2.24268, 0, 0, 0)
 shape = SubResource("SphereShape3D_80mq0")
 
-[node name="HealthBar" parent="." instance=ExtResource("4_ildpl")]
+[node name="HealthBar" parent="." instance=ExtResource("4_harxs")]
 transform = Transform3D(0.022, 0, 0, 0, 0.013, -9.34994e-21, 0, 2.96462e-21, 0.041, 0, 1.96033, 0)
 billboard = 1
 
