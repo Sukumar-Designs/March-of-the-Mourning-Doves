@@ -19,9 +19,10 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="17_kmr02"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="18_idgsx"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="19_nofqc"]
+[ext_resource type="PackedScene" uid="uid://duehk2e7t7nu7" path="res://Full_Assets/terrain_full.tscn" id="21_nu7kp"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="22_lhnpy"]
 
-[sub_resource type="Resource" id="Resource_tbkxt"]
+[sub_resource type="Resource" id="Resource_nyynk"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -30,7 +31,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_oafla"]
+[sub_resource type="Resource" id="Resource_x7br0"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -41,7 +42,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_gmpls"]
+[sub_resource type="Resource" id="Resource_nqf5g"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -57,15 +58,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_w72ki"]
+[sub_resource type="Resource" id="Resource_xp21x"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_tbkxt"), SubResource("Resource_oafla"), SubResource("Resource_gmpls")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_nyynk"), SubResource("Resource_x7br0"), SubResource("Resource_nqf5g")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_qnjc3"]
+[sub_resource type="Resource" id="Resource_p2i8u"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -74,7 +75,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_wdue5"]
+[sub_resource type="Resource" id="Resource_467h1"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -85,7 +86,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_k6se2"]
+[sub_resource type="Resource" id="Resource_r17p7"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -101,16 +102,13 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_sbcd7"]
+[sub_resource type="Resource" id="Resource_2rj6w"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qnjc3"), SubResource("Resource_wdue5"), SubResource("Resource_k6se2")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_p2i8u"), SubResource("Resource_467h1"), SubResource("Resource_r17p7")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mt50c"]
-size = Vector3(3.86266, 1, 1.97599)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_16vvh")
@@ -190,12 +188,12 @@ show_percentage = false
 script = ExtResource("12_l3ivy")
 
 [node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 3.22553, 55.8457)
+transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 10.7215, 55.8457)
 side = "side_bird"
 enemy = "enemy_squirrel"
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.5108, 2.27053, -60.3122)
+transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.4526, 11.4804, -59.8246)
 side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
@@ -219,7 +217,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_w72ki")
+modifier_stack = SubResource("Resource_xp21x")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -237,7 +235,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_sbcd7")
+modifier_stack = SubResource("Resource_2rj6w")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -251,30 +249,7 @@ visible = false
 script = ExtResource("19_nofqc")
 shape = SubResource("Resource_4f31u")
 
-[node name="Temporary_Terrain_Node" type="Node3D" parent="."]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Temporary_Terrain_Node"]
-transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 12.602, 197.234, 146.283)
-light_energy = 1.5
-light_indirect_energy = 8.064
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 52.86
-shadow_enabled = true
-shadow_bias = 3.737
-shadow_normal_bias = 4.952
-shadow_reverse_cull_face = true
-shadow_blur = 5.343
-
-[node name="Terrian_Area3D" type="Area3D" parent="Temporary_Terrain_Node"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Temporary_Terrain_Node/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -10.6279, -76.8609)
-shape = SubResource("BoxShape3D_mt50c")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Temporary_Terrain_Node"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.126465, 0, 0.143265)
-size = Vector3(206.429, 1, 154.2)
+[node name="Terrain_Full" parent="." instance=ExtResource("21_nu7kp")]
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
