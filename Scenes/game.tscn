@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=35 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dbmecrs5n8485" path="res://Assets/squirrel soldier grey.png" id="6_bsm2v"]
 [ext_resource type="Texture2D" uid="uid://blndtblnvtfev" path="res://Assets/squirrel soldier highlight.png" id="7_grxjc"]
 [ext_resource type="Script" path="res://Scripts/mini_map.gd" id="10_8xf17"]
-[ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/terrain_full.tscn" id="11_dh6q5"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="12_l3ivy"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="13_0gfyy"]
 [ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/bird_base_full.tscn" id="13_rmbku"]
@@ -25,13 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ed7w2si5s04" path="res://Assets/Flowers/Orange Flower.glb" id="23_vwddw"]
 [ext_resource type="PackedScene" uid="uid://bbnrixvsh8rqy" path="res://Assets/Flowers/Blue Flower.glb" id="24_xxtko"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
-size = Vector3(3.86266, 1, 1.97599)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_x00et"]
-size = Vector3(3.84933, 0.21582, 5.47998)
-
-[sub_resource type="Resource" id="Resource_r4sks"]
+[sub_resource type="Resource" id="Resource_vemvw"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -40,7 +33,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_5c5tm"]
+[sub_resource type="Resource" id="Resource_6vigj"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -51,7 +44,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_c6uep"]
+[sub_resource type="Resource" id="Resource_qo4kk"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -67,15 +60,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_fxt2a"]
+[sub_resource type="Resource" id="Resource_visgs"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_r4sks"), SubResource("Resource_5c5tm"), SubResource("Resource_c6uep")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_vemvw"), SubResource("Resource_6vigj"), SubResource("Resource_qo4kk")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_88gt2"]
+[sub_resource type="Resource" id="Resource_30ava"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -84,7 +77,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0gyeg"]
+[sub_resource type="Resource" id="Resource_d7oah"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -95,7 +88,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_48ndo"]
+[sub_resource type="Resource" id="Resource_3n028"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -111,13 +104,16 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_smv4x"]
+[sub_resource type="Resource" id="Resource_ls3km"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_88gt2"), SubResource("Resource_0gyeg"), SubResource("Resource_48ndo")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_30ava"), SubResource("Resource_d7oah"), SubResource("Resource_3n028")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mt50c"]
+size = Vector3(3.86266, 1, 1.97599)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_16vvh")
@@ -197,12 +193,12 @@ show_percentage = false
 script = ExtResource("12_l3ivy")
 
 [node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 10.6349, 55.8457)
+transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 3.22553, 55.8457)
 side = "side_bird"
 enemy = "enemy_squirrel"
 
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.4606, 10.2061, -59.8921)
+transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.5108, 2.27053, -60.3122)
 side = "side_squirrel"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
@@ -210,44 +206,6 @@ transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0,
 
 [node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
 transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
-
-[node name="Terrain" parent="." instance=ExtResource("11_dh6q5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 12.602, 197.234, 146.283)
-light_energy = 1.5
-light_indirect_energy = 8.064
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 52.86
-shadow_enabled = true
-shadow_bias = 3.737
-shadow_normal_bias = 4.952
-shadow_reverse_cull_face = true
-shadow_blur = 5.343
-
-[node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -10.7067, -76.8609)
-shape = SubResource("BoxShape3D_jfr3u")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(12.3315, 1.30196, -7.45058e-09, -1.29615, 12.2764, 1.17017, 0.122865, -1.16371, 12.3447, -52.3889, -7.54545, -33.3455)
-shape = SubResource("BoxShape3D_x00et")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(0.121978, 1.16055, 12.345, 1.2904, 12.2773, -1.16694, -12.3321, 1.29615, -5.39616e-07, -42.3689, -7.72164, -131.905)
-shape = SubResource("BoxShape3D_x00et")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(12.3486, -1.12704, 0.0253319, 1.12257, 12.2678, -1.41449, 0.1035, 1.41092, 12.319, 103.4, -3.94157, -119.231)
-shape = SubResource("BoxShape3D_x00et")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(-0.0814658, -0.408985, -12.393, 0.256277, 12.3905, -0.410589, 12.3971, -0.25883, -0.0729511, 91.7336, -6.06675, -24.0682)
-shape = SubResource("BoxShape3D_x00et")
 
 [node name="SpawnLocations" type="Node" parent="."]
 
@@ -264,7 +222,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_fxt2a")
+modifier_stack = SubResource("Resource_visgs")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -282,7 +240,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_smv4x")
+modifier_stack = SubResource("Resource_ls3km")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -304,6 +262,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.4397, 10.0337, 63.8253)
 
 [node name="Blue Flower" parent="." instance=ExtResource("24_xxtko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.0365, 8.9054, 64.9118)
+
+[node name="Temporary_Terrain_Node" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Temporary_Terrain_Node"]
+transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 12.602, 197.234, 146.283)
+light_energy = 1.5
+light_indirect_energy = 8.064
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 52.86
+shadow_enabled = true
+shadow_bias = 3.737
+shadow_normal_bias = 4.952
+shadow_reverse_cull_face = true
+shadow_blur = 5.343
+
+[node name="Terrian_Area3D" type="Area3D" parent="Temporary_Terrain_Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Temporary_Terrain_Node/Terrian_Area3D"]
+transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -6.9243, -76.8609)
+shape = SubResource("BoxShape3D_mt50c")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Temporary_Terrain_Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.126465, 0, 0.143265)
+size = Vector3(206.429, 1, 154.2)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
