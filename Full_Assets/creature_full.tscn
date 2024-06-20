@@ -15,7 +15,7 @@ properties/0/path = NodePath("..:syncPos")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="creature" type="CharacterBody3D" groups=["minimap_objects"]]
+[node name="creature" type="AnimatableBody3D" groups=["minimap_objects"]]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 0.884871, 1.57482, 0.724487)
 script = ExtResource("1_8jwgh")
 

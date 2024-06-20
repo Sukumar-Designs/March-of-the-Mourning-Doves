@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends AnimatableBody3D
 
 @onready var cameras_list #= $"../UI_Controller"
 var camera_location
@@ -39,6 +39,8 @@ var attack_damage = 1
 
 @export var syncPos = Vector3(0,0,0)
 
+var terrain_name = "HTerrain"
+
 func _ready():
 	
 	var player = get_tree().get_first_node_in_group(side + "camera")
@@ -55,6 +57,20 @@ func _ready():
 
 	update_health_bar()
 	
+	if sub_type == "sub_type_squirrel":
+		# Squirrels are on layer 2 (layer), and can collide with 1 and 3 (mask)
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(2, true)
+		
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(3, true)
+	elif sub_type == "sub_type_bird":
+		# Birds are on layer 3 (layer), and can collide 2 (mask) but not the terrain (1)
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(3, true)
+		
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(2, true)
 	cameras_list = get_tree().get_nodes_in_group(side + "camera")
 
 
@@ -65,8 +81,9 @@ func _physics_process(delta):
 			var current_location = global_transform.origin
 			var next_location = nav_agent.get_next_path_position()
 			var new_velocity = (next_location - current_location).normalized() * speed
-			velocity = velocity.move_toward(new_velocity, .25)
-			move_and_slide()
+
+			var collision = move_and_collide(new_velocity * delta)
+
 	else:
 		global_position = global_position.lerp(syncPos, .5)
 		
@@ -81,9 +98,6 @@ func _process(delta):
 		else:
 			cameras_list = get_tree().get_nodes_in_group(side + "camera")
 
-		
-		#if camera_location:
-			#look_at(camera_location.position)
 		if current_target and is_instance_valid(current_target):
 			update_target_location(current_target.position)
 			

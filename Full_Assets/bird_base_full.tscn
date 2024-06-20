@@ -12,7 +12,7 @@ size = Vector3(1, 1.42194, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7sp5"]
 size = Vector3(1, 1, 1.1532)
 
-[node name="bird_base" type="CharacterBody3D" groups=["main_base"]]
+[node name="bird_base" type="StaticBody3D" groups=["main_base"]]
 transform = Transform3D(0.250129, 0, 0, 0, 0.250129, 0, 0, 0, 0.250129, 1.58195, 0, 0)
 script = ExtResource("1_hc1ws")
 side = "bird"
