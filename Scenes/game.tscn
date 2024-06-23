@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=34 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -21,8 +21,9 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="19_nofqc"]
 [ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/terrain/terrain_full.tscn" id="21_23x5g"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="22_lhnpy"]
+[ext_resource type="Material" uid="uid://rwbjg3tgujum" path="res://river_temp/WaterPlane.tres" id="23_q1x7m"]
 
-[sub_resource type="Resource" id="Resource_mhsqx"]
+[sub_resource type="Resource" id="Resource_y6f86"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -31,7 +32,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0bhdo"]
+[sub_resource type="Resource" id="Resource_igrd0"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -42,7 +43,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_sv435"]
+[sub_resource type="Resource" id="Resource_fyelc"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -58,15 +59,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_t846r"]
+[sub_resource type="Resource" id="Resource_rb7tr"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_mhsqx"), SubResource("Resource_0bhdo"), SubResource("Resource_sv435")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_y6f86"), SubResource("Resource_igrd0"), SubResource("Resource_fyelc")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_qwig6"]
+[sub_resource type="Resource" id="Resource_dyack"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -75,7 +76,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_g1jrf"]
+[sub_resource type="Resource" id="Resource_onf05"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -86,7 +87,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_4rgmi"]
+[sub_resource type="Resource" id="Resource_tukx0"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -102,13 +103,21 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ndohv"]
+[sub_resource type="Resource" id="Resource_3nxn3"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qwig6"), SubResource("Resource_g1jrf"), SubResource("Resource_4rgmi")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_dyack"), SubResource("Resource_onf05"), SubResource("Resource_tukx0")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
+
+[sub_resource type="Curve3D" id="Curve3D_qgolp"]
+bake_interval = 31.04
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.215, 1, -0.335, 0, 0, 0, 0, 0, 0, 1.843, 1.5, 0.552, 0, 0, 0, 0, 0, 0, 4.2215, -0.105044, 1.45831, 0, 0, 0, 0, 0, 0, 6.00704, -0.105003, 3.85694, 0, 0, 0, 0, 0, 0, 7.21459, 0.188576, 6.6646, 0, 0, 0, 0, 0, 0, 11.162, 2, 7.064, 0, 0, 0, 0, 0, 0, 14.9423, -0.105003, 8.66822, 0, 0, 0, 0, 0, 0, 16.044, 4, 11.41, 0, 0, 0, 0, 0, 0, 16.078, 4, 12.725),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_16vvh")
@@ -217,7 +226,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_t846r")
+modifier_stack = SubResource("Resource_rb7tr")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -235,7 +244,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_ndohv")
+modifier_stack = SubResource("Resource_3nxn3")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -263,6 +272,25 @@ shadow_bias = 3.737
 shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 shadow_blur = 5.343
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1.389, 0, 0, 0, 10, 742.005, -3.42846, 354.005)
+polygon = PackedVector2Array(-0.0933334, 0.0874076, 0.013957, 0.183437, 0.214978, 0.205459, 0.336922, 0.183451)
+mode = 2
+path_node = NodePath("../Path3D2")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("23_q1x7m")
+
+[node name="Path3D2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.2146, 2.81142, -40.6646)
+curve = SubResource("Curve3D_qgolp")
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
