@@ -64,6 +64,7 @@ func _ready():
 		
 		set_collision_mask_value(1, false)
 		set_collision_mask_value(3, true)
+		set_collision_mask_value(4, true) # River / Buildings 
 	elif sub_type == "sub_type_bird":
 		# Birds are on layer 3 (layer), and can collide 2 (mask) but not the terrain (1)
 		set_collision_layer_value(1, false)
@@ -71,6 +72,8 @@ func _ready():
 		
 		set_collision_mask_value(1, false)
 		set_collision_mask_value(2, true)
+		set_collision_mask_value(4, true) # River / Buildings 
+		
 	cameras_list = get_tree().get_nodes_in_group(side + "camera")
 
 
@@ -83,6 +86,13 @@ func _physics_process(delta):
 			var new_velocity = (next_location - current_location).normalized() * speed
 
 			var collision = move_and_collide(new_velocity * delta)
+			if collision != null:
+				print_debug(collision.collider)
+				
+				#if collision.get_collider(0) != null:
+					#print_debug(collision.get_collider(1)) #is_in_group("sub_type_river"))
+				#if collision.collider.is_in_group("sub_type_river"):
+					#print_debug("!!!!!!!!!!!!")
 
 	else:
 		global_position = global_position.lerp(syncPos, .5)
