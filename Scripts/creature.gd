@@ -86,7 +86,7 @@ func _physics_process(delta):
 			var new_velocity = (next_location - current_location).normalized() * speed
 
 			var collision = move_and_collide(new_velocity * delta)
-			if collision != null:
+			if collision and collision.collider.is_in_group("sub_type_river"):
 				print_debug(collision.collider)
 				
 				#if collision.get_collider(0) != null:
