@@ -2,7 +2,7 @@ extends Path3D
 
 @onready var path = $PathFollow3D
 var creatures_to_push = []
-const move_speed = 0.4
+const move_speed = 1
 
 func _physics_process(delta):
 	if creatures_to_push.size() > 0:
@@ -25,8 +25,9 @@ func float_down_river(creature):
 		creature.get_parent().remove_child(creature)
 		path.add_child(creature)
 		remove_features(creature)
+		creature.set_location(old_loc)
 		creatures_to_push.append(creature)
-		creature.position = old_loc 
+		#creature.position = old_loc 
 		#creature.moving = true
 		#creature.move_speed = 1.0
 		

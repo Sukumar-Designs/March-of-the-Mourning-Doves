@@ -205,3 +205,10 @@ func _on_area_3d_body_exited(body):
 		targets_in_range.remove_at(index)
 
 
+func set_location(pos):
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		syncPos = global_position
+		position = pos
+	else:
+		global_position = global_position.lerp(pos, .5)
+
