@@ -26,11 +26,12 @@ func _physics_process(delta):
 func float_down_river(creature):
 	if !creatures_to_push.has(creature):
 		var old_loc = creature.position
-		print_debug(creature.position, "!!!!!")
-		creature.get_parent().remove_child(creature)
-
+		
 		# Clear the creature collision nodes 
 		remove_features(creature)
+		
+		print_debug(creature.position, "!!!!!")
+		creature.get_parent().remove_child(creature)
 		
 		# Instantiate path for creature to follow
 		var path_instance = Path_instance.instance()
