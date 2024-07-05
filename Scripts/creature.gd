@@ -86,14 +86,11 @@ func _physics_process(delta):
 			var new_velocity = (next_location - current_location).normalized() * speed
 
 			var collision = move_and_collide(new_velocity * delta)
-			if collision:# and collision.collider.is_in_group("sub_type_river"):
-				#print_debug(collision.get_collider(1)) # Is null
-				print_debug(collision.get_collider().name)
-				
-				#if collision.get_collider(0) != null:
-					#print_debug(collision.get_collider(1)) #is_in_group("sub_type_river"))
-				#if collision.collider.is_in_group("sub_type_river"):
-					#print_debug("!!!!!!!!!!!!")
+			if collision:
+				if collision.get_collider().is_in_group("sub_type_river"):
+					print_debug("!!!", collision.get_collider().name)
+					collision.get_collider().get_parent().float_down_river(self)
+
 
 	else:
 		global_position = global_position.lerp(syncPos, .5)
@@ -140,6 +137,8 @@ func assign_target(object_selected):
 		# Depositing resources in base
 		elif object_selected.is_in_group("main_type_buildings"):
 			current_target = object_selected
+		elif object_selected.is_in_group("sub_type_river"):
+			current_target = null
 
 # Health Based Function
 func set_health(amount):
@@ -204,4 +203,5 @@ func _on_area_3d_body_exited(body):
 	if body in targets_in_range:
 		var index = targets_in_range.find(body, 0)
 		targets_in_range.remove_at(index)
+
 
