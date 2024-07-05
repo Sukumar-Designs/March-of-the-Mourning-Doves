@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=36 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="Script" path="res://Scripts/multiplayer.gd" id="1_16vvh"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/ui_controller.tscn" id="2_1yyuw"]
@@ -23,9 +23,10 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="22_lhnpy"]
 [ext_resource type="Curve3D" uid="uid://dpa05ju6vnk10" path="res://river_temp/path3d_curve.tres" id="23_dmt7b"]
 [ext_resource type="Material" uid="uid://rwbjg3tgujum" path="res://river_temp/WaterPlane.tres" id="23_q1x7m"]
+[ext_resource type="PackedScene" uid="uid://cset6u3fy1esw" path="res://Full_Assets/river_path_follow_full.tscn" id="24_g0t0v"]
 [ext_resource type="Script" path="res://Scripts/river.gd" id="24_uuiuc"]
 
-[sub_resource type="Resource" id="Resource_oox80"]
+[sub_resource type="Resource" id="Resource_c8lm4"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -34,7 +35,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_cmntl"]
+[sub_resource type="Resource" id="Resource_juaag"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -45,7 +46,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_fxhp2"]
+[sub_resource type="Resource" id="Resource_rbi0v"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -61,15 +62,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_7mi60"]
+[sub_resource type="Resource" id="Resource_sal0s"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_oox80"), SubResource("Resource_cmntl"), SubResource("Resource_fxhp2")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_c8lm4"), SubResource("Resource_juaag"), SubResource("Resource_rbi0v")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_38obs"]
+[sub_resource type="Resource" id="Resource_ke7vc"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -78,7 +79,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_x31ca"]
+[sub_resource type="Resource" id="Resource_3k0of"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -89,7 +90,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_dkvjd"]
+[sub_resource type="Resource" id="Resource_6w7w8"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -105,9 +106,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_w4inu"]
+[sub_resource type="Resource" id="Resource_6oa4o"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_38obs"), SubResource("Resource_x31ca"), SubResource("Resource_dkvjd")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ke7vc"), SubResource("Resource_3k0of"), SubResource("Resource_6w7w8")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -220,7 +221,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_7mi60")
+modifier_stack = SubResource("Resource_sal0s")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -238,7 +239,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_w4inu")
+modifier_stack = SubResource("Resource_6oa4o")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -272,12 +273,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.2146, -2.18858, -40.6646)
 curve = ExtResource("23_dmt7b")
 script = ExtResource("24_uuiuc")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="River_Path"]
+[node name="PathFollow3D" parent="River_Path" instance=ExtResource("24_g0t0v")]
 transform = Transform3D(-0.184288, 0, -0.98287, 0, 0.999994, 0, 0.982868, 0, -0.184288, -16.785, 7, -9.335)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="River_Path/PathFollow3D"]
-transform = Transform3D(-0.575219, -0.0701243, 0.814994, 0.134021, 0.974787, 0.178465, -0.806949, 0.211881, -0.551313, 36.887, 1.9746, -83.1634)
-size = Vector3(6, 2, 3)
 
 [node name="River_Collider" type="CSGPolygon3D" parent="River_Path" groups=["sub_type_river"]]
 transform = Transform3D(1, 0, 0, 0, 0.139, 0, 0, 0, 1, 85.2196, 3.10969, 39.6696)

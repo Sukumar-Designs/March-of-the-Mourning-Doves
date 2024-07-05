@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cset6u3fy1esw"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+transform = Transform3D(-0.184288, 0, -0.98287, 0, 0.999994, 0, 0.982868, 0, -0.184288, -16.785, 7, -9.335)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.575219, -0.0701243, 0.814994, 0.134021, 0.974787, 0.178465, -0.806949, 0.211881, -0.551313, 36.887, 1.9746, -83.1634)
+size = Vector3(6, 2, 3)
