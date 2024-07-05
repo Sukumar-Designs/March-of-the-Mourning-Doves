@@ -1,16 +1,17 @@
 extends Path3D
 
-#@onready var path = $PathFollow3D
 var creatures_to_push = []
 const move_speed = 4
 
 var Path_instance = PathFollow3D
+const PATH_LENGTH = 218.0
+
 
 func _physics_process(delta):
 	var to_remove = []
 	var spot = 0
 	for creature in creatures_to_push:
-		if creature[1].progress >= 218:
+		if creature[1].progress >= PATH_LENGTH:
 			creature[0].queue_free()
 			creature[1].queue_free()
 			to_remove.append(spot)
@@ -37,8 +38,10 @@ func float_down_river(creature):
 		var path_instance = Path_instance.new()
 		add_child(path_instance)
 		path_instance.add_child(creature)
-		
+		#path_instance.progress = old_loc.x - PATH_LENGTH
 		creature.set_location(old_loc)
+		print_debug(old_loc.x, "  ", path_instance.progress, "!!!!!!!!!!!!!!")
+		#creature.set_location(old_loc)
 		creatures_to_push.append([creature, path_instance])
 		print_debug(creature.position, "_____")
 		#creature.position = old_loc 

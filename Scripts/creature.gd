@@ -207,6 +207,7 @@ func _on_area_3d_body_exited(body):
 
 func set_location(pos):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		print_debug("SETTING POS:", position)
 		syncPos = global_position
 		position = pos
 	else:
