@@ -210,8 +210,8 @@ transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.16
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.336, 20.0555, -63.0925)
 
-[node name="0" type="Node3D" parent="SpawnLocations/1" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.177, -4.6062, 113.124)
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.841, 15.4493, 50.0315)
 
 [node name="Squirrel Mountain" parent="." instance=ExtResource("14_2uebb")]
 transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386, -45.5969)
@@ -275,6 +275,10 @@ script = ExtResource("24_uuiuc")
 [node name="PathFollow3D" type="PathFollow3D" parent="River_Path"]
 transform = Transform3D(-0.184288, 0, -0.98287, 0, 0.999994, 0, 0.982868, 0, -0.184288, -16.785, 7, -9.335)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="River_Path/PathFollow3D"]
+transform = Transform3D(-0.575219, -0.0701243, 0.814994, 0.134021, 0.974787, 0.178465, -0.806949, 0.211881, -0.551313, 36.887, 1.9746, -83.1634)
+size = Vector3(6, 2, 3)
+
 [node name="River_Collider" type="CSGPolygon3D" parent="River_Path" groups=["sub_type_river"]]
 transform = Transform3D(1, 0, 0, 0, 0.139, 0, 0, 0, 1, 85.2196, 3.10969, 39.6696)
 use_collision = true
@@ -292,10 +296,6 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 material = ExtResource("23_q1x7m")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="River_Path"]
-transform = Transform3D(0.899132, -0.195328, 0.391676, 0.13402, 0.974781, 0.178463, -0.416654, -0.10797, 0.902632, 58.156, 8.97458, 42.2461)
-size = Vector3(6, 2, 3)
 
 [connection signal="child_entered_tree" from="." to="MiniMap" method="_on_node_3d_child_entered_tree"]
 [connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]

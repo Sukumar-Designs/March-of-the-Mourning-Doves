@@ -23,7 +23,7 @@ func float_down_river(creature):
 	if !creatures_to_push.has(creature):
 		var old_loc = creature.position
 		creature.get_parent().remove_child(creature)
-		self.add_child(creature)
+		path.add_child(creature)
 		remove_features(creature)
 		creatures_to_push.append(creature)
 		creature.position = old_loc 
