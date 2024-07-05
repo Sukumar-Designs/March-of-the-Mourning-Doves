@@ -2,25 +2,25 @@ extends Path3D
 
 #@onready var path = $PathFollow3D
 var creatures_to_push = []
-const move_speed = 1
+const move_speed = 4
 
 var Path_instance = PathFollow3D
 
 func _physics_process(delta):
-	#if creatures_to_push.size() > 0:
+	var to_remove = []
+	var spot = 0
 	for creature in creatures_to_push:
-		creature[1].progress += move_speed * delta
-		print_debug(creature[0].position)
-		#print_debug(path.progress)
-		#for creature in creatures_to_push:
-			#if creature.get_child($MultiplayerSynchronizer).get_multiplayer_authority() == multiplayer.get_unique_id():
-		#if path.progress < 1:
-			#path.progress += move_speed * delta
-			#print_debug(path.progress)
-					#print_debug(path.progress_ratio)
-		#else:
+		if creature[1].progress >= 218:
+			creature[0].queue_free()
+			creature[1].queue_free()
+			to_remove.append(spot)
+		else:
+			creature[1].progress += move_speed * delta
+			#print_debug(creature[0].position)
+		spot+=1
 			
-			#creature.queue_freeze()
+	for index in to_remove:
+		creatures_to_push.remove_at(index)
 
 
 func float_down_river(creature):
@@ -34,7 +34,7 @@ func float_down_river(creature):
 		creature.get_parent().remove_child(creature)
 		
 		# Instantiate path for creature to follow
-		var path_instance = Path_instance.instance()
+		var path_instance = Path_instance.new()
 		add_child(path_instance)
 		path_instance.add_child(creature)
 		

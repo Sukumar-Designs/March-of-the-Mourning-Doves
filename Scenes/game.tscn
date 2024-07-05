@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cset6u3fy1esw" path="res://Full_Assets/river_path_follow_full.tscn" id="24_g0t0v"]
 [ext_resource type="Script" path="res://Scripts/river.gd" id="24_uuiuc"]
 
-[sub_resource type="Resource" id="Resource_c8lm4"]
+[sub_resource type="Resource" id="Resource_25cyv"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -35,7 +35,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_juaag"]
+[sub_resource type="Resource" id="Resource_hfrpp"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -46,7 +46,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_rbi0v"]
+[sub_resource type="Resource" id="Resource_uhp5o"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -62,15 +62,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_sal0s"]
+[sub_resource type="Resource" id="Resource_65chl"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_c8lm4"), SubResource("Resource_juaag"), SubResource("Resource_rbi0v")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_25cyv"), SubResource("Resource_hfrpp"), SubResource("Resource_uhp5o")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_ke7vc"]
+[sub_resource type="Resource" id="Resource_r5t70"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -79,7 +79,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_3k0of"]
+[sub_resource type="Resource" id="Resource_rlela"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -90,7 +90,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_6w7w8"]
+[sub_resource type="Resource" id="Resource_85rsd"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -106,9 +106,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_6oa4o"]
+[sub_resource type="Resource" id="Resource_0sdxl"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ke7vc"), SubResource("Resource_3k0of"), SubResource("Resource_6w7w8")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_r5t70"), SubResource("Resource_rlela"), SubResource("Resource_85rsd")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -221,7 +221,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_sal0s")
+modifier_stack = SubResource("Resource_65chl")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -239,7 +239,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_6oa4o")
+modifier_stack = SubResource("Resource_0sdxl")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -274,7 +274,7 @@ curve = ExtResource("23_dmt7b")
 script = ExtResource("24_uuiuc")
 
 [node name="PathFollow3D" parent="River_Path" instance=ExtResource("24_g0t0v")]
-transform = Transform3D(-0.184288, 0, -0.98287, 0, 0.999994, 0, 0.982868, 0, -0.184288, -16.785, 7, -9.335)
+transform = Transform3D(-0.184288, 0, -0.982869, 0, 0.999993, 0, 0.982867, 0, -0.184288, -16.785, 7, -9.335)
 
 [node name="River_Collider" type="CSGPolygon3D" parent="River_Path" groups=["sub_type_river"]]
 transform = Transform3D(1, 0, 0, 0, 0.139, 0, 0, 0, 1, 85.2196, 3.10969, 39.6696)
