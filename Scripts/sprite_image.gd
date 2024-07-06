@@ -4,6 +4,11 @@ var taking_damage = false
 var taking_damage_time = 7
 var taking_damage_tracker 
 
+func _ready():
+	if $"..".side == "side_bird":
+		var creature_image = preload("res://Assets/Creature_Images/Bird_Soldier.png")
+		texture = creature_image 
+		
 func _process(delta):
 	if taking_damage:
 		show_taking_damage()

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx1a4dph8y5mm"
-path="res://.godot/imported/Bird Soldier.png-397ad4756867e45fe0145892b605fd4a.ctex"
+path="res://.godot/imported/Bird_Soldier.png-671ed99e68dbdf4e70a6fa76bc0efc55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bird Soldier.png"
-dest_files=["res://.godot/imported/Bird Soldier.png-397ad4756867e45fe0145892b605fd4a.ctex"]
+source_file="res://Assets/Creature_Images/Bird_Soldier.png"
+dest_files=["res://.godot/imported/Bird_Soldier.png-671ed99e68dbdf4e70a6fa76bc0efc55.ctex"]
 
 [params]
 
