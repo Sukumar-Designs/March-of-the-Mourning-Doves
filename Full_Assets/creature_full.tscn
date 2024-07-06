@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ct5n8h6i1yp26"]
 
-[ext_resource type="Script" path="res://Scripts/creature.gd" id="1_8jwgh"]
-[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kckwu"]
-[ext_resource type="Script" path="res://Scripts/sprite_image.gd" id="3_yyhn8"]
-[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="4_harxs"]
-[ext_resource type="Script" path="res://Scripts/inventory.gd" id="5_xru1b"]
+[ext_resource type="Script" path="res://Scripts/creature.gd" id="1_anaik"]
+[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_kks2k"]
+[ext_resource type="Script" path="res://Scripts/sprite_image.gd" id="3_4wwkd"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/character_health_bar.tscn" id="4_jqo1h"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="5_3ipts"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dew5v"]
 
@@ -17,7 +17,7 @@ properties/0/replication_mode = 1
 
 [node name="creature" type="AnimatableBody3D" groups=["minimap_objects"]]
 transform = Transform3D(1.22936, 0, 0, 0, 1.09588, 5.19947e-15, 0, -1.64719e-13, 0.48784, 0.884871, 1.57482, 0.724487)
-script = ExtResource("1_8jwgh")
+script = ExtResource("1_anaik")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 4.23516e-22, 0, 2.71051e-20, 1, 0, 0, 0)
@@ -32,8 +32,8 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 [node name="CreatureImage" type="Sprite3D" parent="."]
 transform = Transform3D(0.129141, 0, 0, 0, 0.129141, 1.58819e-22, 0, -3.38813e-21, 0.129141, -0.182833, 0.285359, 0)
 billboard = 1
-texture = ExtResource("2_kckwu")
-script = ExtResource("3_yyhn8")
+texture = ExtResource("2_kks2k")
+script = ExtResource("3_4wwkd")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -41,12 +41,12 @@ script = ExtResource("3_yyhn8")
 transform = Transform3D(2.24268, 0, 0, 0, 2.24268, -1.69407e-21, 0, 1.0842e-19, 2.24268, 0, 0, 0)
 shape = SubResource("SphereShape3D_80mq0")
 
-[node name="HealthBar" parent="." instance=ExtResource("4_harxs")]
+[node name="HealthBar" parent="." instance=ExtResource("4_jqo1h")]
 transform = Transform3D(0.022, 0, 0, 0, 0.013, -9.34994e-21, 0, 2.96462e-21, 0.041, 0, 1.96033, 0)
 billboard = 1
 
 [node name="Inventory" type="Node3D" parent="."]
-script = ExtResource("5_xru1b")
+script = ExtResource("5_3ipts")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath(".")
