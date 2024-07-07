@@ -102,6 +102,7 @@ func _process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if len(cameras_list) > 0:
 			camera_location = cameras_list[0]
+			update_health_bar()
 			
 		else:
 			cameras_list = get_tree().get_nodes_in_group(side + "camera")
@@ -156,6 +157,9 @@ func set_health(amount):
 func update_health_bar():
 	""" This function controlls the health bar """
 	health_bar.side = side
+	#if camera_location != null:
+		#print_debug(camera_location, "CAMERA")
+	health_bar.camera = camera_location
 	health_bar.update_health_bar(current_health, max_health)
 	
 func on_hit(damage, attacker):
