@@ -1,27 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkgxji66brw7e"]
+[gd_scene load_steps=5 format=3 uid="uid://dkgxji66brw7e"]
 
 [ext_resource type="Script" path="res://Scenes/Multiplayer/Server.gd" id="1_nwqde"]
 [ext_resource type="Script" path="res://Scenes/Multiplayer/ServerBrowser.gd" id="2_kv1ex"]
 [ext_resource type="PackedScene" uid="uid://iuj72g1b7fci" path="res://Scenes/Multiplayer/server_info.tscn" id="3_t0ybq"]
+[ext_resource type="Texture2D" uid="uid://df3j7s0ele01n" path="res://Assets/buildings_2d/Bridge_2d.jpeg" id="4_tr0e2"]
 
 [node name="Lobby" type="Node"]
 script = ExtResource("1_nwqde")
 
 [node name="Host" type="Button" parent="."]
+z_index = 1
 offset_left = 93.0
 offset_top = 79.0
 offset_right = 199.0
 offset_bottom = 135.0
 text = "Host"
 
-[node name="Join" type="Button" parent="."]
-offset_left = 206.0
-offset_top = 80.0
-offset_right = 342.0
-offset_bottom = 135.0
-text = "Join"
-
 [node name="StartGame" type="Button" parent="."]
+z_index = 1
 offset_left = 351.0
 offset_top = 83.0
 offset_right = 506.0
@@ -29,6 +25,7 @@ offset_bottom = 135.0
 text = "Start Game"
 
 [node name="LineEdit" type="LineEdit" parent="."]
+z_index = 1
 offset_left = 138.0
 offset_top = 39.0
 offset_right = 486.0
@@ -43,6 +40,7 @@ offset_bottom = 26.0
 text = "Name"
 
 [node name="ServerBrowser" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -106,7 +104,15 @@ offset_right = 197.101
 offset_bottom = 52.9956
 scale = Vector2(0.110402, 0.169265)
 
+[node name="Bridge_Image" type="TextureRect" parent="."]
+offset_left = 1.0
+offset_top = -125.0
+offset_right = 1081.0
+offset_bottom = 955.0
+scale = Vector2(1.06966, 0.785349)
+mouse_filter = 2
+texture = ExtResource("4_tr0e2")
+
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="timeout" from="ServerBrowser/BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]

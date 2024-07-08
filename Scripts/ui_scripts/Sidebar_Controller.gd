@@ -9,6 +9,9 @@ var enemy_type = "side_squirrel"
 @onready var buildings_ui = $Building_Container
 @onready var base_inventory = $Base_Resources
 
+# Visual behind tabs
+@onready var sidebar_background = $Sidebar_Background 
+
 # Building Types
 @onready var base_preview = load("res://Assets/Mushroom.glb") 
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
@@ -34,35 +37,40 @@ var twig = "sub_type_twig"
 var seed = "sub_type_seed"
 var acorn = "sub_type_acorn"
 var resource_types = [pebble, twig, seed, acorn]
-var ui_paths = "Resource_Container/VBoxContainer/"
+var ui_paths = "Resource_Container/VBoxContainer/HBoxContainer/"
+var ui_paths2 = "Resource_Container/VBoxContainer/HBoxContainer2/"
 var ui_base_path = ui_paths + "Base/Resource_Images/"
+var ui_base_path2 = ui_paths + "Base/Resource_Images2/"
 var ui_range_tower_1_path = ui_paths + "range_tower_1/Resource_Images/"
-var ui_range_tower_2_path = ui_paths + "range_tower_2/Resource_Images/"
-var bridge_path = ui_paths + "bridge/Resource_Images/"
+var ui_range_tower_1_path2 = ui_paths + "range_tower_1/Resource_Images2/"
+var ui_range_tower_2_path = ui_paths2 + "range_tower_2/Resource_Images/"
+var ui_range_tower_2_path2 = ui_paths2 + "range_tower_2/Resource_Images2/"
+var bridge_path = ui_paths2 + "bridge/Resource_Images/"
+var bridge_path2 = ui_paths2 + "bridge/Resource_Images2/"
 @onready var buildings = {
 	"base":{
 		pebble:[get_node(ui_base_path + str("Pebble_Container/Pebble_Amount")), 15],
 		twig:[get_node(ui_base_path + str("Twig_Container/Twig_Amount")), 15],
-		seed:[get_node(ui_base_path + str("Seed_Container/Seed_Amount")), 15],
-		acorn:[get_node(ui_base_path + str("Acorn_Container/Acorn_Amount")), 15]
+		seed:[get_node(ui_base_path2 + str("Seed_Container/Seed_Amount")), 15],
+		acorn:[get_node(ui_base_path2 + str("Acorn_Container/Acorn_Amount")), 15]
 	},
 	"range_tower_1":{
 		pebble:[get_node(ui_range_tower_1_path + str("Pebble_Container/Pebble_Amount")), 2],
 		twig:[get_node(ui_range_tower_1_path + str("Twig_Container/Twig_Amount")), 5],
-		seed:[get_node(ui_range_tower_1_path + str("Seed_Container/Seed_Amount")), 0],
-		acorn:[get_node(ui_range_tower_1_path + str("Acorn_Container/Acorn_Amount")), 3]
+		seed:[get_node(ui_range_tower_1_path2 + str("Seed_Container/Seed_Amount")), 0],
+		acorn:[get_node(ui_range_tower_1_path2 + str("Acorn_Container/Acorn_Amount")), 3]
 	},
 	"range_tower_2":{
 		pebble:[get_node(ui_range_tower_2_path + str("Pebble_Container/Pebble_Amount")), 15],
 		twig:[get_node(ui_range_tower_2_path + str("Twig_Container/Twig_Amount")), 15],
-		seed:[get_node(ui_range_tower_2_path + str("Seed_Container/Seed_Amount")), 10],
-		acorn:[get_node(ui_range_tower_2_path + str("Acorn_Container/Acorn_Amount")), 0]
+		seed:[get_node(ui_range_tower_2_path2 + str("Seed_Container/Seed_Amount")), 10],
+		acorn:[get_node(ui_range_tower_2_path2 + str("Acorn_Container/Acorn_Amount")), 0]
 	},
 	"bridge":{
 		pebble:[get_node(bridge_path + str("Pebble_Container/Pebble_Amount")), 10],
 		twig:[get_node(bridge_path + str("Twig_Container/Twig_Amount")), 25],
-		seed:[get_node(bridge_path + str("Seed_Container/Seed_Amount")), 10],
-		acorn:[get_node(bridge_path + str("Acorn_Container/Acorn_Amount")), 0]
+		seed:[get_node(bridge_path2 + str("Seed_Container/Seed_Amount")), 10],
+		acorn:[get_node(bridge_path2 + str("Acorn_Container/Acorn_Amount")), 0]
 	}
 }
 
@@ -75,7 +83,6 @@ var bridge_path = ui_paths + "bridge/Resource_Images/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#if self.get_multiplayer_authority() == multiplayer.get_unique_id():
 	add_to_group("sidebar")
 	
 	for resource_cost in buildings:
@@ -84,10 +91,9 @@ func _ready():
 	resources_ui.visible = false
 	buildings_ui.visible = false
 	base_inventory.visible = false
-	#self.visible = false
-	#else:
-		#queue_free()
-
+	sidebar_background.visible = false
+	
+	
 func _process(delta):
 	fill_inventory_ui()
 
@@ -98,14 +104,13 @@ func show_sidebar_tab(to_show, base_selected_inv):
 	resources_ui.visible = !resources_ui.visible
 	buildings_ui.visible = !buildings_ui.visible
 	base_inventory.visible = !base_inventory.visible 
+	sidebar_background.visible = !sidebar_background.visible
 	if resources_ui.visible:
 		base_selected = base_selected_inv
 		fill_inventory_ui()
 	else:
 		base_selected = null
 		clear_preview()
-	#else:
-		#print_debug("!!!!!! CANNOT OPEN WINDOW !!!!!!")
 
 
 func fill_inventory_ui():

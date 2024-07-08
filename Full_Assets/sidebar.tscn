@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c5snj02lfcnc4"]
 
 [ext_resource type="Script" path="res://Scripts/ui_scripts/Sidebar_Controller.gd" id="1_rcogs"]
-[ext_resource type="Theme" path="res://Themes/label_theme.tres" id="2_vaakh"]
+[ext_resource type="Theme" uid="uid://hoocdsiwnyqg" path="res://Themes/label_theme.tres" id="2_vaakh"]
 [ext_resource type="Texture2D" uid="uid://c44fxhspjoww6" path="res://Assets/resources_2d/Acorn 2D.png" id="3_2hn0t"]
 [ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="3_yrpd2"]
 [ext_resource type="Texture2D" uid="uid://b14avqyfhnwqw" path="res://Assets/resources_2d/Twig 2D.png" id="4_6ve03"]
@@ -9,21 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://djgflkbkxbd38" path="res://Assets/resources_2d/Pebble 2D.png" id="5_cxnug"]
 [ext_resource type="Texture2D" uid="uid://bj1pqr05q6e3g" path="res://Assets/Tree_Maple_Bark_2_COLOR.png" id="5_dixbb"]
 [ext_resource type="Texture2D" uid="uid://ch1lptegeru2w" path="res://Assets/resources_2d/Seeds 2D.png" id="7_gud8i"]
-
-[sub_resource type="Theme" id="Theme_7vot1"]
-Label/font_sizes/font_size = 8
+[ext_resource type="Texture2D" uid="uid://kl35u04kpfl" path="res://Assets/resources_2d/Side Menu.png" id="10_82wsk"]
 
 [node name="Sidebar" type="Node3D"]
 script = ExtResource("1_rcogs")
 
 [node name="Base_Resources" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0.572549)
-self_modulate = Color(1, 1, 1, 0.537255)
-offset_left = 14.0
-offset_top = 142.0
-offset_right = 54.0
-offset_bottom = 182.0
-scale = Vector2(6.13897, 2.41277)
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+offset_left = 140.0
+offset_top = 17.0
+offset_right = 180.0
+offset_bottom = 57.0
+rotation = -0.151332
+scale = Vector2(2.82428, 1.4448)
 color = Color(0, 1, 0.380392, 0.333333)
 
 [node name="Pebbles" type="TextureRect" parent="Base_Resources"]
@@ -93,367 +92,368 @@ offset_right = 82.8688
 offset_bottom = 29.898
 
 [node name="Resource_Container" type="BoxContainer" parent="."]
-z_index = 5
-offset_left = 115.0
-offset_top = 245.0
-offset_right = 3105.0
-offset_bottom = 8257.0
+z_index = -1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -531.0
+offset_top = 287.0
+offset_right = -311.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.06483, 0.694983)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Resource_Container"]
+layout_mode = 2
+theme_override_constants/separation = 155
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Base" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer"]
 z_index = 5
 layout_mode = 2
 
-[node name="Base" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
-z_index = 5
+[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base"]
 layout_mode = 2
 
-[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/Base"]
+[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images"]
 layout_mode = 2
 
-[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
+[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("5_cxnug")
 expand_mode = 2
 
-[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Pebble_Container"]
+[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images"]
 layout_mode = 2
 
-[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
+[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("4_6ve03")
 expand_mode = 2
 
-[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Twig_Container"]
+[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Resource_Images2" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base"]
 layout_mode = 2
 
-[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
+[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2"]
+layout_mode = 2
+
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("7_gud8i")
 expand_mode = 2
 
-[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Seed_Container"]
+[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/Base/Resource_Images"]
+[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("3_2hn0t")
 expand_mode = 2
 
-[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/Base/Resource_Images/Acorn_Container"]
+[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/Base/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Space" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
+[node name="range_tower_1" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer"]
 z_index = 5
 layout_mode = 2
 
-[node name="Space" type="VBoxContainer" parent="Resource_Container/VBoxContainer/Space"]
+[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1"]
 layout_mode = 2
 
-[node name="Space2" type="Label" parent="Resource_Container/VBoxContainer/Space/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="range_tower_1" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
-z_index = 5
+[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images"]
 layout_mode = 2
 
-[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
+[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("5_cxnug")
 expand_mode = 2
 
-[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
+[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
+[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images"]
 layout_mode = 2
 
-[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
+[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("4_6ve03")
 expand_mode = 2
 
-[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
+[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
+[node name="Resource_Images2" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1"]
 layout_mode = 2
 
-[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
+[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2"]
+layout_mode = 2
+
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("7_gud8i")
 expand_mode = 2
 
-[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Seed_Container"]
+[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images"]
+[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("3_2hn0t")
 expand_mode = 2
 
-[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_1/Resource_Images/Acorn_Container"]
+[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer/range_tower_1/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Space2" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="range_tower_2" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2"]
 z_index = 5
 layout_mode = 2
 
-[node name="Space" type="VBoxContainer" parent="Resource_Container/VBoxContainer/Space2"]
+[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2"]
 layout_mode = 2
 
-[node name="Space2" type="Label" parent="Resource_Container/VBoxContainer/Space2/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="range_tower_2" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
-z_index = 5
+[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images"]
 layout_mode = 2
 
-[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
+[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("5_cxnug")
 expand_mode = 2
 
-[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Pebble_Container"]
+[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
+[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images"]
 layout_mode = 2
 
-[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
+[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("4_6ve03")
 expand_mode = 2
 
-[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Twig_Container"]
+[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
+[node name="Resource_Images2" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2"]
 layout_mode = 2
 
-[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
+[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2"]
+layout_mode = 2
+
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("7_gud8i")
 expand_mode = 2
 
-[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Seed_Container"]
+[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images"]
+[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("3_2hn0t")
 expand_mode = 2
 
-[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/range_tower_2/Resource_Images/Acorn_Container"]
+[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/range_tower_2/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Space3" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
+[node name="bridge" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2"]
 z_index = 5
 layout_mode = 2
 
-[node name="Space" type="VBoxContainer" parent="Resource_Container/VBoxContainer/Space3"]
+[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge"]
 layout_mode = 2
 
-[node name="Space2" type="Label" parent="Resource_Container/VBoxContainer/Space3/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
-
-[node name="bridge" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
-z_index = 5
+[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images"]
 layout_mode = 2
 
-[node name="Resource_Images" type="VBoxContainer" parent="Resource_Container/VBoxContainer/bridge"]
-layout_mode = 2
-
-[node name="Pebble_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
-layout_mode = 2
-
-[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
+[node name="Pebble_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("5_cxnug")
 expand_mode = 2
 
-[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Pebble_Container"]
+[node name="Pebble_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images/Pebble_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 
-[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
+[node name="Twig_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images"]
 layout_mode = 2
 
-[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
+[node name="Twig_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("4_6ve03")
 expand_mode = 2
 
-[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Twig_Container"]
+[node name="Twig_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images/Twig_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
+[node name="Resource_Images2" type="VBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge"]
 layout_mode = 2
 
-[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
+[node name="Seed_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2"]
+layout_mode = 2
+
+[node name="Seed_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("7_gud8i")
 expand_mode = 2
 
-[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Seed_Container"]
+[node name="Seed_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2/Seed_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 text = "
 "
 
-[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/bridge/Resource_Images"]
+[node name="Acorn_Container" type="HBoxContainer" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2"]
 layout_mode = 2
 
-[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
+[node name="Acorn_Image" type="TextureRect" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
 texture = ExtResource("3_2hn0t")
 expand_mode = 2
 
-[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/bridge/Resource_Images/Acorn_Container"]
+[node name="Acorn_Amount" type="Label" parent="Resource_Container/VBoxContainer/HBoxContainer2/bridge/Resource_Images2/Acorn_Container"]
 layout_mode = 2
 theme = ExtResource("2_vaakh")
-
-[node name="Space4" type="HBoxContainer" parent="Resource_Container/VBoxContainer"]
-z_index = 5
-layout_mode = 2
-
-[node name="Space" type="VBoxContainer" parent="Resource_Container/VBoxContainer/Space4"]
-layout_mode = 2
-
-[node name="Space2" type="Label" parent="Resource_Container/VBoxContainer/Space4/Space"]
-layout_mode = 2
-theme = SubResource("Theme_7vot1")
-text = "
-"
 
 [node name="Building_Container" type="BoxContainer" parent="."]
+z_index = 2
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -105.0
-offset_right = 1625.0
-offset_bottom = 9347.0
+offset_left = 1.00001
+offset_top = -168.0
+offset_right = 3285.0
+offset_bottom = 4556.0
 grow_vertical = 2
-scale = Vector2(0.088304, 0.0410608)
+scale = Vector2(0.0909813, 0.0638486)
 
 [node name="Building_Buttons" type="HBoxContainer" parent="Building_Container"]
 layout_mode = 2
 
-[node name="Buttons" type="VBoxContainer" parent="Building_Container/Building_Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Building_Container/Building_Buttons"]
 layout_mode = 2
 
-[node name="Base" type="TextureButton" parent="Building_Container/Building_Buttons/Buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Building_Container/Building_Buttons/VBoxContainer"]
+z_index = 1
 layout_mode = 2
+
+[node name="Base" type="TextureButton" parent="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer"]
+z_index = 5
+layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_yrpd2")
 texture_pressed = ExtResource("4_d40sd")
 texture_hover = ExtResource("5_dixbb")
 stretch_mode = 0
 
-[node name="Range_Tower_1" type="TextureButton" parent="Building_Container/Building_Buttons/Buttons"]
+[node name="Range_Tower_1" type="TextureButton" parent="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer"]
+z_index = 5
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_yrpd2")
 texture_pressed = ExtResource("4_d40sd")
 texture_hover = ExtResource("5_dixbb")
 stretch_mode = 0
 
-[node name="Range_Tower_2" type="TextureButton" parent="Building_Container/Building_Buttons/Buttons"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Building_Container/Building_Buttons/VBoxContainer"]
+z_index = 1
 layout_mode = 2
+
+[node name="Range_Tower_2" type="TextureButton" parent="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer2"]
+z_index = 5
+layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_yrpd2")
 texture_pressed = ExtResource("4_d40sd")
 texture_hover = ExtResource("5_dixbb")
 stretch_mode = 0
 
-[node name="Bridge" type="TextureButton" parent="Building_Container/Building_Buttons/Buttons"]
+[node name="Bridge" type="TextureButton" parent="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer2"]
+z_index = 5
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_yrpd2")
 texture_pressed = ExtResource("4_d40sd")
 texture_hover = ExtResource("5_dixbb")
 stretch_mode = 0
 
-[connection signal="pressed" from="Building_Container/Building_Buttons/Buttons/Base" to="." method="_on_base_pressed"]
-[connection signal="pressed" from="Building_Container/Building_Buttons/Buttons/Range_Tower_1" to="." method="_on_range_tower_1_pressed"]
-[connection signal="pressed" from="Building_Container/Building_Buttons/Buttons/Range_Tower_2" to="." method="_on_range_tower_2_pressed"]
-[connection signal="pressed" from="Building_Container/Building_Buttons/Buttons/Bridge" to="." method="_on_bridge_pressed"]
+[node name="Sidebar_Background" type="TextureRect" parent="."]
+z_index = -5
+offset_left = 1.52588e-05
+offset_top = 6.11544e-05
+offset_right = 1714.0
+offset_bottom = 4440.0
+scale = Vector2(0.163124, 0.146051)
+mouse_filter = 2
+texture = ExtResource("10_82wsk")
+
+[connection signal="pressed" from="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer/Base" to="." method="_on_base_pressed"]
+[connection signal="pressed" from="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer/Range_Tower_1" to="." method="_on_range_tower_1_pressed"]
+[connection signal="pressed" from="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer2/Range_Tower_2" to="." method="_on_range_tower_2_pressed"]
+[connection signal="pressed" from="Building_Container/Building_Buttons/VBoxContainer/HBoxContainer2/Bridge" to="." method="_on_bridge_pressed"]
