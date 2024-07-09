@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdlwgi4wvwiv7"]
 
 [ext_resource type="Script" path="res://Scripts/ui_scripts/UI_movement_squirrel.gd" id="1_jmila"]
-[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_mg1nr"]
+[ext_resource type="Texture2D" uid="uid://5jaat58xrclc" path="res://Assets/squirrel soldier.png" id="2_4m804"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
 properties/0/path = NodePath(".:syncPos")
@@ -18,9 +18,10 @@ projection = 1
 current = true
 size = 12.029
 
-[node name="Mushroom2" parent="." instance=ExtResource("2_mg1nr")]
-transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 5.58301, 18.1601, -56.5393)
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_pcxnv")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 0, 16, -67)
+texture = ExtResource("2_4m804")

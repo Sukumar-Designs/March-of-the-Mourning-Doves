@@ -29,7 +29,7 @@ var base_selected # The base the player clicked on to open sidebar
 var base_type_selected
 
 var ray_caster 
-var terrian_name = "Terrian_Area3D"
+var terrian_name = "HTerrain"
 var ray
 # Resource Type
 var pebble = "sub_type_pebble"

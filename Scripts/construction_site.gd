@@ -43,10 +43,7 @@ func construct():
 	elif final_construction_sub_type == "sub_type_bridge":
 		instance = bridge.instantiate()
 	
-	#if final_construction_type:
-		#var instance = final_construction_type.instantiate()
-	instance.position = self.position
-	instance.position.y += 10
+	instance.global_position = global_position
 	instance.sub_type = final_construction_sub_type
 	instance.side = side
 	instance.enemy = enemy
@@ -54,7 +51,7 @@ func construct():
 	queue_free()
 
 # Health Based Function
-func set_health(amount):
+func set_health(amount, attacker_side):
 	if current_health >= max_health:
 		current_health = max_health
 	if current_health >= max_health and amount > 0:
@@ -63,7 +60,12 @@ func set_health(amount):
 		current_health += amount
 	update_health_bar()
 	if current_health <= 0:
-		construct()
+		if side != attacker_side:
+			# If the building was not "destoryed"/build by the side
+			print_debug("Side:", side, " Attacker:", attacker_side)
+			queue_free()
+		else:
+			construct()
 
 func update_health_bar():
 	""" This function controlls the health bar """
@@ -72,4 +74,4 @@ func update_health_bar():
 	
 	
 func on_hit(damage, attacker):
-	set_health(-damage)
+	set_health(-damage, attacker.side)

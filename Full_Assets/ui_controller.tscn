@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://csqqpoxh63diu"]
 
 [ext_resource type="Script" path="res://Scripts/ui_scripts/UI_movement.gd" id="1_b1kq4"]
-[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_i2x28"]
+[ext_resource type="Texture2D" uid="uid://cx1a4dph8y5mm" path="res://Assets/Creature_Images/Bird_Soldier.png" id="2_guvdo"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pcxnv"]
 properties/0/path = NodePath(".:syncPos")
@@ -22,8 +22,6 @@ size = 12.029
 replication_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_pcxnv")
 
-[node name="Mushroom2" parent="." instance=ExtResource("2_i2x28")]
-transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 5.58301, 18.1601, -56.5393)
-
-[node name="Mushroom3" parent="." instance=ExtResource("2_i2x28")]
-transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 10.6661, 18.1601, -56.5393)
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 1.19209e-07, 0, -1.19209e-07, 1, 0, 12.1198, -71.8175)
+texture = ExtResource("2_guvdo")

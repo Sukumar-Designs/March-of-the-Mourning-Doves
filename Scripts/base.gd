@@ -56,6 +56,7 @@ func _process(delta):
 		set_health(heal_amount)
 	if initial_place:
 		spawn_creatures.rpc(sub_type, side, enemy)
+		print_debug("INITIAL PLACE", side)
 		initial_place = false
 
 	
@@ -86,7 +87,8 @@ func open_inventory():
 	inventory.open_inventory()
 
 
-@rpc("authority")
+#@rpc("authority")
+@rpc("any_peer") 
 func spawn_creatures(sub_type, side, enemy):
 	for i in range(0, number_of_spawns):
 		var creature = load("res://Full_Assets/creature_full.tscn")
