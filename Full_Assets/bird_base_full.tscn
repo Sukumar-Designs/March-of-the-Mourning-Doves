@@ -46,3 +46,5 @@ script = ExtResource("3_htu3h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.8331, -6.92667, -142.784)
 
 [node name="Sidebar" parent="." instance=ExtResource("5_cktwg")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
