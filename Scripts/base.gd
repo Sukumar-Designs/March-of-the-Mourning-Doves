@@ -3,8 +3,8 @@ extends Node
 # General Stats
 @export var main_type = "main_type_buildings"
 @export var sub_type = "sub_type_base_main_base"
-@export var side = "side_bird"
-@export var enemy = "enemy_bird"
+@export var side = ""
+@export var enemy = ""
 @export var has_inventory = "has_inventory_true"
 # Base Stats
 var max_health = 100
@@ -26,13 +26,15 @@ var number_of_spawns = 5
 var initial_place = true
 #var syncPos = Vector3(0,0,0)
 
+# If camera location already specified
+var camera_location
 
 func _ready():
 	#$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if sub_type == "sub_type_base_main_base":
 		# Main base has 10x health
 		max_health *= 10
-		print_debug("added to main base")
+		#print_debug("added to main base")
 	
 	current_health = max_health
 	emit_signal("healthChanged", float(current_health)/float(max_health))
@@ -55,8 +57,10 @@ func _process(delta):
 		heal_tick_counter = heal_tick
 		set_health(heal_amount)
 	if initial_place:
+		print_debug("Spawning Initial_place")
 		spawn_creatures.rpc(sub_type, side, enemy)
-		print_debug("INITIAL PLACE", side)
+		spawn_creatures(sub_type, side, enemy)
+		#print_debug("INITIAL PLACE", side)
 		initial_place = false
 
 	
@@ -88,9 +92,10 @@ func open_inventory():
 
 
 #@rpc("authority")
-@rpc("any_peer") 
+@rpc("any_peer")
 func spawn_creatures(sub_type, side, enemy):
 	for i in range(0, number_of_spawns):
+		print_debug("Spawning", i)
 		var creature = load("res://Full_Assets/creature_full.tscn")
 		var instance = creature.instantiate()
 		instance.sub_type = str("sub_type" + side.substr(4,len(side) - 4))

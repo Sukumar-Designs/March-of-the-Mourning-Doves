@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 @export var main_type = "main_type_buildings"
 @export var sub_type = "sub_type_construction"
-@export var side = "side_bird"
-@export var enemy = "enemy_squirrel"
+@export var side = ""
+@export var enemy = ""
 @export var has_inventory = "has_inventory_false"
 
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")

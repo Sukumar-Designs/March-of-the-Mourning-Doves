@@ -1,8 +1,7 @@
 extends Node3D
 
-var side = "side_bird"
-var enemy = "enemy_squirrel"
-var enemy_type = "side_squirrel"
+@onready var side = "" #"side_bird"
+@onready var enemy = "" #"enemy_squirrel"
 
 # Tabs
 @onready var resources_ui = $Resource_Container
@@ -88,6 +87,11 @@ func _ready():
 	for resource_cost in buildings:
 		for resource in buildings[resource_cost]:
 			buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
+	
+	side = $"..".side
+	enemy = $"..".enemy
+	
+	
 	resources_ui.visible = false
 	buildings_ui.visible = false
 	base_inventory.visible = false
@@ -181,7 +185,6 @@ func purchase_building():
 
 @rpc("any_peer") 
 func place_building(placeRay, base_type_selected_string, s, e):
-	print_debug("!!!!!!!!!!!!!!!!!!! ", base_type_selected_string)
 	# Place construction ready to be worked on:
 	var instance = construction.instantiate()
 	instance.final_construction_type = building 
