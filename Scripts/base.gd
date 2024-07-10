@@ -69,7 +69,7 @@ func _process(delta):
 		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 			print_debug("Spawning Initial_place")
 			spawn_creatures.rpc(sub_type, side, enemy)
-			#spawn_creatures(sub_type, side, enemy)
+			spawn_creatures(sub_type, side, enemy)
 			#print_debug("INITIAL PLACE", side)
 			initial_place = false
 
