@@ -42,6 +42,7 @@ func construct():
 		instance = range_tower_2.instantiate()
 	elif final_construction_sub_type == "sub_type_bridge":
 		instance = bridge.instantiate()
+		instance.rotation.y = 45
 	
 	instance.global_position = global_position
 	instance.sub_type = final_construction_sub_type

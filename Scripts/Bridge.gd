@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StaticBody3D
 
 var main_type = "main_type_buildings"
 var sub_type = "sub_type_bridge"
