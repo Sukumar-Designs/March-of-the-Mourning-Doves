@@ -25,7 +25,7 @@
 [ext_resource type="Material" uid="uid://rwbjg3tgujum" path="res://river_temp/WaterPlane.tres" id="23_q1x7m"]
 [ext_resource type="Script" path="res://Scripts/river.gd" id="24_uuiuc"]
 
-[sub_resource type="Resource" id="Resource_osh5d"]
+[sub_resource type="Resource" id="Resource_glqlh"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -34,7 +34,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_qhs3j"]
+[sub_resource type="Resource" id="Resource_1bc8w"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -45,7 +45,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_1w0gy"]
+[sub_resource type="Resource" id="Resource_krbf6"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -61,15 +61,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_eje24"]
+[sub_resource type="Resource" id="Resource_sfio2"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_osh5d"), SubResource("Resource_qhs3j"), SubResource("Resource_1w0gy")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_glqlh"), SubResource("Resource_1bc8w"), SubResource("Resource_krbf6")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_kcrft"]
+[sub_resource type="Resource" id="Resource_lnohj"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -78,7 +78,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_cnvid"]
+[sub_resource type="Resource" id="Resource_hkmvb"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -89,7 +89,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_co1gh"]
+[sub_resource type="Resource" id="Resource_wfohg"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -105,9 +105,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_sxlld"]
+[sub_resource type="Resource" id="Resource_con2u"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_kcrft"), SubResource("Resource_cnvid"), SubResource("Resource_co1gh")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_lnohj"), SubResource("Resource_hkmvb"), SubResource("Resource_wfohg")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -221,7 +221,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_eje24")
+modifier_stack = SubResource("Resource_sfio2")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -239,7 +239,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_sxlld")
+modifier_stack = SubResource("Resource_con2u")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -270,6 +270,7 @@ shadow_blur = 5.343
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.13, -7.14218, -46.0773)
+radius = 6.98
 height = 22.48
 vertices = PackedVector3Array(2.16293, 0, 1.80072, 36.2126, 0, 20.2034, 49.7225, 0, 37.9787, 121.874, 0, 64.0779, 149.96, 0, 96.2646, 167.477, 0, 123.674, 157.641, 0, 123.755, 144.585, 0, 99.5966, 118.193, 0, 69.024, 47.4343, 0, 44.1013, 33.0499, 0, 24.0602, 0.857712, 0, 6.32531)
 
