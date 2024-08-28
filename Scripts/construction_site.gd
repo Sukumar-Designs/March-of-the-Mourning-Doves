@@ -12,7 +12,6 @@ extends StaticBody3D
 @onready var range_tower_1 = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_2 = load("res://Full_Assets/tree_full.tscn")
 @onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
-#@onready var bridge_preview = load
 
 
 var final_construction_type
@@ -34,6 +33,10 @@ func _ready():
 	add_to_group(enemy)
 	add_to_group(has_inventory)
 	current_health = max_health
+	
+	# Build the bridge right away:
+	if final_construction_sub_type == "sub_type_bridge":
+		construct()
 
 
 func construct():
@@ -46,7 +49,7 @@ func construct():
 		instance = range_tower_2.instantiate()
 	elif final_construction_sub_type == "sub_type_bridge":
 		instance = bridge.instantiate()
-		instance.rotation.y = 45
+		global_position.y -= 5
 	
 	instance.global_position = global_position
 	instance.sub_type = final_construction_sub_type
