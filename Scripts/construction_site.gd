@@ -50,6 +50,7 @@ func construct():
 	
 	instance.global_position = global_position
 	instance.sub_type = final_construction_sub_type
+	instance.rotation.y = self.rotation.y
 	instance.side = side
 	instance.enemy = enemy
 	get_tree().current_scene.add_child(instance) 
