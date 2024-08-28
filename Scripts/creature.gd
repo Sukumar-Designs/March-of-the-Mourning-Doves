@@ -2,14 +2,17 @@ extends AnimatableBody3D
 
 @onready var cameras_list #= $"../UI_Controller"
 var camera_location
+var player
+
+
 # General Stats
 @export var main_type = "main_type_creatures"
-@export var sub_type = "sub_type_squirrel"
-@export var side = "side_squirrel"
-@export var enemy = "enemy_bird"
+@export var sub_type = ""
+@export var side = ""
+@export var enemy = ""
 @export var has_inventory = "has_inventory_true"
 
-@export var enemy_type = "side_bird"
+@export var enemy_type = ""
 
 @export var can_pick_up = "main_type_resources"
 var speed = 5
@@ -42,8 +45,10 @@ var attack_damage = 1
 var terrain_name = "HTerrain"
 
 func _ready():
+	print_debug("CREATURE EXISTS IN WORLD", side)
+	if !player:
+		player = get_tree().get_first_node_in_group(side + "camera")
 	
-	var player = get_tree().get_first_node_in_group(side + "camera")
 	if player:
 		$MultiplayerSynchronizer.set_multiplayer_authority(str(player.name).to_int())
 	else:
@@ -124,6 +129,7 @@ func _process(delta):
 					attack_cooldown_counter -= attack_speed
 	else:
 		global_position = global_position.lerp(syncPos, .5)
+		#camera_location = "ERROR"
 
 func assign_target(object_selected):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
@@ -212,7 +218,6 @@ func _on_area_3d_body_exited(body):
 
 func set_location(pos):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		print_debug("SETTING POS:", position)
 		syncPos = global_position
 		position = pos
 	else:

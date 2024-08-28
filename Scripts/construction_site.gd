@@ -1,15 +1,18 @@
-extends CharacterBody3D
+extends StaticBody3D
 
 @export var main_type = "main_type_buildings"
 @export var sub_type = "sub_type_construction"
-@export var side = "side_bird"
-@export var enemy = "enemy_squirrel"
+@export var side = ""
+@export var enemy = ""
 @export var has_inventory = "has_inventory_false"
+
+@onready var visual_preview = $Twig_Visual
 
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
 @onready var range_tower_1 = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_2 = load("res://Full_Assets/tree_full.tscn")
 @onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
+
 
 var final_construction_type
 var final_construction_sub_type
@@ -30,6 +33,10 @@ func _ready():
 	add_to_group(enemy)
 	add_to_group(has_inventory)
 	current_health = max_health
+	
+	# Build the bridge right away:
+	if final_construction_sub_type == "sub_type_bridge":
+		construct()
 
 
 func construct():
@@ -42,9 +49,11 @@ func construct():
 		instance = range_tower_2.instantiate()
 	elif final_construction_sub_type == "sub_type_bridge":
 		instance = bridge.instantiate()
+		global_position.y -= 5
 	
 	instance.global_position = global_position
 	instance.sub_type = final_construction_sub_type
+	instance.rotation.y = self.rotation.y
 	instance.side = side
 	instance.enemy = enemy
 	get_tree().current_scene.add_child(instance) 

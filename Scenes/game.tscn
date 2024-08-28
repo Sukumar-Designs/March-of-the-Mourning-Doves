@@ -25,7 +25,7 @@
 [ext_resource type="Material" uid="uid://rwbjg3tgujum" path="res://river_temp/WaterPlane.tres" id="23_q1x7m"]
 [ext_resource type="Script" path="res://Scripts/river.gd" id="24_uuiuc"]
 
-[sub_resource type="Resource" id="Resource_43yvl"]
+[sub_resource type="Resource" id="Resource_0y7pw"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -34,7 +34,7 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_rp2g1"]
+[sub_resource type="Resource" id="Resource_bfiv3"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -45,7 +45,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_mi2sp"]
+[sub_resource type="Resource" id="Resource_t5b5m"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -61,15 +61,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_mrgyq"]
+[sub_resource type="Resource" id="Resource_4bvtc"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_43yvl"), SubResource("Resource_rp2g1"), SubResource("Resource_mi2sp")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_0y7pw"), SubResource("Resource_bfiv3"), SubResource("Resource_t5b5m")])
 
 [sub_resource type="Resource" id="Resource_6tbds"]
 script = ExtResource("22_lhnpy")
 size = Vector3(1400, 2, 1400)
 
-[sub_resource type="Resource" id="Resource_afrla"]
+[sub_resource type="Resource" id="Resource_8xqkm"]
 script = ExtResource("15_30fw0")
 amount = 10000
 enabled = true
@@ -78,7 +78,7 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_wkqmk"]
+[sub_resource type="Resource" id="Resource_dgjs7"]
 script = ExtResource("16_xyi13")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
@@ -89,7 +89,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_7wv5y"]
+[sub_resource type="Resource" id="Resource_51vt4"]
 script = ExtResource("17_kmr02")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -105,9 +105,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_5xf0u"]
+[sub_resource type="Resource" id="Resource_e2xwe"]
 script = ExtResource("14_h5mya")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_afrla"), SubResource("Resource_wkqmk"), SubResource("Resource_7wv5y")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8xqkm"), SubResource("Resource_dgjs7"), SubResource("Resource_51vt4")])
 
 [sub_resource type="Resource" id="Resource_4f31u"]
 script = ExtResource("22_lhnpy")
@@ -198,6 +198,7 @@ enemy = "enemy_squirrel"
 [node name="squirrel_base" parent="." instance=ExtResource("13_rmbku")]
 transform = Transform3D(-0.0788651, -0.00420492, -0.66124, -0.0354561, 0.664995, 0, 0.660302, 0.0352059, -0.0789771, 90.4526, 11.4804, -59.8246)
 side = "side_squirrel"
+enemy = "enemy_bird"
 
 [node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
 transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, 23.6549)
@@ -220,7 +221,7 @@ transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_mrgyq")
+modifier_stack = SubResource("Resource_4bvtc")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -238,7 +239,7 @@ shape = SubResource("Resource_6tbds")
 process_mode = 3
 transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
 script = ExtResource("13_0gfyy")
-modifier_stack = SubResource("Resource_5xf0u")
+modifier_stack = SubResource("Resource_e2xwe")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -266,6 +267,12 @@ shadow_bias = 3.737
 shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 shadow_blur = 5.343
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.13, -7.14218, -46.0773)
+radius = 6.98
+height = 22.48
+vertices = PackedVector3Array(2.16293, 0, 1.80072, 36.2126, 0, 20.2034, 49.7225, 0, 37.9787, 121.874, 0, 64.0779, 149.96, 0, 96.2646, 167.477, 0, 123.674, 157.641, 0, 123.755, 144.585, 0, 99.5966, 118.193, 0, 69.024, 47.4343, 0, 44.1013, 33.0499, 0, 24.0602, 0.857712, 0, 6.32531)
 
 [node name="River_Path" type="Path3D" parent="." groups=["sub_type_river"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.2146, -2.18858, -40.6646)

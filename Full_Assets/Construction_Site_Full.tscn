@@ -8,7 +8,7 @@
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x2xar"]
 
-[node name="ConstructionSite" type="CharacterBody3D"]
+[node name="ConstructionSite" type="StaticBody3D"]
 transform = Transform3D(0.792483, -0.00645284, 0.0575341, 0.0045752, 1.41574, -0.0129956, -0.0574665, 0.0236873, 0.792385, -0.00787766, 2.54598, 0.0289175)
 collision_layer = 9
 script = ExtResource("1_b5pte")

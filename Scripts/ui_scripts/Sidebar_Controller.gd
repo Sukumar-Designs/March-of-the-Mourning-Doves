@@ -1,8 +1,7 @@
 extends Node3D
 
-var side = "side_bird"
-var enemy = "enemy_squirrel"
-var enemy_type = "side_squirrel"
+@onready var side = "" #"side_bird"
+@onready var enemy = "" #"enemy_squirrel"
 
 # Tabs
 @onready var resources_ui = $Resource_Container
@@ -17,9 +16,9 @@ var enemy_type = "side_squirrel"
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
 @onready var range_tower_1_preview = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_1 = load("res://Full_Assets/tree_full.tscn")
-
-@onready var bridge_preview = load("res://Assets/Mushroom.glb")
+@onready var bridge_preview = load("res://Assets/bridge/bridge.tscn")
 @onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
+
 
 @onready var construction = load("res://Full_Assets/Construction_Site_Full.tscn")
 
@@ -30,6 +29,8 @@ var base_type_selected
 
 var ray_caster 
 var terrian_name = "HTerrain"
+var river_name = "River_Collider"
+
 var ray
 # Resource Type
 var pebble = "sub_type_pebble"
@@ -88,6 +89,11 @@ func _ready():
 	for resource_cost in buildings:
 		for resource in buildings[resource_cost]:
 			buildings[resource_cost][resource][0].text = str(buildings[resource_cost][resource][1])
+	
+	side = $"..".side
+	enemy = $"..".enemy
+	
+	
 	resources_ui.visible = false
 	buildings_ui.visible = false
 	base_inventory.visible = false
@@ -159,10 +165,18 @@ func _input(event):
 				preview_building.position = ray.position 
 				
 		elif Input.is_action_just_pressed("place") and ray:
-			if ray != { } and ray["collider"].name == terrian_name:
+			if (ray != { }) and (ray["collider"].name == terrian_name) and (base_type_selected != "bridge"):
+				purchase_building()
+			elif (ray != { }) and (ray["collider"].name == river_name) and (base_type_selected == "bridge"):
 				purchase_building()
 		if Input.is_action_just_pressed("clear_selection"):
 			clear_preview()
+			
+		# Click to Rotate the building preview you want to place
+		if Input.is_action_just_pressed("rotate_preview"):
+			preview_building.rotation.y += 15
+		if Input.is_action_pressed("rotate_preview"):
+			preview_building.rotation.y -= .1
 
 
 func find_ray_caster():
@@ -175,17 +189,17 @@ func purchase_building():
 	if player_can_affort(base_type_selected):
 		for item in buildings[base_type_selected]: 
 			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
-		place_building.rpc(ray, base_type_selected, side, enemy)
-		place_building(ray, base_type_selected, side, enemy)
+		place_building.rpc(ray, base_type_selected, side, enemy, preview_building.rotation.y)
+		place_building(ray, base_type_selected, side, enemy, preview_building.rotation.y)
 
 
 @rpc("any_peer") 
-func place_building(placeRay, base_type_selected_string, s, e):
-	print_debug("!!!!!!!!!!!!!!!!!!! ", base_type_selected_string)
+func place_building(placeRay, base_type_selected_string, s, e, r):
 	# Place construction ready to be worked on:
 	var instance = construction.instantiate()
 	instance.final_construction_type = building 
 	instance.position = placeRay.position + Vector3(1.55, 0, 1.55)
+	instance.rotation.y = r
 	instance.final_construction_sub_type = "sub_type_" + base_type_selected_string
 	instance.side = s
 	instance.enemy = e

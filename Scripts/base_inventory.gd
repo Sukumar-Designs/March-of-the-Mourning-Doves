@@ -51,7 +51,6 @@ func drop_all_items(parent):
 			get_tree().current_scene.add_child(instance)
 
 func open_inventory():
-	print_debug("OPENING INVENTORY...")
 	#var sidebar = get_tree().get_nodes_in_group("sidebar")[0]
 	#print_debug(sidebar)
 	sidebar.show_sidebar_tab("resources", self)
