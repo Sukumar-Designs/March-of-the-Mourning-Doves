@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StaticBody3D
 
 @export var main_type = "main_type_buildings"
 @export var sub_type = "sub_type_construction"
@@ -6,10 +6,14 @@ extends CharacterBody3D
 @export var enemy = ""
 @export var has_inventory = "has_inventory_false"
 
+@onready var visual_preview = $Twig_Visual
+
 @onready var base = load("res://Full_Assets/bird_base_full.tscn")
 @onready var range_tower_1 = load("res://Assets/Pine_Tree.glb") 
 @onready var range_tower_2 = load("res://Full_Assets/tree_full.tscn")
 @onready var bridge = load("res://Full_Assets/Bridge_Full.tscn")
+#@onready var bridge_preview = load
+
 
 var final_construction_type
 var final_construction_sub_type
