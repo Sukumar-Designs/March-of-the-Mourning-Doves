@@ -141,8 +141,8 @@ func player_can_affort(to_build_type):
 		# Amount player has - cost
 		var difference = base_selected.get_inventory()[item.to_lower()] - buildings[to_build_type][item][1]
 		if difference < 0:
-			base_selected = false
-	return base_selected
+			can_afford = false
+	return can_afford
 
 func get_ray_caster():
 	if !ray_caster:
