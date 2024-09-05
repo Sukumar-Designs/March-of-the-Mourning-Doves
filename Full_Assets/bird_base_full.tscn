@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c20qaxx3gpxc"]
+[gd_scene load_steps=8 format=3 uid="uid://c20qaxx3gpxc"]
 
 [ext_resource type="Script" path="res://Scripts/base.gd" id="1_hc1ws"]
 [ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Mushroom.glb" id="2_d73xk"]
@@ -11,11 +11,6 @@ size = Vector3(1, 1.42194, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7sp5"]
 size = Vector3(1, 1, 1.1532)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lathf"]
-properties/0/path = NodePath("..:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [node name="StaticBody3D" type="StaticBody3D" groups=["main_base"]]
 transform = Transform3D(0.250129, 0, 0, 0, 0.250129, 0, 0, 0, 0.250129, 1.58195, 0, 0)
@@ -51,9 +46,3 @@ script = ExtResource("3_htu3h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.8331, -6.92667, -142.784)
 
 [node name="Sidebar" parent="." instance=ExtResource("5_cktwg")]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-root_path = NodePath(".")
-replication_interval = 0.1
-replication_config = SubResource("SceneReplicationConfig_lathf")
-visibility_update_mode = 1

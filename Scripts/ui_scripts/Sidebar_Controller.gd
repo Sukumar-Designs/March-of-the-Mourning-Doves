@@ -189,11 +189,9 @@ func purchase_building():
 	if player_can_affort(base_type_selected):
 		for item in buildings[base_type_selected]: 
 			base_selected.change_item_amount(item.to_lower(), -buildings[base_type_selected][item][1]) 
-		place_building.rpc(ray, base_type_selected, side, enemy, preview_building.rotation.y)
 		place_building(ray, base_type_selected, side, enemy, preview_building.rotation.y)
 
 
-@rpc("any_peer") 
 func place_building(placeRay, base_type_selected_string, s, e, r):
 	# Place construction ready to be worked on:
 	var instance = construction.instantiate()

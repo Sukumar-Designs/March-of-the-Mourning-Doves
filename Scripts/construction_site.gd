@@ -24,8 +24,6 @@ var current_health
 
 func _ready():
 	var player = get_tree().get_first_node_in_group(side + "camera")
-	if player:
-		$MultiplayerSynchronizer.set_multiplayer_authority(str(player.name).to_int())
 	# Add to 5 basic groups
 	add_to_group(main_type)
 	add_to_group(sub_type)

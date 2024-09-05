@@ -24,20 +24,11 @@ var rng
 var number_of_spawns = 5
 @onready var creature = preload("res://Full_Assets/creature_full.tscn") 
 var initial_place = true
-#var syncPos = Vector3(0,0,0)
 
 # If camera location already specified
 var camera_location
-var player 
 
 func _ready():
-	if !player:
-		player = get_tree().get_first_node_in_group(side + "camera")
-
-	if player:
-		$MultiplayerSynchronizer.set_multiplayer_authority(str(player.name).to_int())
-	else:
-		print_debug("NO PLAYER FOUND")
 		
 	#$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if sub_type == "sub_type_base_main_base":
@@ -66,12 +57,10 @@ func _process(delta):
 		heal_tick_counter = heal_tick
 		set_health(heal_amount)
 	if initial_place:
-		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-			print_debug("Spawning Initial_place")
-			spawn_creatures.rpc(sub_type, side, enemy)
-			spawn_creatures(sub_type, side, enemy)
-			#print_debug("INITIAL PLACE", side)
-			initial_place = false
+		print_debug("Spawning Initial_place")
+		spawn_creatures(sub_type, side, enemy)
+		#print_debug("INITIAL PLACE", side)
+		initial_place = false
 
 	
 func set_health(amount):
@@ -100,9 +89,6 @@ func try_deposite_item(item, amount):
 func open_inventory(): 
 	inventory.open_inventory()
 
-
-#@rpc("authority")
-@rpc("any_peer")
 func spawn_creatures(sub_type, side, enemy):
 	for i in range(0, number_of_spawns):
 		print_debug("Spawning", i)

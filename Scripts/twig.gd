@@ -42,6 +42,5 @@ func _process(delta):
 		delay_movement_tracker = delay_movement
 	delay_movement_tracker -= 1
 
-@rpc("any_peer")
 func kill():
 	queue_free()

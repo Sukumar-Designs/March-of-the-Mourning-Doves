@@ -21,8 +21,6 @@ var falling = false
 var rotation_speed = 90.0  # Adjust this value to control the rotation speed
 var target_rotation = Vector3(-93, 0, 0)  # Adjust the target rotation as needed
 
-@onready var sync = $MultiplayerSynchronizer
-
 # Drops after falling
 @onready var drops = preload("res://Full_Assets/Twig_Full.tscn") 
 var rng 
