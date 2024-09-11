@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://tl3guute0u1a"]
+
+[ext_resource type="Shader" path="res://Full_Assets/Terrain/river_temp/Water.gdshader" id="1_y4i7l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbl32"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lrr8t"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_edp1j"]
+seamless = true
+as_normal_map = true
+bump_strength = 120.0
+noise = SubResource("FastNoiseLite_lrr8t")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uoqns"]
+noise_type = 3
+seed = 10
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ckt8q"]
+seamless = true
+as_normal_map = true
+bump_strength = 27.6
+noise = SubResource("FastNoiseLite_uoqns")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efaa8"]
+render_priority = 0
+shader = ExtResource("1_y4i7l")
+shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
+shader_parameter/albedo2 = Color(0.156863, 0.792157, 0.537255, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(2, 0)
+shader_parameter/time_scale = 0.005
+shader_parameter/alpha = 1.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_edp1j")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_ckt8q")
+
+[node name="WaterPlane" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_wbl32")
+surface_material_override/0 = SubResource("ShaderMaterial_efaa8")

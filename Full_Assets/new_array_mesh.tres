@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://c0gcnooukxych"]
 
-[ext_resource type="Texture2D" uid="uid://blnkfmvcvi7ib" path="res://Assets/Base Plate/Base Plate_Moss Texture.jpg" id="1_xcel1"]
+[ext_resource type="Texture2D" uid="uid://blnkfmvcvi7ib" path="res://Assets/Terrain/Base_Plate/Base Plate_Moss Texture.jpg" id="1_xcel1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn3mg"]
 resource_name = "Base Plate Test"

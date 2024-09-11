@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://3na5vq7jdqi3"]
+
+[ext_resource type="Script" path="res://Scripts/Visuals/Character_Health_Bar_Controller.gd" id="1_hsud3"]
+
+[node name="HealthBar" type="Sprite3D"]
+transform = Transform3D(0.036, 0, 0, 0, 0.013, -9.32408e-21, 0, 2.95642e-21, 0.041, 0, 1.96033, 0)
+script = ExtResource("1_hsud3")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://42b8wa07nqxe"]
+
+[ext_resource type="Script" path="res://Scripts/Structures/construction_site.gd" id="1_b5pte"]
+[ext_resource type="PackedScene" uid="uid://buqfk0m2vv2vf" path="res://Assets/Terrain/Mushroom.glb" id="2_5mv0g"]
+[ext_resource type="PackedScene" uid="uid://3na5vq7jdqi3" path="res://Full_Assets/Visuals/character_health_bar.tscn" id="3_8ksrh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaf58"]
+
+[node name="ConstructionSite" type="StaticBody3D"]
+transform = Transform3D(0.792483, -0.00645284, 0.0575341, 0.0045752, 1.41574, -0.0129956, -0.0574665, 0.0236873, 0.792385, -0.00787766, 2.54598, 0.0289175)
+collision_layer = 9
+script = ExtResource("1_b5pte")
+
+[node name="Twig_Visual" parent="." instance=ExtResource("2_5mv0g")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(3.90589, 7.45058e-09, 3.72529e-07, -1.2666e-07, 3.90589, 8.34465e-07, 7.89762e-07, 2.38419e-07, 3.90589, -0.183607, 0.251485, -0.0791926)
+shape = SubResource("CapsuleShape3D_vaf58")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.16749, 3.72529e-08, 2.83122e-07, -8.9407e-08, 3.16749, 8.34465e-07, 5.66244e-07, 2.38419e-07, 3.16749, -0.183607, 0.251485, -0.0791928)
+shape = SubResource("CapsuleShape3D_vaf58")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_8ksrh")]
+transform = Transform3D(0.036, -3.63798e-12, -2.32831e-10, -5.45697e-12, 0.013, 0, 0, 0, 0.041, 1.39698e-09, 4.00483, -7.45058e-09)
+billboard = 1

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://csqqpoxh63diu"]
+
+[ext_resource type="Script" path="res://Scripts/Players/UI_movement.gd" id="1_b1kq4"]
+[ext_resource type="Texture2D" uid="uid://cx1a4dph8y5mm" path="res://Assets/Characters/Creature_Images/Bird_Soldier.png" id="2_guvdo"]
+
+[node name="UI_Controller" type="CharacterBody3D" groups=["minimap_objects", "player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.563, 0, 0)
+script = ExtResource("1_b1kq4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.904701, 0.426048, 0, -0.426048, 0.904701, 6.56736, 14.8197, 15.9454)
+projection = 1
+current = true
+size = 12.029
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.372853, 0, 0, 0, 0.372853, 4.44475e-08, 0, -4.44475e-08, 0.372853, 6.53953, 3.35867, 0.139685)
+billboard = 1
+texture = ExtResource("2_guvdo")

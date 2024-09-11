@@ -1,0 +1,210 @@
+[gd_scene load_steps=26 format=3 uid="uid://cs4u3784uqs1r"]
+
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_oqt4j"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_deeu8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="3_7whd2"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_nhfop"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="5_hpk1a"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="6_yc1e1"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_v2m2a"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="8_pfjt0"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="9_fj47b"]
+
+[sub_resource type="Resource" id="Resource_diyd0"]
+script = ExtResource("3_7whd2")
+amount = 10000
+enabled = true
+override_global_seed = true
+custom_seed = 3
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_tl1tt"]
+script = ExtResource("4_nhfop")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 45, 0)
+scale = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_njcwo"]
+script = ExtResource("5_hpk1a")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 20.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_8fi86"]
+script = ExtResource("2_deeu8")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_diyd0"), SubResource("Resource_tl1tt"), SubResource("Resource_njcwo")])
+
+[sub_resource type="Resource" id="Resource_1ejt8"]
+script = ExtResource("8_pfjt0")
+size = Vector3(1400, 2, 1400)
+
+[sub_resource type="Resource" id="Resource_ux5xo"]
+script = ExtResource("3_7whd2")
+amount = 10000
+enabled = true
+override_global_seed = true
+custom_seed = 3
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_g5vi6"]
+script = ExtResource("4_nhfop")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 45, 0)
+scale = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = true
+custom_seed = 4
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_sq1hr"]
+script = ExtResource("5_hpk1a")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 20.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_gupcs"]
+script = ExtResource("9_fj47b")
+operation = 0
+rotation = Vector3(0, 0, -90)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_y83lo"]
+script = ExtResource("2_deeu8")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ux5xo"), SubResource("Resource_g5vi6"), SubResource("Resource_sq1hr"), SubResource("Resource_gupcs")])
+
+[sub_resource type="Resource" id="Resource_g3qwc"]
+script = ExtResource("8_pfjt0")
+size = Vector3(1400, 2, 1400)
+
+[sub_resource type="Resource" id="Resource_nr4qv"]
+script = ExtResource("3_7whd2")
+amount = 10000
+enabled = true
+override_global_seed = true
+custom_seed = 4
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_n28hb"]
+script = ExtResource("4_nhfop")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 45, 0)
+scale = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_e2age"]
+script = ExtResource("5_hpk1a")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 20.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_6y8wf"]
+script = ExtResource("2_deeu8")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_nr4qv"), SubResource("Resource_n28hb"), SubResource("Resource_e2age")])
+
+[sub_resource type="Resource" id="Resource_isdb0"]
+script = ExtResource("8_pfjt0")
+size = Vector3(1400, 2, 1400)
+
+[node name="Flowers" type="Node3D"]
+
+[node name="Pink_Flowers" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 0.495188, 0.133096)
+script = ExtResource("1_oqt4j")
+modifier_stack = SubResource("Resource_8fi86")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Pink_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.18735, 0, 0, 0)
+script = ExtResource("6_yc1e1")
+override_cast_shadow = 2
+path = "res://Assets/Terrain/Flowers/Pink Flower.glb"
+
+[node name="SphereShape" type="Node3D" parent="Pink_Flowers"]
+visible = false
+script = ExtResource("7_v2m2a")
+shape = SubResource("Resource_1ejt8")
+
+[node name="Blue_Flowers" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, 0.090276, 0.495188, 0.133096)
+script = ExtResource("1_oqt4j")
+modifier_stack = SubResource("Resource_y83lo")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Blue_Flowers"]
+script = ExtResource("6_yc1e1")
+source_scale_multiplier = 2.0
+path = "res://Assets/Terrain/Flowers/Blue Flower.glb"
+
+[node name="SphereShape" type="Node3D" parent="Blue_Flowers"]
+visible = false
+script = ExtResource("7_v2m2a")
+shape = SubResource("Resource_g3qwc")
+
+[node name="Orange_Flowers" type="Node3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.144671, 0, 0, 0, 0.00746611, 0, 0, 0, 0.144671, -1.53694, 1.27427, 0.133096)
+script = ExtResource("1_oqt4j")
+modifier_stack = SubResource("Resource_6y8wf")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Orange_Flowers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.18735, 0, 0, 0)
+script = ExtResource("6_yc1e1")
+path = "res://Assets/Terrain/Flowers/Orange Flower.glb"
+
+[node name="SphereShape" type="Node3D" parent="Orange_Flowers"]
+visible = false
+script = ExtResource("7_v2m2a")
+shape = SubResource("Resource_isdb0")

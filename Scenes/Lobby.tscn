@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkgxji66brw7e"]
 
-[ext_resource type="Texture2D" uid="uid://df3j7s0ele01n" path="res://Assets/buildings_2d/Bridge_2d.jpeg" id="4_tr0e2"]
+[ext_resource type="Texture2D" uid="uid://df3j7s0ele01n" path="res://Assets/Visuals/Buildings_2d/Bridge_2d.jpeg" id="4_tr0e2"]
 
 [sub_resource type="GDScript" id="GDScript_gynxv"]
 script/source = "extends Node
