@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="birdy_brigade"
+config/name="March_of_the_Mourning_Doves"
 run/main_scene="res://Scenes/Lobby.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Assets/Visuals/Sidebar/squirrel soldier.png"
+config/icon="res://Assets/Characters/Creature_Images/Bird_Soldier.png"
 
 [autoload]
 
