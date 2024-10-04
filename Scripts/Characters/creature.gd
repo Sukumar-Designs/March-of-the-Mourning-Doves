@@ -1,7 +1,5 @@
 extends AnimatableBody3D
 
-@onready var cameras_list #= $"../UI_Controller"
-var camera_location
 var player
 
 
@@ -44,8 +42,6 @@ var terrain_name = "HTerrain"
 
 func _ready():
 	print_debug("CREATURE EXISTS IN WORLD", side)
-	if !player:
-		player = get_tree().get_first_node_in_group(side + "camera")
 	
 	# Add to 5 basic groups
 	add_to_group(main_type)
@@ -56,15 +52,7 @@ func _ready():
 
 	update_health_bar()
 	
-	if sub_type == "sub_type_squirrel":
-		# Squirrels are on layer 2 (layer), and can collide with 1 and 3 (mask)
-		set_collision_layer_value(1, false)
-		set_collision_layer_value(2, true)
-		
-		set_collision_mask_value(1, false)
-		set_collision_mask_value(3, true)
-		set_collision_mask_value(4, true) # River / Buildings 
-	elif sub_type == "sub_type_bird":
+	if sub_type == "sub_type_bird":
 		# Birds are on layer 3 (layer), and can collide 2 (mask) but not the terrain (1)
 		set_collision_layer_value(1, false)
 		set_collision_layer_value(3, true)
@@ -72,8 +60,14 @@ func _ready():
 		set_collision_mask_value(1, false)
 		set_collision_mask_value(2, true)
 		set_collision_mask_value(4, true) # River / Buildings 
+	else:
+		# Other creatures are on layer 2 (layer), and can collide with 1 and 3 (mask)
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(2, true)
 		
-	cameras_list = get_tree().get_nodes_in_group(side + "camera")
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(3, true)
+		set_collision_mask_value(4, true) # River / Buildings 
 
 
 func _physics_process(delta):
@@ -93,13 +87,7 @@ func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
 
 func _process(delta):
-	if len(cameras_list) > 0:
-		camera_location = cameras_list[0]
-		update_health_bar()
-		
-	else:
-		cameras_list = get_tree().get_nodes_in_group(side + "camera")
-
+	
 	if current_target and is_instance_valid(current_target):
 		update_target_location(current_target.position)
 		
@@ -147,9 +135,6 @@ func set_health(amount):
 func update_health_bar():
 	""" This function controlls the health bar """
 	health_bar.side = side
-	#if camera_location != null:
-		#print_debug(camera_location, "CAMERA")
-	health_bar.camera = camera_location
 	health_bar.update_health_bar(current_health, max_health)
 	
 func on_hit(damage, attacker):

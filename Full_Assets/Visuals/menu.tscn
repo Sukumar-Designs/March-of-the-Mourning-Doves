@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf17e5amuxvu6"]
+
+[ext_resource type="Script" path="res://Scripts/Players/menu.gd" id="1_0wa7w"]
+[ext_resource type="Texture2D" uid="uid://b1ukayqspt7u2" path="res://Assets/Terrain/Flowers/Pink Flower_Untitled_Artwork (7).png" id="2_xt17l"]
+[ext_resource type="Texture2D" uid="uid://b2ka21wmvn6sk" path="res://Assets/Terrain/Flowers/Orange Flower_Orange peddle flower.png" id="3_wifua"]
+[ext_resource type="Script" path="res://Scripts/Players/resume_button.gd" id="4_0hyd3"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_0wa7w")
+
+[node name="resume_button" type="TextureButton" parent="."]
+process_mode = 2
+offset_left = 260.0
+offset_top = 92.0
+offset_right = 2308.0
+offset_bottom = 2140.0
+scale = Vector2(0.169654, 0.124394)
+texture_normal = ExtResource("2_xt17l")
+texture_pressed = ExtResource("3_wifua")
+script = ExtResource("4_0hyd3")
+
+[connection signal="pressed" from="resume_button" to="." method="_on_resume_button_pressed"]

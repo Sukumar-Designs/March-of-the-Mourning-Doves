@@ -1,75 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=4 format=3 uid="uid://dnepl2iikj3k5"]
 
-[ext_resource type="PackedScene" uid="uid://cs4u3784uqs1r" path="res://Full_Assets/Terrain/flowers.tscn" id="8_4lmxf"]
-[ext_resource type="Script" path="res://Scripts/Visuals/HealthBar.gd" id="12_l3ivy"]
-[ext_resource type="PackedScene" uid="uid://c20qaxx3gpxc" path="res://Full_Assets/Structures/bird_base_full.tscn" id="13_rmbku"]
-[ext_resource type="PackedScene" uid="uid://dywh4dirr7isn" path="res://Assets/Terrain/Squirrel_Mountain/Squirrel Mountain.glb" id="14_2uebb"]
-[ext_resource type="PackedScene" uid="uid://c720yiw6pru12" path="res://Full_Assets/Terrain/tree_full.tscn" id="14_kow6g"]
+[ext_resource type="Script" path="res://Scripts/Players/menu.gd" id="1_d6ubl"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/Player/ui_controller.tscn" id="15_1ofx1"]
-[ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Terrain/Twig_Full.tscn" id="15_4qpbd"]
-[ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/Terrain/terrain/terrain_full.tscn" id="21_23x5g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2k3k"]
+size = Vector3(6.99316, 1, 6.95068)
 
 [node name="Game" type="Node3D"]
+script = ExtResource("1_d6ubl")
 
-[node name="HealthBars" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 384.0
-offset_top = 1.0
-offset_right = 424.0
-offset_bottom = 41.0
+[node name="player" parent="." instance=ExtResource("15_1ofx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90782, 0)
 
-[node name="SquirrelHealth" type="ProgressBar" parent="HealthBars"]
-modulate = Color(0.686275, 0, 0.109804, 1)
-self_modulate = Color(0.941176, 0.196078, 0.431373, 1)
-layout_mode = 0
-offset_left = 355.0
-offset_top = 17.0
-offset_right = 507.0
-offset_bottom = 44.0
-max_value = 1.0
-show_percentage = false
-script = ExtResource("12_l3ivy")
-
-[node name="BirdHealth" type="ProgressBar" parent="HealthBars"]
-modulate = Color(0.290196, 0.152941, 0.917647, 1)
-self_modulate = Color(0.4, 0.486275, 0.964706, 1)
-layout_mode = 0
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 173.0
-offset_bottom = 45.0
-max_value = 1.0
-show_percentage = false
-script = ExtResource("12_l3ivy")
-
-[node name="bird_base" parent="." instance=ExtResource("13_rmbku")]
-transform = Transform3D(0.626779, 0, 0, 0, 0.626779, 0, 0, 0, 0.626779, -82.4283, 10.7215, 55.8457)
-side = "side_bird"
-enemy = "enemy_squirrel"
-
-[node name="Pine_Tree_Full" parent="." instance=ExtResource("14_kow6g")]
-transform = Transform3D(0.0182745, 0, 0, 0, 0.0182745, 0, 0, 0, 0.0182745, 0, 0, 23.6549)
-
-[node name="PinesFull" parent="." instance=ExtResource("15_4qpbd")]
-transform = Transform3D(0.232273, 0.154101, 0.0497696, -0.150185, 0.172441, 0.166984, 0.0605687, -0.163377, 0.223192, 1.1102, 9.53674e-07, -12.0882)
-
-[node name="SpawnLocations" type="Node" parent="."]
-
-[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 15, 50)
-
-[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 20, -63)
-
-[node name="Squirrel Mountain" parent="." instance=ExtResource("14_2uebb")]
-transform = Transform3D(1.18366, 0, 0, 0, 1.18366, 0, 0, 0, 1, -16.1691, 4.82386, -45.5969)
-
-[node name="Terrain" parent="." instance=ExtResource("21_23x5g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 12.602, 197.234, 146.283)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.0197149, 14.517, 197.188, 143.696)
 light_color = Color(0.698039, 1, 0.886275, 1)
 light_energy = 1.7
 light_indirect_energy = 8.064
@@ -81,8 +25,12 @@ shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 shadow_blur = 5.343
 
-[node name="UI_Controller" parent="." instance=ExtResource("15_1ofx1")]
+[node name="Terrain" type="Node3D" parent="."]
+transform = Transform3D(16.113, 0, 0, 0, 1, 0, 0, 0, 7.77352, 0, 0, 0)
 
-[node name="Flowers" parent="." instance=ExtResource("8_4lmxf")]
+[node name="CSGBox3D" type="CSGBox3D" parent="Terrain"]
+size = Vector3(7, 1, 7)
 
-[connection signal="healthChanged" from="bird_base" to="HealthBars/BirdHealth" method="_on_bird_base_health_changed"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0151367, 0, 0.0344238)
+shape = SubResource("BoxShape3D_c2k3k")
