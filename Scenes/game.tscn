@@ -1,16 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnepl2iikj3k5"]
 
-[ext_resource type="Script" path="res://Scripts/Players/menu.gd" id="1_d6ubl"]
-[ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/Player/ui_controller.tscn" id="15_1ofx1"]
+[ext_resource type="Script" path="res://Scripts/Terrain/terrain.gd" id="2_xyv6p"]
+[ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/Player/player.tscn" id="15_1ofx1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2k3k"]
 size = Vector3(6.99316, 1, 6.95068)
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_d6ubl")
 
 [node name="player" parent="." instance=ExtResource("15_1ofx1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90782, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.63428, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.0197149, 14.517, 197.188, 143.696)
@@ -25,12 +24,15 @@ shadow_normal_bias = 4.952
 shadow_reverse_cull_face = true
 shadow_blur = 5.343
 
-[node name="Terrain" type="Node3D" parent="."]
+[node name="Terrain" type="Node3D" parent="." groups=["terrain"]]
 transform = Transform3D(16.113, 0, 0, 0, 1, 0, 0, 0, 7.77352, 0, 0, 0)
+script = ExtResource("2_xyv6p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Terrain" groups=["terrain"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/StaticBody3D" groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0151367, 0, 0.0344238)
+shape = SubResource("BoxShape3D_c2k3k")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Terrain"]
 size = Vector3(7, 1, 7)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0151367, 0, 0.0344238)
-shape = SubResource("BoxShape3D_c2k3k")
