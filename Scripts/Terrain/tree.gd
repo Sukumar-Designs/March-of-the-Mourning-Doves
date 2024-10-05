@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StaticBody3D
 # General Stats
 @export var main_type = "main_type_other_structures"
 @export var sub_type = "sub_type_base_tree"

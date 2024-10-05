@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnepl2iikj3k5"]
+[gd_scene load_steps=5 format=3 uid="uid://dnepl2iikj3k5"]
 
 [ext_resource type="PackedScene" uid="uid://bivenuh44kg2w" path="res://Full_Assets/Terrain/terrain_full.tscn" id="2_fthas"]
 [ext_resource type="PackedScene" uid="uid://boydgkh5vha1c" path="res://Full_Assets/Terrain/moutains.tscn" id="3_vrne1"]
+[ext_resource type="PackedScene" uid="uid://lqpe03putqqm" path="res://Full_Assets/Terrain/Twig_Full.tscn" id="4_ih7f8"]
 [ext_resource type="PackedScene" uid="uid://csqqpoxh63diu" path="res://Full_Assets/Player/player.tscn" id="15_1ofx1"]
 
 [node name="Game" type="Node3D"]
@@ -29,3 +30,6 @@ transform = Transform3D(3.53781, 0, 0, 0, 26.5274, 0, 0, 0, 2.76367, 25.1738, -7
 
 [node name="mountains" parent="." instance=ExtResource("3_vrne1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9155, 9.41643, -20.9131)
+
+[node name="TwigFull" parent="." instance=ExtResource("4_ih7f8")]
+transform = Transform3D(0.402974, -0.122308, 0.0181095, 0.120935, 0.377051, -0.144509, 0.0257321, 0.143348, 0.395556, -14.2996, 1.82595, 5.40942)
