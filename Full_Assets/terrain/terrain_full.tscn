@@ -1,30 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://duehk2e7t7nu7"]
+[gd_scene load_steps=3 format=3 uid="uid://bivenuh44kg2w"]
 
-[ext_resource type="PackedScene" uid="uid://boe03jerynqdo" path="res://Full_Assets/Terrain/terrain/terrain_full.tscn" id="1_p6ecf"]
+[ext_resource type="Script" path="res://Scripts/Terrain/terrain.gd" id="1_7jhdw"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jfr3u"]
-size = Vector3(3.86266, 1, 1.97599)
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2k3k"]
+size = Vector3(6.99316, 1, 6.95068)
 
-[node name="Terrain_Full" type="Node3D" groups=["terrain"]]
+[node name="Terrain" type="Node3D" groups=["terrain"]]
+transform = Transform3D(16.113, 0, 0, 0, 1, 0, 0, 0, 7.77352, 0, 0, 0)
+script = ExtResource("1_7jhdw")
 
-[node name="Terrain" parent="." instance=ExtResource("1_p6ecf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91496, -0.046402, -2.58728)
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["terrain"]]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Terrain"]
-transform = Transform3D(-0.200474, -0.308177, 0.929966, 0.461423, 0.80766, 0.367116, -0.864233, 0.502705, -0.019715, 12.602, 197.234, 146.283)
-light_energy = 1.5
-light_indirect_energy = 8.064
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 52.86
-shadow_enabled = true
-shadow_bias = 3.737
-shadow_normal_bias = 4.952
-shadow_reverse_cull_face = true
-shadow_blur = 5.343
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0151367, 0, 0.0344238)
+shape = SubResource("BoxShape3D_c2k3k")
 
-[node name="Terrian_Area3D" type="Area3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8111, 8.86256, 76.8419)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrian_Area3D"]
-transform = Transform3D(53.0225, 0, 0, 0, 4.02445, 0, 0, 0, 77.4681, 25.9021, -6.9243, -76.8609)
-shape = SubResource("BoxShape3D_jfr3u")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(7, 1, 7)
