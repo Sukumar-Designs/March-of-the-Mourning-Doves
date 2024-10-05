@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cna5ig5yl3yqs"
-path="res://.godot/imported/Bird.glb-2d1c9763c3a4ba221bd4234b48bcd4bd.scn"
+uid="uid://bquyrv5j6r57l"
+path="res://.godot/imported/MotherBird.glb-0eeb8f7460155dfa60653d0993a317c0.scn"
 
 [deps]
 
-source_file="res://Full_Assets/Characters/Bird.glb"
-dest_files=["res://.godot/imported/Bird.glb-2d1c9763c3a4ba221bd4234b48bcd4bd.scn"]
+source_file="res://Assets/Characters/MotherBird.glb"
+dest_files=["res://.godot/imported/MotherBird.glb-0eeb8f7460155dfa60653d0993a317c0.scn"]
 
 [params]
 
