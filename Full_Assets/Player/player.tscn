@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://csqqpoxh63diu"]
+
+[ext_resource type="Texture2D" uid="uid://cx1a4dph8y5mm" path="res://Assets/Characters/Creature_Images/Bird_Soldier.png" id="2_guvdo"]
+[ext_resource type="Script" path="res://Scripts/Players/movement_player.gd" id="3_qv6oh"]
+[ext_resource type="PackedScene" uid="uid://cf17e5amuxvu6" path="res://Full_Assets/Visuals/menu.tscn" id="4_mb1c5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfwvi"]
+radius = 2.19884
+height = 6.98265
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2sge"]
+size = Vector3(1, 1, 2.57617)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("3_qv6oh")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.372853, 0, 0, 0, 0.372853, 4.44475e-08, 0, -4.44475e-08, 0.372853, 0, 0, 0)
+billboard = 1
+texture = ExtResource("2_guvdo")
+
+[node name="menu" parent="." instance=ExtResource("4_mb1c5")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.419484, 0.907763, 0, -0.907763, 0.419484, 0, 23.9813, 11.553)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_dfwvi")
+
+[node name="feet_area3d" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0917146, 0)
+
+[node name="feet_collision3d" type="CollisionShape3D" parent="feet_area3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.00386, 0.00188768)
+shape = SubResource("BoxShape3D_p2sge")
+
+[connection signal="body_entered" from="feet_area3d" to="." method="_on_feet_area_3d_body_entered"]
+[connection signal="body_exited" from="feet_area3d" to="." method="_on_feet_area_3d_body_exited"]
