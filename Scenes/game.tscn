@@ -29,6 +29,7 @@ shadow_blur = 5.343
 transform = Transform3D(16.113, 0, 0, 0, 1, 0, 0, 0, 7.77352, 0, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0146374, 0.0171719, -0.00553789)
 size = Vector3(7, 1, 7)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/CSGBox3D"]
