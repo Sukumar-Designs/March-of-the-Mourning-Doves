@@ -1,18 +1,6 @@
 extends CharacterBody3D
 
-var left_limit = -500
-var right_limit = 1500
-var upper_limit = -1350
-var lower_limit = 1000
-var scroll_upper_limit = 35
-var scroll_lower_limit = 12
-var left_turn_limit = 1
-var right_turn_limit = -1
-
 var speed = 9.0
-var speed_normal = 9.0
-var sprint = 19
-var mouse_sensativity = .7
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var terrain_group = "terrain"

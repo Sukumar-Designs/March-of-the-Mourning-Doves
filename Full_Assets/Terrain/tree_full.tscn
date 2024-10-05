@@ -8,7 +8,7 @@
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5je5n"]
 
-[node name="Tree_Full" type="CharacterBody3D"]
+[node name="Tree_Full" type="StaticBody3D"]
 transform = Transform3D(0.0163593, 0, 0, 0, 0.0163593, 0, 0, 0, 0.0163593, 0, 0.212417, 0.108849)
 collision_layer = 9
 script = ExtResource("1_fi6qn")

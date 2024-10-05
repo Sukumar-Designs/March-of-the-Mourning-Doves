@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaf58"]
 
-[node name="TwigFull" type="CharacterBody3D"]
+[node name="TwigFull" type="Node3D"]
 transform = Transform3D(0.402974, -0.122308, 0.0181095, 0.120935, 0.377051, -0.144509, 0.0257321, 0.143348, 0.395556, 0, 0.81764, 0)
 script = ExtResource("1_7ptkm")
 
@@ -15,8 +15,4 @@ script = ExtResource("1_7ptkm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(3.90589, 7.45058e-09, 3.72529e-07, -1.2666e-07, 3.90589, 8.34465e-07, 7.89762e-07, 2.38419e-07, 3.90589, -0.183607, 0.251485, -0.0791926)
-shape = SubResource("CapsuleShape3D_vaf58")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3.16749, 3.72529e-08, 2.83122e-07, -8.9407e-08, 3.16749, 8.34465e-07, 5.66244e-07, 2.38419e-07, 3.16749, -0.183607, 0.251485, -0.0791928)
 shape = SubResource("CapsuleShape3D_vaf58")
