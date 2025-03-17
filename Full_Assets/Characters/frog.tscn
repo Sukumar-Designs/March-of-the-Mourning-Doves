@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://uof5vhodn5fp"]
+
+[ext_resource type="Script" path="res://Full_Assets/Characters/Critter.gd" id="1_l81xd"]
+[ext_resource type="Texture2D" uid="uid://3o3nkr7nve5w" path="res://Assets/Characters/Creature_Images/Frogtest.png" id="2_1hi6p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i4unc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rgbnb"]
+radius = 11.8518
+
+[node name="Frog" type="CharacterBody3D"]
+script = ExtResource("1_l81xd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_i4unc")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.0891306, 0, 0, 0, 0.0891306, 1.06252e-08, 0, -1.06252e-08, 0.0891306, 0, 0, 0)
+billboard = 1
+texture = ExtResource("2_1hi6p")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Surroundings" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="Surroundings_Collision" type="CollisionShape3D" parent="Surroundings"]
+shape = SubResource("SphereShape3D_rgbnb")
