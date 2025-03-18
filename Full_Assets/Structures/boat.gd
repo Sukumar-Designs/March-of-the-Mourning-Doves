@@ -40,3 +40,16 @@ func seat(passenger, seat):
 
 func set_driver(d):
 	driver = d
+
+func leave(passenger):
+	for seat in seats:
+		var children = seat.get_children()
+		if children.size() >= 1:
+			seat(children[0], get_tree().root)
+			children[0].transition_as_passenger(false, self)
+		#if passenger in seat.get_children():
+			#seat(passenger, get_tree().root)
+			#passenger.transition_as_passenger(false, self)
+			# TO DO: Make it so the passenger gets to shore#passenger.global_position = seat.global_position
+
+	

@@ -8,21 +8,21 @@ var on_ground = false
 var in_vehicle = false
 var vehicle 
 
-#func _physics_process(delta):
-	#if !vehicle:
-		#var input_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
-		#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		#if direction:
-			#velocity.x = direction.x * speed
-			#velocity.z = direction.z * speed
-		#else:
-			#velocity.x = move_toward(velocity.x, 0, speed)
-			#velocity.z = move_toward(velocity.z, 0, speed)
-		#if Input.is_action_just_pressed("player_jump") and on_ground:   
-			#velocity.y += 10
-			#
-		#velocity.y -= gravity * delta 
-		#move_and_slide()
+func _physics_process(delta):
+	if !vehicle:
+		var input_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+		if Input.is_action_just_pressed("player_jump") and on_ground:   
+			velocity.y += 10
+			
+		velocity.y -= gravity * delta 
+		move_and_slide()
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -32,6 +32,10 @@ func _input(event):
 		elif clicked_object is Boat:
 			print_debug("!!")
 			boat_interact(clicked_object)
+	
+	#if event is InputEventKey:
+	if event.is_action_pressed("player_jump") and vehicle:
+		vehicle.leave(self)
 
 func critter_interact(critter):
 	if critter.has_task():
@@ -39,7 +43,6 @@ func critter_interact(critter):
 
 func boat_interact(boat):
 	boat.request_seat(self)
-	print_debug("!!!")
 
 func get_clicked_object():
 	var camera = $Camera3D  # Make sure this points to your camera node
